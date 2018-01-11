@@ -1,0 +1,930 @@
+---
+title             : "A Meta-Analysis of Expressive Writing on Positive Psychology Variables and Traumatic Stress"
+shorttitle        : "Expressive Writing"
+
+author: 
+  - name          : "Jeffrey M. Pavlacic"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "205 Peabody Hall, University, MS 38655"
+    email         : "jpavlaci@go.olemiss.edu"
+  - name          : "Erin M. Buchanan"
+    affiliation   : "2"
+  - name          : "Nicholas P. Maxwell"
+    affiliation   : "2"
+  - name          : "Tabetha G. Hopke"
+    affiliation   : "2"
+  - name          : "Stefan E. Schulenberg"
+    affiliation   : "1"
+    
+affiliation:
+  - id            : "1"
+    institution   : "University of Mississippi"
+  - id            : "2"
+    institution   : "Missouri State University"
+
+author_note: >
+  Jeffrey Pavlacic is a doctoral candidate at the University of Mississippi. Erin M. Buchanan is an Associate Professor of Psychology at Missouri State University. Nicholas P. Maxwell and Tabetha G. Hopke are master's degree candidates at Missouri State University. Stefan E. Schulenberg is a Professor of Psychology at the University of Mississippi. 
+
+abstract: >
+  Emotional expression has been shown to be benficial for promoting both positive psychological and physical health outcomes. Unfortunately, inhibiting emotions can lead to impairments in physical and psychological health. James Pennebaker showed that expressive writing is an effective form of emotional expression, and he and others have used expressive writing as an experimental manipulation to gauge its effectiveness in treating a wide variety of health-related and psychological outcomes. While many studies have been conducted that examine the effectiveness of expressive writing across such outcomes, a considerable amount of these studies tend to neglect necessary considerations such as power and meaningfulness of respective effect sizes. Four previous meta-analyses have been conducted that examine expressive writing's affect on psychological outcomes, however, these studies focus on the experimental versus control group effect size. Thus, our meta-analysis sought to examine the effectiveness of an expressive writing intervention on only the experimental conditions in studies measuring posttraumatic growth, posttraumatic stress, and quality of life using random effects models. Results indicated a small overall effect size for posttraumatic stress and negligible to small effect sizes for posttraumatic growth and quality of life. Implications for future research design and interpretation of published research are discussed. 
+  
+keywords          : "meta-analysis, positive psychology, expressive writing"
+
+bibliography      : ["meta_bib.bib"]
+
+figsintext        : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : yes
+
+nocite: | 
+  @Arden-Close2013, @Barry2001,@Broderick2005, @Bugg2009, @Craft2013, @Deters2003, @Blasio2015a, @Gebler2007, @Gellaitry2010, @Giannotta2009, @Gidron1996a, @Greenberg1996, @Halpert2010, @Horsch2016, @Hoyt2014, @Hoyt2011, @Ironson2013, @Kallay2008, @Knaevelsrud2007, @Koopman2005, @Kovac2000, @Lancaster2015, @Lange2001, @Low2010, @Lu2012a, @Meshberg-Cohen2014, @Nixon2009, @Paez1999, @Park2002, @Possemato2010, @Range2000, @Schoutrop2002, @Schwartz2004, @Slavin-Spenny2011, @Sloan2004, @Sloan2005, @Sloan2011a, @Smyth2002, @Smyth2002a, @Stockton2014, @Ullrich2002a, @Vedhara2007, @Wagner2006, @Walker1999a, @Zakowski2004
+  
+lang              : "english"
+class             : "man"
+output            : papaja::apa6_pdf
+---
+```{r libraries, include = FALSE}
+library("papaja")
+library(cowplot)
+library(ggplot2)
+
+cleanup = theme(panel.grid.major = element_blank(), 
+                panel.grid.minor = element_blank(), 
+                panel.background = element_blank(), 
+                axis.line.x = element_line(color = "black"),
+                axis.line.y = element_line(color = "black"),
+                legend.key = element_rect(fill = "white"),
+                text = element_text(size = 12),
+                axis.text.x = element_text(size = 10),
+                axis.text.y = element_text(size = 10))
+
+fplot = function(d, xlab = "d avg", ylab = "Study"){
+  require(ggplot2)
+  p = ggplot(data=d, aes(d$plotname, d$effect.size)) +
+    geom_pointrange(aes(x=d$plotname, y=d$effect.size, 
+                        ymin=d$lowd, ymax=d$highd),
+                        shape = 18, size = d$weight) +
+    geom_hline(yintercept = 0, lty = 1) +
+    geom_hline(yintercept = mean(d$lowd), lty = 2) +
+    geom_hline(yintercept = mean(d$highd), lty = 2) +
+    coord_flip() +
+    ylab(xlab) +
+    xlab(ylab) +
+    cleanup
+  return(p)
+}
+
+#devtools::install_github("RobbievanAert/puniform")
+#Joe-Hilgard/PETPEESE
+library(puniform)
+library(weightr)
+source("petpeese.R")
+
+```
+
+Emotional expression, especially focusing on negative emotions or trauma, has been shown to increase both mental and physical health [@Rachman1980; @Scheff1979; @Esterling1990; @Fawzy1993; @Lieberman2006]. Inhibiting repressive thoughts or emotions can be can be detrimental to both physical and psychological health [@Gross1997; @Goldstein1988; @Larson1990a]. Additionally, repressing or avoiding certain emotions may prevent an individual from living in accordance with his or her values [@Wilson2009] Further, individuals experiencing traumatic events are more likely to repress thoughts and feelings about a given traumatic experience [@Bodor2004]. Generally, preventing the disclosure of harmful thoughts and feelings can be harmful to individuals, while disclosing these events can reduce stress and lead to various positive health outcomes, such as with diabetes [@Bodor2004], breast cancer related illnesses [@Stanton2002], and other physical health conditions. As a caveat, however, the disclosure or acceptance of harmful thoughts or emotions can actually be lead to negative outcomes. Thus, caution should be used when interpreting results from interventions based on emotional expression [@Wilson2009]. For example, @Brouneus2010 found that truth telling, a form of emotional expression, caused harm to individuals. However, in general, these repressive maneuvers have the capability to lead to social concerns, overall psychological dysfunction, and inhibit from living in accordance with their values [@Pennebaker1989; @Pennebaker1986; @Wilson2009]. Psychological dysfunction can obviously lead to detrimental effects on health, including unhealthy everyday life habits, which could lead to biological problems, especially immune system and neurotransmitter deficiencies [@Pennebaker1986]. By preventing an individual from living in accordance with his or her values, emotional inhibition may prohibit individuals from gaining access to values that are intrinsically reinforcing. Therefore, it is important to identify and foster ways in which individuals can effectively express emotions, thereby improving both physical and psychological health.
+
+@Pennebaker1986 first showed that emotional expression can be both experimentally manipulated and have positive benefits to participants. In their seminal study, they randomly assigned participants to several writing groups including writing about an experienced trauma or a neutral event. The group that disclosed both about their trauma and the emotions surrounding that trauma later showed a reduction in health visits. Pennebaker has replicated the use of expressive writing (i.e., a written paradigm in which one writes about emotions) across a number of studies ranging from improving health [@Pennebaker1988; @Pennebaker1990] to improvements in school [@Pennebaker1996] and work [@Francis1992]. Others have expanded this work to show positive effects on mood [@Schoutrop2002] and asthma [@Smyth1999]; however, several controlled studies have shown to not replicate [@Harris2005] or null effects [@Gidron1996a; @Walker1999a].
+
+The idea that a brief, controlled writing intervention can have numerous positive health and psychological benefits can certainly be controversial, especially when recent studies show contradicting results. For example, @Henry2010 found that expressive writing only benefited a rural population for those individuals surviving breast cancer, while @Lancaster2015 found no significant evidence that expressive writing can be considered an effective approach. Additionally, @Brouneus2010 found that truth telling caused harm to individuals in a forensic setting. However, the concept remains interesting due to the nature and inexpensive implementation of expressive writing. Many individuals who have experienced traumatic events do not wish to disclose their feelings regarding the events with others. Additionally, those who do not meet diagnostic criteria are sometimes neglected despite probable suffering [@Wilson2009]. However, by utilizing expressive writing as a personal method of treatment, individuals are able to effectively express their emotions while avoiding talking to another individual or clinician about the traumatic event [@Smyth1998]. @Pennebaker1993 found that experimental conditions assigned to participate in an expressive writing task generally report more positive changes than those in control conditions. Some controversy has been observed over whether or not writing about a formerly disclosed event is more effective than writing about an undisclosed event. @Greenberg1992 conducted an experiment where they separated participants into three groups: writing about a formerly disclosed trauma, writing about an undisclosed trauma, and a control group. They found no difference between groups in effectiveness. However, they did find that those who disclosed more severe traumas reported experienced fewer physical symptoms at follow up, which suggests that the type of trauma revealed can play a significant impact on symptom reduction and physical health. From a meta-analytic perspective, @Mogk2006 found a non-meaningful effect size when examining the effect of expressive writing on somatic health symptoms, psychological health, and miscellaneous outcomes, such as grades and self efficacy. These results were in contrast to the meta-analysis conducted by @Smyth1998, which found a medium overall effect size (*d* = 0.47).
+
+In order to understand why expressive writing is considered to be effective, intervention-based approach, one must examine the cognitive and social processes by which it allows an individual to process information. @Pennebaker1990 discovered that individuals who had benefited from expressive writing attributed their success due to ways in which the intervention allowed them to understand what had happened to them. Furthermore, in an additional study, @Pennebaker1993 conducted a textual analysis on expressive writing content and found that those who were more successful during the intervention used words that can be categorized as causation words. Pennebaker attributed these results as an individual effectively processing the event in their own mind. Aside from cognitive-processing and inhibition theories, there are a number of other theories that researchers have used to explain emotional disclosure. The first theory that warrants explanation is the social integration model [@Pennebaker2001]. This model discusses how emotional disclosure can have a positive impact on how people interact in their environment. This increased environmental interaction can then have positive health benefits on health [@Frattaroli2006]. Finally, expressive writing parallels exposure therapy for a variety of phobias and posttraumatic stress disorder, which suggests that repeatedly exposing oneself to the seemingly anxious thought or trauma can reduce the anxiety, fear, or stress associated with that event [@Meshberg-Cohen2014]. Given that exposure therapy has been shown to be effective for reducing posttraumatic stress [PTS; @Sloan2005], one would expect individuals in these studies to experience a reduction in PTS symptoms after taking part in an expressive writing intervention. Additionally, @Wilson2009 discuss the nonjudgmental acceptance of emotions leads to positive health benefits by promoting value-congruent behavior, one of the main facets of Acceptance and Commitment Therapy. 
+
+## Meta-Analytic Techniques
+
+Recent advancements in statistical analyses have allowed researchers the opportunity to objectively examine the effectiveness of different psychological interventions on outcome variables [@Glass1976; @Borenstein2007; @Hedges1982]. Although many studies produced positive outcomes associated with expressive writing, some of these studies tend to neglect important questions, the most important of which is whether or not the effect sizes are meaningful [@Smyth1998]. Meta-analyses are a technique that allow researchers to pool studies to examine an overall, weighted, population effect [@Borenstein2007]. Several meta-analyses of expressive writing and emotional expression have been explored: @Smyth1998, @Frisina2004a, @Frattaroli2006, and @Mogk2006. These meta-analyses have laid a foundation for exploring the effects of writing on psychological outcomes. For our purposes, we use @Cohen1988 standards for nomenclature for small (0.20), medium (0.50), and large (0.80) *d* values, although it is important to note that Cohen himself suggested that these values should be based on the area of study. Generally, however, these effect size criteria are used within the social sciences realm. 
+
+The meta-analysis conducted by @Smyth1998 found an overall medium effect size, *d* = 0.47, for the experimental group compared to the control group. This particular analysis examined the effectiveness of expressive writing on psychological well-being, general health, and physical functioning. @Frisina2004a expanded these analyses and found that expressive writing had a small to no effect on health outcomes, weighted *d* = 0.07 to *d* = 0.21. The meta-analyses conducted by @Mogk2006 corroborated findings from @Frisina2004a. Specifically, @Mogk2006 examined the effectiveness of expressive writing on somatic health symptoms, psychological outcomes, grades, and self efficacy. The meta-analyses conducted by @Smyth1998 and @Frisina2004a were relatively small in nature, using only 12-14 studies. The meta-analysis conducted by @Mogk2006 included 30 studies. Newer methods of meta-analysis, including *p*-curve [@Simonsohn2014; @Simonsohn2015], *p*-uniform [@VanAert2016], PET-PEESE [@Stanley2014], selection models [@Vevea1995], and trim and fill methods [@Carter2014] allow for better estimation of meta-analytic effect sizes. These analyses would be best performed by examining each potential effect separately, rather than averaging effects of each publication into one study effect size. 
+
+Additionally, @Frattaroli2006 conducted a meta-analysis to examine the effects of emotional disclosure on a variety of variables such as psychological health, physiological functioning, reported health, health behaviors, subjective impact of intervention, and general functioning/life outcomes. This meta-analysis differentiates from the meta conducted by @Smyth1998 in that it utilizes random effects modeling in order to calculate effect sizes. The current meta-analysis includes both random and fixed effects models for comparison. Fixed effects models assume that all studies assess the same "true" population effect size, which may be an untenable assumption across different assessments and populations [@Borenstein2007]. Random effects models estimate the mean of a proposed distribution of population effect sizes, which may vary by subject type or research design. Overall, @Frattaroli2006 found a weighted *r* effect size of .08 for all outcomes combined, which would be considered small. This meta-analysis included a very large range of studies, *N* = 146, but individual studies were again collapsed into one publication effect size, although these effects were also examined separately by health outcome. 
+
+An additional methodological concern of the previous meta-analyses is the focus on experimental versus control group effect sizes, rather than emphasizing change for an intervention group. This focus is likely because of the analyses provided in these publications, especially when using randomized controlled trial research design. While this design is the gold standard for medicine, the effects of comparing control groups versus experimental groups may mask the usefulness of the change for the intervention group. For example, a comparison group may increase their quality of life scores by two points in a controlled study, while the experimental group increases their quality of life scores by four points; thus, creating a significant difference in change between the two groups. This information is valuable, but it does not tell us the magnitude of the change for the intervention group, wherein four points might only be a small effect when examined within the group who received the intervention. This study will focus on changes across time for groups who received the expressive writing task to determine what size of effects one might expect given a specific measurement schedule (i.e. one to three months, three months to six months, etc.). Additionally, we will examine the change in effects across measurement time to determine whether or not effects decrease over time. 
+
+Expressive writing tasks fit well within the framework of different psychological interventions and can be adapted for treatment, which is why the literature includes a multitude of different studies looking at a wide variety of outcomes. However, it is important to focus on individual variables in order to determine the effectiveness of expressive writing for specific diagnoses and psychopathology. As previously mentioned, some studies have found long-term benefits of expressive writing on psychological well-being [@Park2002]. However, other studies, such as the research completed by @Lancaster2015, have found no evidence supporting the utilization of expressive writing as an effective therapeutic approach. Thus, it is necessary to evaluate the effectiveness of expressive writing on specific outcome variables, and we chose to focus specifically on posttraumatic stress (PTS), posttraumatic growth (PTG), and quality of life (QOL), in line with the current positive psychology trends. By focusing on specific outcome variables, rather than specific patient or study characteristics (which are covered extensively in @Frattaroli2006), we can examine how effective writing can be for changing stress and positive psychology phenomena as described below. With this knowledge, we can decide whether or not to incorporate this type of intervention into protocols for certain diagnoses. 
+
+## Posttraumatic Stress
+
+Posttraumatic Stress Disorder (PTSD) is a disorder involving reoccurring thoughts or experiences after a traumatic event or experience [@AmericanPsychiatricAssociation2013]. The diagnosis is based on 20 symptoms structured into four different subsets. These subsets are as follows: re-experiencing, avoidance, negative alterations in cognition and mood, and arousal [@Crespo2016]. PTSD is concerning disorder, specifically among Iraq and Afghanistan war veterans [@Gentes2014]. Research conducted on the effectiveness of expressive writing on PTSD symptoms has been less successful and shows outcomes that are not as effective as other studies. While PTSD symptoms decreased after a written emotional disclosure intervention, this decrease was not significantly different than a control group change [@Sloan2011a]. Additionally, the emotional disclosure group showed greater emotional and heart rate responding, leading the researchers to conclude that writing may not be effective for treating PTSD. 
+
+@Blasio2015a suggested that those meeting the criteria for moderate PTSD benefit more from expressive writing interventions in comparison to those with greater PTSD symptoms. They recruited women who had just given birth and assessed them a few days after experiencing childbirth along with a three month follow-up. Results showed that women who had participated in the expressive writing task had lower depression and posttraumatic stress symptoms than the group assigned to a neutral writing condition. Additionally, regression models showed that expressive writing was significantly linked to a reduction of PTSD symptoms at all baseline levels. Contradicting the work conducted by @Sloan2011a, these results suggest that expressive writing may be an effective women for managing postpartum distress. However, it is important to note that only 20 of the 113 women recruited for this study qualified for a diagnosis of PTSD. This limitation suggests that those with moderate distress could perhaps benefit more from an expressive writing intervention than those diagnosed with or meeting the qualifications for PTSD. It may also explain the differences in results between the two studies, as @Sloan2011a found that those with a clinical diagnosis of PTSD did not respond to an emotional disclosure writing task. However, @Blasio2015a found that those who reported mild symptomology better responded to the intervention than those meeting the criteria for a diagnosis of PTSD. As previously mentioned, expressive writing mirrors exposure therapy in that it encourages individuals to express all emotions related to the aversive event. Thus, given this observation, one would expect PTS to experience a meaningful reduction in symptoms in those taking part in an expressive writing intervention. 
+
+## Posttraumatic Growth 
+
+While the literature mostly discusses potentially harmful outcomes to traumatic events such as emotional distress, traumatic events also provide opportunities for personal growth. Traumatic events, either natural or man-inflicted, can lead to positive outcomes by allowing the individual to take a different perspective [@Cobb2006; @Taku2008]. The relationship between positive growth after a traumatic event and symptom reduction is unclear as it is a complex process. Thus, it is necessary to examine how expressive writing might influence each variable separately, which is one of the key goals of this meta-analysis [@Slavin-Spenny2011]. Models receiving empirical support within the last decade suggest that traumatic events offer opportunities for both negative and positive experiences [@Tedeschi1995; @Weiss2002]. PTG is a positive experience after a traumatic event [@Yilmaz2016]. Specifically, PTG is classified as broad cognitive benefits that are seen after a traumatic experience. These benefits can be categorized into finding meaning, examining new possibilities, appreciating life, etc. [@Tedeschi2004]. PTG has been studied in those experiencing natural disasters, war, and other harms such as sexual assault. Finally, PTG has been studied in those experiencing medical diagnoses such as different types of cancer and diseases. Although the relationship between PTG and symptom reduction is not yet fully understood, perhaps expressive writing allows the individual to fully comprehend the event. Expressive writing has been shown to be an effective method for reducing psychological distress among those suffering from trauma [@Sloan2007]. Thus, it only makes sense to examine positive growth in response to a traumatic event after exposing participants to an expressive writing intervention. @Pennebaker2001 speculated that expressive writing allows an individual to feel more connected with his or her surroundings. Although this speculation does not directly explain positive outcomes after an expressive writing intervention, perhaps individuals gain a better appreciation for life after gaining a better sense of connectedness with that individual's surroundings.
+  
+## Quality of Life 
+
+QOL is another positive outcome variable that is worth examining with expressive writing interventions. QOL is described as a concept comprised of multiple domains, both subjective and objective. Objectively, QOL is a measure of the extent to which an individual's needs are met. Subjectively, QOL measures an individual's attitude towards their given situation [@Costanza2007]. @Pennebaker2001 suggested that expressive writing allows one to feel more connected with their surroundings. Furthermore, they explain that expressive writing allows people to see things in a different way and better understand themselves. By understanding a traumatic event, one is able to see things differently and perhaps look at the situation with a more positive mindset. The changes that occur after expressive writing may also allow one to find meaning in the traumatic event, thereby increasing the QOL of that individual [@Frankl1984]. Higher QOL may be considered a type of PTG, which is why we thought to examine the effectiveness of studies utilizing expressive writing to improve QOL and PTG in the same study. 
+
+## Current Meta-Analysis
+
+The purpose of this meta-analysis was to examine studies utilizing expressive writing on positive outcome variables (PTG and QOL) and PTS. Due to inconsistent results in current studies published and outdated meta-analyses, it is important to clarify the effectiveness of expressive writing on promoting positive change after a traumatic event, improving overall quality of life, and reducing posttraumatic stress. This meta-analysis will provide researchers with a collected look at the use of expressive writing to promote increased PTG, increased QOL, and decreased PTS. This particular meta-analysis examines studies of patients with different types of psychopathology and medical diagnoses on PTG, QOL, and PTS. The main focus of this study is to examine PTG, QOL, and PTS by estimating effect sizes of experimental groups assigned to participate in the expressive writing intervention using newer techniques that have not been implemented in previous research.
+
+# Method
+
+## Data Collection
+
+Studies were collected through online databases, such as PsycINFO and Google Scholar, using the following search terms and their combinations: *Posttraumatic Growth, PTG, Quality of Life, QOL, Posttraumtic Stress, PTS, Expressive Writing, Emotional Disclosure*. Within these articles, the change in outcome variables (PTS, PTG, QOL) from pre- to post-test was the dependent variable of interest. Generally, groups were separated into an experimental and control group and then examined at different time points. For purposes of this meta-analysis, only participants assigned to the experimental condition were examined due to having received the expressive writing intervention. If a study included multiple assessment time points, then these measurements were examined sequentially (i.e. time 1 to time 2, time 2 to time 3) to determine change across time for the dependent variable.
+
+```{r import, include = FALSE}
+####import data####
+meta_data = read.csv("meta_data.csv")
+
+nstudies = as.data.frame(table(meta_data$Title))
+nrow(nstudies)
+nrow(meta_data)
+mean(nstudies$Freq)
+sd(nstudies$Freq)
+min(nstudies$Freq)
+max(nstudies$Freq)
+
+table(meta_data$Variable)
+
+##set up the plots later
+meta_data$plotname = as.character(meta_data$plotname)
+```
+
+220 citations focusing on PTS, PTG, and QOL were identified through the literature search and previous meta-analyses. After screening these studies, forty-five articles were retained for containing the appropriate information for this meta-analysis. A complete list of excluded articles can be found at https://osf.io/4mjqt, along with reasons why they were excluded. After coding articles, 202 effect sizes were calculated from the forty-five studies. On average, each study represented *M* = 4.49 (*SD* = 3.50) effects, ranging from 1 to 16 effects. 144 effects were calculated for PTS, 21 for PTG, and 37 for QOL. 
+
+## Calculations for Effect Size, Variance, and Confidence Intervals
+
+Each study implemented a pre-test to post-test style repeated measures design, usually with paired *t*-tests, ANOVA, or regression analyses. The means, standard deviations, and *N* values were collected from each study. In general, Cohen's *d* values were calculated using the following formula for paired *t* using means and standard deviations:
+
+$$
+{d_{av}} = \frac { M_1 - M_2 } { \frac { SD_1 + SD_2 } { 2 }}
+$$
+ 
+This equation is described in detail in @Cumming2012 as an alternative to the traditional calculation of *d* for paired samples *t*, wherein the denominator is the standard deviation of the difference scores:
+
+$$
+{d_{z}} = \frac { M_1 - M_2 } { SD_{diff} }
+$$
+
+This equation for $d_{av}$ not only allows for calculations from published articles that do not include $SD_{diff}$ (i.e., most articles included), but also has been shown to be less upwardly biased than $d_{z}$. Alternative formulas include controlling for *r* between paired levels, as described in @Lakens2013; however, these values were not available in the selected articles, and Lakens also recommends $d_{av}$ as an effect size for paired designs. When only mean differences and standard deviation of the difference scores were available, the second equation for $d_z$ was used. 
+
+We planned to use traditional and newer methods of meta-analysis, following guidelines from @Cooper2009 and @Borenstein2007, as well as @VanAert2016. Sampling variance of the effect sizes were estimated using the *escalc()* function from the *metafor* package [@Viechtbauer2010]. The variance formula was originally published in @Morris2002 and is shown below:
+
+$$
+v = \frac { 1 } { n } (\frac { n - 1 } { n - 3 } )(1 + n*d^2) - \frac { d^2 } { [c(n-1)]^2}
+$$
+
+In this formula, *n* is the number of paired observations, *d* is the calculated effect size, and *c* is a correction factor, wherein *df* are *n* – 1 [@Hedges1982]: 
+
+$$
+c = 1 - \frac { 3 } { 4*df - 1 }
+$$
+
+We used the *metagen()* function in the *metafor* package to calculate both fixed and random effects models, which uses standard error of the effect to calculate overall estimates of an effect and their confidence intervals. Thus, we took the square root of the variance estimate for standard error. 
+Given these calculations, the goal of this analysis was to calculate a combined effect size, along with a confidence interval for study planning and an assessment of the literature. A fixed effects model requires the assumption that there is a true population effect size across all studies. By including multiple measures of psychological outcomes, this assumption may be tenuous, and therefore, a random effects model was also calculated. In random effects models, the true effect is assumed to vary across studies [@Borenstein2007]. For a fixed effects model, the effect sizes are weighted by their inverse variance [*v*; @Sanchez-Meca2008a], which is calculated automatically in *metafor* by:
+
+$$
+w_{i}^{FE} = \frac {1} {v}
+$$
+
+The advantage to this procedure is that analyses are weighted by their precision, that is, that studies with more information (often, larger samples), are given larger weights in the overall estimated effect size [@Borenstein2007]. Random effects models are also weighted by inverse variance, with an additional correction for variance between studies, $\tau^2_{DL}$, as described by @DerSimonian1986: 
+
+$$
+w_{i}^{RE} = \frac {1} {v + \tau^2_{DL}}
+$$
+
+Confidence intervals were calculated in two ways for this study. @Cumming2012, @Kelley2007, and @Smithson2001 have shown that the distribution of *d* values are non-normal, and thus, CIs should be estimated using the non-centrality parameter and a non-normal distribution. These values were calculated using the functions in the *MOTE* library which interatively estimates the appropriate non-centrality parameter and converts back to *d* values [i.e., non-centrality parameter divided by the square root of *n*; @Buchanan2017; @Smithson2001; @Smithson2003]. However, the *metafor* package in *R* uses central distributions to estimate CIs for each study and overall effect sizes. Therefore, we present both sets of values for the interested reader, as meta-analytic procedure has not quite caught up to our understanding of the distributions of effect sizes. 
+
+## Additional Meta-Analytic Techniques
+
+### p-Curve and p-Uniform
+
+We used *p*-curve.com to conduct a *p*-curve analysis [@Simonsohn2014]. The purpose of this type of analysis is to detect true effects. Specifically, *p*-curve is used to reveal possible *p*-hacking in published literature in order to decipher whether or not a true effect exists. Broadly, *p*-hacking occurs when researchers use questionable research practices to create significant results by manipulating dependent variables or covariates. Additionally, authors may add participants if the initial findings are not significant [@Bruns2016]. Researchers may also decide to exclude participants for final analyses if that exclusion leads to a significant difference [@John2012]. Thus, it is necessary to distinguish between true and false effects in order to effectively interpret effect sizes corresponding to those *p*-values. *p*-curve accomplishes this task by examining the distributions of the published *p*-values. If an effect exists, or rather the results should be interpreted as presented, the distribution of *p*-values will be positively skewed [@Simonsohn2014]. If, however, no effect exists, then the distribution of *p*-values will be flat [@Simonsohn2014]. *p*-curve analyses ultimately provide evidence of *p*-hacking in groups of studies and has become an important tool for interpreting meta-analyses [@Simonsohn2014]. In order to accurately estimate effect sizes because of scrutiny associated with effect size estimation of *p*-curve, we also conducted *p*-uniform. *p*-uniform analyses, too, are interpreted by examining the distribution of *p*-values in a set of studies [@VanAert2016]. However, it is assumed that the population effect size equals the effect size from the dataset. Because of this assumption, the population effect size is referred to as uniform. This analysis tests also examines for publication bias and presents the researcher with a corrected effect size. Publication bias occurs when only select studies are published, usually only significant studies, although many factors can bias a study's publication [@McShane2016]. *p*-uniform was calculated from @VanAert2017's code provided on GitHub. 
+
+### PET-PEESE
+
+Originally, meta-analyses relied on the calculation of Egger's regression test which examined the relationship of the standard error (predictor) to the effect size estimates (criterion). In this regression, the intercept values were used to determine if effect size measures were different than zero, by providing a meta-analytic estimate [@Egger1997; @Stanley2005]. PET-PEESE analyses examine for publication bias by adapting parts from Egger's traditional regression tests: PET (Precision Effect Test) and PEESE [Precision Effect Estimate with Standard Error, @Carter2014]. PET is a more reliable test of publication bias with effect size estimates of zero, $b_0$ = 0, while PEESE is more accurate with non-zero effect size estimates, $b_0 \neq$ 0 [@Stanley2014]. PET-PEESE was calculated using @Hilgard2016's code provided on GitHub. 
+
+### Selection Models
+
+Selection model analyses provide the researcher with a test of publication bias and effect size estimates using maximum likelihood estimation [@Vevea1995; @Vevea2005]. Using selection models, researchers are able to discover effect size estimates as well as evidence of publication bias [@McShane2016] by using a mixed general linear model to estimate these values. Selection models were calculated with the *weightr* package [@Coburn2017].
+
+### Trim and Fill
+
+Trim and Fill analyses, in contrast to PET-PEESE, regress standard error (criterion) and effect size estimates (predictor). Specifically, the purpose of Trim and Fill techniques is to examine whether or not publication bias may influence the regression equation [@Carter2014]. Effect sizes and standard error terms are graphically displayed on x and y-axes, respectively, in a funnel plot. If this graphical representation indicates asymmetry, considered a gap of missing data points in the lower center area of the plot, the study set can be assumed to have studies that are both nonsignificant and small in sample size [@VanAssen2015]. This funnel is then trimmed until symmetry is achieved. Missing studies from the symmetrical graph are imputed (filled) while maintaining the given symmetry [@Duval2000]. The meta-analytic effect size is then estimated from the trimmed and filled funnel plot. Trim and fill analyses, as well as funnel plots included below, were calculated with the *metafor* package. 
+
+# Results
+
+```{r calc-effect, include=FALSE}
+####calculate effect sizes####
+#install.packages("devtools")
+#devtools::install_github("doomlab/MOTE")
+
+library(MOTE)
+library(metafor)
+library(meta)
+library(pwr)
+##calculate d.dep.t.avg for columns m1	sd1	m2	sd2	n
+##calculate d.dep.t.diff for columns
+
+##probably best to use a for loop here with if functions
+##want to save d, low CI and high CI for the graph code
+##save d as effect.size or code below will not run 
+
+##create the blank columns to use
+meta_data$effect.size = NA
+meta_data$lowd = NA
+meta_data$highd = NA
+
+
+for (i in 1:nrow(meta_data)) { ##this looks good, loops over the number of rows
+  ##check if we should d averages or d differences
+  ##is.na will tell you if it's NA remember the ! is not equal to
+  ##you want to check m1 because if m1 is blank you can move on
+  ##also want to check each row at a time, so we use i to look at the current row
+  
+  if(!is.na(meta_data$m1[i])) {
+    
+    ##if there's a m1, we should do d.dep.t.avgs
+    ##add this to get it to subtract m1 from m2 for the loop 
+    if(meta_data$Variable[i] =="QOL"| meta_data$Variable[i] =="PTG"){
+      save = with(meta_data, d.dep.t.avg(m2[i], m1[i], 
+                                       sd2[i], sd1[i], n[i], a = .05))
+      } else {
+      save = with(meta_data, d.dep.t.avg(m1[i], m2[i],
+                                         sd1[i], sd2[i], n[i], a = .05))
+      }
+    
+    ##save the data you need in that specific row
+    meta_data$effect.size[i] = save$d
+    meta_data$lowd[i] = save$dlow
+    meta_data$highd[i] = save$dhigh
+  }
+  
+  if(is.na(meta_data$m1[i])) {
+    save = with(meta_data, d.dep.t.diff(mdiff[i], sddiff[i],
+                                        n[i], a = .05))
+    
+    
+    ##save the data you need in that specific row
+    meta_data$effect.size[i] = save$d
+    meta_data$lowd[i] = save$dlow
+    meta_data$highd[i] = save$dhigh
+    
+    ##deal with information we do not have:
+    ##if m1i and m2i are unknown, but the raw mean change is directly reported in a particular study, then you can set m1i to that value and m2i to 0 (making sure that the raw mean change was computed as m1i-m2i within that study and not the other way around). 
+    
+    meta_data$m1[i] = meta_data$mdiff[i]
+    meta_data$m2[i] = 0
+    ##if sd1i, sd2i, and ri are unknown, but the standard deviation of the change scores is directly reported, then you can set sd1i to that value and both sd2i and ri to 0. 
+    
+    ##don't worry about r, setting that later
+    meta_data$sd1[i] = meta_data$sddiff[i]
+    meta_data$sd2[i] = 0
+   
+  }
+
+} ##end for loop
+
+##set up for the meta test
+##set correlations to zero, since we do not know them
+meta_data$correl = rep(0, nrow(meta_data))
+
+##run effects to get variance
+##SMCC is standardized mean change using change score standardization
+
+##run effects and save the variance and standard error
+saveinfo = with(meta_data, escalc("SMCC", m1i = m1, m2i = m2, 
+                       sd1i = sd1, sd2i = sd2, ni = n,
+                       ri = correl))
+
+meta_data$variance = saveinfo$vi
+meta_data$se_est = sqrt(saveinfo$vi)
+
+#save a spot for the weights to add with each study
+meta_data$weight = NA
+
+#significant effects
+#save p value for sig studies
+#save z score for p curve
+CIs = data.frame(ci(TE = meta_data$effect.size, seTE = sqrt(meta_data$variance)))
+meta_data$pvalue = CIs$p
+meta_data$zvalue = CIs$z
+
+#power based on the effect size
+powerstuff = pwr.t.test(n = meta_data$n, d = meta_data$effect.size, sig.level = 0.05, type = c("paired"))
+meta_data$power = powerstuff$power
+
+```
+
+## PTS
+
+### Overall Effect Size
+
+```{r pts-overall, include = FALSE}
+#subset the data
+ptsdata = subset(meta_data, Variable =="PTS")
+
+#run overall effect size
+ptsgroups = metagen(effect.size, se_est, data = ptsdata)
+summary(ptsgroups)
+
+#outliers
+randommodelpts = rma(yi=effect.size, vi=variance, data = ptsdata, method="DL")
+infrandompts = influence(randommodelpts)
+ptsgroupsnoout = metagen(effect.size, se_est, data = ptsdata[!infrandompts$is.infl, ])
+summary(ptsgroupsnoout)
+
+##define output table
+tableprint = matrix(NA, nrow = 7, ncol = 5)
+colnames(tableprint) = c("V", "FEout", "REout", "FEno", "REno")
+
+##insert into table 
+tableprint[1, ] = c("Overall Effects", 
+                    paste(apa(ptsgroups$TE.fixed, 2), " [", apa(ptsgroups$lower.fixed, 2), ", ", apa(ptsgroups$upper.fixed, 2), "]", sep = ""), #fixed effects and ci with outliers
+                    paste(apa(ptsgroups$TE.random, 2), " [", apa(ptsgroups$lower.random, 2), ", ", apa(ptsgroups$upper.random, 2), "]", sep = ""), #random effects and ci with outliers
+                    paste(apa(ptsgroupsnoout$TE.fixed, 2), " [", apa(ptsgroupsnoout$lower.fixed, 2), ", ", apa(ptsgroupsnoout$upper.fixed, 2), "]", sep = ""), #fixed effects and ci without outliers
+                    paste(apa(ptsgroupsnoout$TE.random, 2), " [", apa(ptsgroupsnoout$lower.random, 2), ", ", apa(ptsgroupsnoout$upper.random, 2), "]", sep = "") #random effects and ci without outliers
+)
+
+tableprint[2, ] = c("$Z$ Values", 
+                    paste(apa(ptsgroups$zval.fixed, 2), ", $p$ < .001", sep = ""), #fixed out
+                    paste(apa(ptsgroups$zval.random, 2), ", $p$ < .001", sep = ""), #random out
+                    paste(apa(ptsgroupsnoout$zval.fixed, 2), ", $p$ < .001", sep = ""), #fixed out
+                    paste(apa(ptsgroupsnoout$zval.random, 2), ", $p$ < .001", sep = "") #random out
+)
+```
+
+As described above, both fixed effects and random effects models with centralized confidence intervals are presented in Table \@ref(tab:PTStable). Studies were examined for potential outliers using the *metafor* package in *R*. This package calculates traditional regression influence values, such as Cook's and hat values [@Cohen1988]. These values indicate change in overall meta-analytic model with and without the effect; thus, determining their impact on the pooled effect size [@Viechtbauer2010]. Because published studies likely represent the range of the sampling distribution of effect sizes, we included the analyses with and without outliers to present evidence for both paths a researcher might take when examining an overall effect. 
+
+Three outliers were detected with this procedure, all showing very large effect sizes, average *d* = `r apa(mean(ptsdata$effect.size[infrandompts$is.infl]),2)`. The fixed and random effects estimates without these points are also included in Table \@ref(tab:PTStable). Figures \@ref(fig:ptspictotal), \@ref(fig:ptspichyper), \@ref(fig:ptspicint), and \@ref(fig:ptspicavoid) portray the effect sizes for PTS studies, separated by intrusions, avoidance, hyperarousal, and total scores for easier viewing. Name acromyn coding can be found in the data online. This forest plot includes the non-centralized confidence interval calculated from the *MOTE* library [@Buchanan2017]. Shape size indicates study weight, and these values were taken from the overall random effects meta-analysis and normalized by dividing by the mean weight. The dashed lines indicate the average non-weighted lower and upper confidence interval limit for the non-centralized estimates. Overall, PTS studies include a medium effect size that appears to be significantly greater than zero across all estimate types (fixed, random, with or without outliers).
+
+```{r ptspicoverall, echo=FALSE, fig.cap="Effect sizes and their non-centralized confidence interval for PTS total scores. FDashed lines indicated average non-weighted lower and upper confidence interval limits. Diamond size indicates normalized study weight from a random effects model.", fig.height=8, fig.width=8}
+
+#weight for graph
+ptsdata$weight = ptsgroups$w.random / mean(ptsgroups$w.random)
+
+totalgraph = fplot(ptsdata[ptsdata$ptstype == "total" , ], "PTS Total Effect Size") +
+  scale_x_discrete(limits = sort(ptsdata$plotname[ptsdata$ptstype == "total"], decreasing = T))
+
+totalgraph
+```
+
+```{r ptspichyper, echo=FALSE, fig.cap="Effect sizes and their non-centralized confidence interval for PTS Hyperarousal. Dashed lines indicated average non-weighted lower and upper confidence interval limits. Diamond size indicates normalized study weight from a random effects model.", fig.height=6, fig.width=8}
+
+hypgraph = fplot(ptsdata[ptsdata$ptstype == "hyper" , ], "PTS Hyperarousal Effect Size") +
+  scale_x_discrete(limits = sort(ptsdata$plotname[ptsdata$ptstype == "hyper"], decreasing = T))
+
+hypgraph
+```
+
+```{r ptspicint, echo=FALSE, fig.cap="Effect sizes and their non-centralized confidence interval for PTS Intrusion scores. Dashed lines indicated average non-weighted lower and upper confidence interval limits. Diamond size indicates normalized study weight from a random effects model.", fig.height=9, fig.width=8}
+
+intgraph = fplot(ptsdata[ptsdata$ptstype == "int" , ], "PTS Intrusions Effect Size") +
+  scale_x_discrete(limits = sort(ptsdata$plotname[ptsdata$ptstype == "int"], decreasing = T))
+
+intgraph
+```
+
+
+```{r ptspicavoid, echo=FALSE, fig.cap="Effect sizes and their non-centralized confidence interval for PTS Avoidance Scores. Dashed lines indicated average non-weighted lower and upper confidence interval limits. Diamond size indicates normalized study weight from a random effects model.", fig.height=8, fig.width=8}
+
+avoidgraph = fplot(ptsdata[ptsdata$ptstype == "avoid" , ], "PTS Avoidance Effect Size") +
+  scale_x_discrete(limits = sort(ptsdata$plotname[ptsdata$ptstype == "avoid"], decreasing = T))
+
+avoidgraph
+```
+
+### Homogeneity 
+
+A pre-requisite for newer meta-analytic techniques includes the assessment of homogeneity of the effects [@VanAert2016]. Using the *metafor* package in *R*, we calculated the *Q*-statistic and the $I^2$ index [@Cochran1954; @Huedo-Medina2006]. Significant values imply inconsistencies across the variable or variables of interest and are represented by *Q*. In contrast, $I^2$ indicates the percentage of heterogeneity along with a 95% CI. Both can, however, be biased with a small number of experiments included for analyses [@Higgins2003; @Huedo-Medina2006]. Thus, we sought to calculate an overall level of heterogeneity after examining each variable separately before and after excluding outliers. For PTS studies including outliers, we found significant heterogeneity, *Q*(`r ptsgroups$df.Q`) = `r apa(ptsgroups$Q, 2)`, *p* < .001 and $I^2$ = `r apa(ptsgroups$I2*100, 1)`, 95% CI[`r apa(ptsgroups$lower.I2*100, 1)` - `r apa(ptsgroups$upper.I2*100, 1)`]. These values were reduced slightly with the exclusion of outliers, *Q*(`r ptsgroupsnoout$df.Q`) = `r apa(ptsgroupsnoout$Q, 2)`, *p* < .001 and $I^2$ = `r apa(ptsgroupsnoout$I2*100, 1)`, 95% CI[`r apa(ptsgroupsnoout$lower.I2*100, 1)` - `r apa(ptsgroupsnoout$upper.I2*100, 1)`]. 
+
+### Power
+
+```{r ptspower, include = FALSE}
+PTSsig = sum(ptsdata$pvalue < .05) / nrow(ptsdata) * 100
+
+#with outliers
+power2 = pwr.t.test(n = ptsdata$n, d = ptsgroups$TE.random, sig.level = 0.05, type = c("paired"))
+ptsdata$power2 = power2$power
+
+#without outiers
+power3 = pwr.t.test(n = ptsdata$n, d = ptsgroupsnoout$TE.random, sig.level = 0.05, type = c("paired"))
+ptsdata$power3 = power3$power
+```
+
+Power was calculated in two different ways using the *pwr* package in *R* [@Champely2016]. *Post hoc* power was first calculated using sample size and effect size statistics from each individual study. Additionally, we calculated power using the study sample size and estimated overall effect size from the random effects model with and without outliers, as explained by @Francis2012 and @Francis2014. The first estimate indicates the likelihood of finding and effect from our sample statistics, while the second indicates the likelihood of finding the true population effect size. If each study had been conducted on only the change in the experimental group, `r apa(PTSsig,1)`% of studies would have been considered significant at $\alpha$ < .05. The average power of these studies based on their original study characteristics was `r apa(mean(ptsdata$power), 2, F)` (*SD* = `r apa(sd(ptsdata$power), 2, F)`). Power for the random-effects meta-analytic effect size with outliers was `r apa(mean(ptsdata$power2), 2, F)` (*SD* = `r apa(sd(ptsdata$power2), 2, F)`) and without outliers was `r apa(mean(ptsdata$power3), 2, F)` (*SD* = `r apa(sd(ptsdata$power3), 2, F)`). Therefore, power consistently was around 40-50% for studies examining PTS, regardless of outlier effects. In these studies, only `r apa(sum(ptsdata$power > .80) / nrow(ptsdata)*100, 1)`% achieved recommended 80% power for their found effect size, a smaller `r apa(sum(ptsdata$power2 > .80) / nrow(ptsdata)*100, 1)`% for the random-effect outlier effect size, and even smaller `r apa(sum(ptsdata$power3 > .80) / nrow(ptsdata)*100, 1) `% for power calculations on the random-effect size without the outliers. 
+
+### Other Meta-Analytic Estimates
+
+```{r ptsother, include = FALSE}
+#p-curve
+paste("Z = ", ptsdata$z, sep = "")
+
+#p uniform
+puniPTSout = puniform(yi=ptsdata$effect.size, vi=ptsdata$variance,
+                         side = "right", method = "P",
+                         alpha = 0.05, plot = TRUE)
+puniPTSout
+
+puniPTSno = puniform(yi=ptsdata$effect.size[!infrandompts$is.infl], vi=ptsdata$variance[!infrandompts$is.infl],
+                         side = "right", method = "P",
+                         alpha = 0.05, plot = TRUE)
+puniPTSno
+
+tableprint[3, ] = c("$p$-Uniform", 
+                    paste(apa(puniPTSout$est, 2), " [", apa(puniPTSout$ci.lb, 2), ", ", apa(puniPTSout$ci.ub, 2), "]", sep = ""), #fixed out
+                    "-", #random out
+                    paste(apa(puniPTSno$est, 2), " [", apa(puniPTSno$ci.lb, 2), ", ", apa(puniPTSno$ci.ub, 2), "]", sep = ""), #fixed no
+                    "-" #random no
+)
+
+#pet - peese
+#make a dataset with the right column names need d and std error
+ptsPP = ptsdata[ , c("effect.size","se_est") ]
+colnames(ptsPP) = c("Fisher.s.Z", "Std.Err")
+funnelPETPEESE(ptsPP)
+
+petPTSout = PET(ptsPP)
+peesePTSout = PEESE(ptsPP)
+
+petPTSno = PET(ptsPP[!infrandompts$is.infl, ])
+peesePTSno = PEESE(ptsPP[!infrandompts$is.infl, ])
+
+tableprint[4, ] = c("PET", 
+                    paste(apa(petPTSout$b[1], 2), " [", apa(petPTSout$ci.lb[1], 2), ", ", apa(petPTSout$ci.ub[1], 2), "]", sep = ""), #fixed out
+                    "-", #random out
+                    paste(apa(petPTSno$b[1], 2), " [", apa(petPTSno$ci.lb[1], 2), ", ", apa(petPTSno$ci.ub[1], 2), "]", sep = ""), #fixed no
+                    "-" #random no
+)
+
+tableprint[5, ] = c("PEESE", 
+                    paste(apa(peesePTSout$b[1], 2), " [", apa(peesePTSout$ci.lb[1], 2), ", ", apa(peesePTSout$ci.ub[1], 2), "]", sep = ""), #fixed out
+                    "-", #random out
+                    paste(apa(peesePTSno$b[1], 2), " [", apa(peesePTSno$ci.lb[1], 2), ", ", apa(peesePTSno$ci.ub[1], 2), "]", sep = ""), #fixed no
+                    "-" #random no
+)
+
+#selection models
+##fixed effects 
+SMfixPTSout = weightfunct(effect = ptsdata$effect.size, v = ptsdata$variance, fe=TRUE)
+SMfixPTSout
+
+SMfixPTSno = weightfunct(effect = ptsdata$effect.size[!infrandompts$is.infl], v = ptsdata$variance[!infrandompts$is.infl], fe=TRUE)
+SMfixPTSno
+
+##random effects 
+SMrandPTSout = weightfunct(effect = ptsdata$effect.size, v = ptsdata$variance, fe=FALSE)
+SMrandPTSout
+
+SMrandPTSno = weightfunct(effect = ptsdata$effect.size[!infrandompts$is.infl], v = ptsdata$variance[!infrandompts$is.infl], fe=FALSE)
+SMrandPTSno
+
+##could not figure out how to pull these values automatically have to type them in :| use the intercept line from the adjusted model results 
+tableprint[6, ] = c("Selection Models", 
+                    paste(apa(0.3281, 2), " [", apa(0.2844, 2), ", ", apa(0.3717, 2), "]", sep = ""), #fixed out
+                    paste(apa(0.4499, 2), " [", apa(0.3278, 2), ", ", apa(0.572, 2), "]", sep = ""), #random out
+                    paste(apa(0.2856, 2), " [", apa(0.2402, 2), ", ", apa(0.3309, 2), "]", sep = ""), #fixed no
+                    paste(apa(0.3852, 2), " [", apa(0.2741, 2), ", ", apa(0.4964, 2), "]", sep = "") #random no
+)
+
+ptsTFout = trimfill(ptsgroups)
+ptsTFout
+
+ptsTFno = trimfill(ptsgroupsnoout)
+ptsTFno
+
+#trim and fill
+{png(file="PTStrim_fill.png", width = 1500, height = 1500, res = 200)
+  layout(matrix(c(1,2,3,4), 2, 2, byrow = TRUE), respect = TRUE)
+funnel(ptsgroups, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTS Original with Outliers", cex.main = 1.2)
+funnel(ptsgroupsnoout, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTS Original without Outliers", cex.main = 1.2)
+funnel(ptsTFout, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTS Filled with Outliers", cex.main = 1.2)
+funnel(ptsTFno, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTS Filled without Outliers", cex.main = 1.2)}
+
+tableprint[7, ] = c("Trim and Fill", 
+                    paste(apa(ptsTFout$TE.fixed, 2), " [", apa(ptsTFout$lower.fixed, 2), ", ", apa(ptsTFout$upper.fixed, 2), "]", sep = ""), #fixed out
+                    paste(apa(ptsTFout$TE.random, 2), " [", apa(ptsTFout$lower.random, 2), ", ", apa(ptsTFout$upper.random, 2), "]", sep = ""), #random out
+                    paste(apa(ptsTFno$TE.fixed, 2), " [", apa(ptsTFno$lower.fixed, 2), ", ", apa(ptsTFno$upper.fixed, 2), "]", sep = ""), #fixed no
+                    paste(apa(ptsTFno$TE.random, 2), " [", apa(ptsTFno$lower.random, 2), ", ", apa(ptsTFno$upper.random, 2), "]", sep = "") #random no
+)
+
+##correlation over time
+ptsCORout = cor.test(ptsdata$Time, ptsdata$effect.size)
+ptsCORno = cor.test(ptsdata$Time[!infrandompts$is.infl], ptsdata$effect.size[!infrandompts$is.infl])
+
+```
+
+As noted in @VanAert2016, *p*-curve and *p*-uniform analyses are upwardly biased when heterogeneity is high. Therefore, we use caution when interpreting these analyses on PTS outcomes. As seen in Table \@ref(tab:PTStable), the estimates for *p*-uniform were higher than other techniques, likely because of the focus on significant *p*-values and the great degree of heterogeneity described earlier. *p*-curve pictures can be found at https://osf.io/4mjqt/ online, and this analysis indicated evidentiary value at *p* < .001. Additionally, the *p*-uniform analysis indicated that there was likely no publication bias present, *Z* = `r apa(puniPTSout$L.pb, 2)`, *p* = `r apa(puniPTSout$pval.pb, 3, F)`. When examining PET analyse, we found that the intercept was significant, which indicated that PEESE was likely a better estimator of the meta-analytic effect size. PEESE estimates were lower than the original meta-analytic estimate, but confidence intervals indicated that the effect is small to medium, but still larger than zero. Selection models indicated a larger effect size, especially with the random-effects models, and these effects were influenced by the outliers found in the published studies. Trim and fill models are shown in Table \@ref(tab:PTStable), and figures are included online. Nineteen missing studies were imputed for both models with and without outliers. Across all these effect size estimates, we found that expressive writing was likely to decrease PTS symptoms in a small to moderate way. The correlation of effect size across the time span used in the study from time one to time two was `r apa_print(ptsCORout)$full_result`, and `r apa_print(ptsCORno)$full_result` without outliers. This result indicated that the effect of expressive writing decreased across time, but likely not significantly. 
+
+```{r PTStrim, echo=FALSE, include=FALSE, fig.cap="Trim and Fill results for PTS studies. The top row indicates trim and fill values with (left) and without (right) outliers. The second row indicates the trim and fill results with the imputed missing studies as open dots.", fig.height=6, fig.width=8}
+
+knitr::include_graphics("PTStrim_fill.png")
+```
+
+```{r PTStable, echo = FALSE, results = 'asis'}
+apa_table(tableprint,
+          align = c("l", rep("c", 4)),
+          caption = "Effect Size Estimates for PTS Results",
+          note = "[] indicates 95 percent confidence interval for each effect size estimate.",
+          col.names = c("Model", "Fixed Effects", "Random Effects", "Fixed No Outliers", "Random No Outliers"),
+          small = T
+          )
+```
+
+## PTG
+
+### Overall Effect Size
+
+```{r ptg-overall, include = FALSE}
+#subset the data
+ptgdata = subset(meta_data, Variable == "PTG")
+
+#run overall effect size
+ptggroups = metagen(effect.size, se_est, data = ptgdata)
+summary(ptggroups)
+
+##ptgdata with noout
+randommodelptg = rma(yi=effect.size, vi=variance, data = ptgdata, method="DL")
+infrandomptg = influence(randommodelptg)
+infrandomptg ##no outliers
+
+##define output table
+tableprint2 = matrix(NA, nrow = 7, ncol = 3)
+colnames(tableprint2) = c("V", "FEout", "REout")
+
+##insert into table 
+tableprint2[1, ] = c("Overall Effects", 
+                    paste(apa(ptggroups$TE.fixed, 2), " [", apa(ptggroups$lower.fixed, 2), ", ", apa(ptggroups$upper.fixed, 2), "]", sep = ""), #fixed effects and ci with outliers
+                    paste(apa(ptggroups$TE.random, 2), " [", apa(ptggroups$lower.random, 2), ", ", apa(ptggroups$upper.random, 2), "]", sep = "")) #random effects and ci with outliers
+
+tableprint2[2, ] = c("$Z$ Values", 
+                    paste(apa(ptggroups$zval.fixed, 2), ", $p$ = .014", sep = ""), #fixed out
+                    paste(apa(ptggroups$zval.random, 2), ", $p$ = .014", sep = ""))
+
+```
+
+Both fixed and random effects models with centralized confidence intervals for PTG are presented in Table \@ref(tab:PTGtable). When examining expressive writing on PTG, no outliers were detected. Fixed and random effects estimates are included in Table \@ref(tab:PTGtable), while Figure \@ref(fig:ptgpic) shows effect sizes for PTG studies where shape size indicates the normalized weight of the study. Dashed lines indicate non-weighted lower and upper confidence intervals for non-centralized estimates. Overall, PTG studies indicated a negligible to small effect size across both random and fixed effects models, and the non-centralized confidence intervals indicated an effect that crossed zero. 
+
+```{r ptgpic, echo=FALSE, fig.cap="Effect sizes and their non-centralized confidence interval for PTG outcome variables. Dashed lines indicated average non-weighted lower and upper confidence interval limits. Diamond size indicates normalized study weight from a random effects model.", fig.height=6, fig.width=8}
+#weight for graph
+ptgdata$weight = ptggroups$w.random / mean(ptggroups$w.random) 
+
+fplot(ptgdata, "PTG Effect Size") + scale_x_discrete(limits = sort(ptgdata$plotname, decreasing = T))
+```
+
+### Homogeneity 
+
+Using the *metafor* package in *R*, we calculated both a *Q* statistic and $I^2$ index. Since PTG studied did not contain any outliers, we did not calculate two separate analyses to examine heterogeneity both with and without outliers. We did not find significant heterogeneity across PTG studies, *Q*(`r ptggroups$df.Q`) = `r apa(ptggroups$Q, 2)`, *p* = .82 and $I^2$ = `r apa(ptggroups$I2*100, 1)`, 95% CI[`r apa(ptggroups$lower.I2*100, 1)` - `r apa(ptggroups$upper.I2*100, 1)`].
+
+### Power
+
+```{r ptgpower, include = FALSE}
+PTGsig = sum(ptgdata$pvalue < .05) / nrow(ptgdata) * 100
+mean(ptgdata$power)
+
+#with outliers
+power4 = pwr.t.test(n = ptgdata$n, d = ptggroups$TE.random, sig.level = 0.05, type = c("paired"))
+ptgdata$power4 = power4$power
+mean(ptgdata$power4)
+```
+
+First, we calculated *post hoc* power using both sample and effect size statistics from individual studies. Individual studies examining change in experimental groups showed that `r apa(PTGsig,1)`% of studies would have been considered significant at $\alpha$ < .05. Average power of PTG studies was `r apa(mean(ptgdata$power), 2, F)` (*SD* = `r apa(sd(ptgdata$power), 2, F)`).`r apa(sum(ptgdata$power > .80) / nrow(ptgdata)*100, 1)`% achieved recommended 80% power for their found effect size. Additionally, we calculated power using study sample size and estimated effect size from our random effects model. Power for the true effect size was `r apa(mean(ptgdata$power4), 2, F)` (*SD* = `r apa(sd(ptgdata$power4), 2, F)`). Against, `r apa(sum(ptgdata$power4 > .80) / nrow(ptgdata)*100, 1)`% achieved recommended 80% power. 
+
+### Other Meta-Analytic Estimates
+
+```{r ptgother, include = FALSE}
+#p-curve
+paste("Z = ", ptgdata$z, sep = "") ##DRB FOR THIS PART 
+
+#p uniform
+puniPTGout= puniform(yi=ptgdata$effect.size, vi=ptgdata$variance,
+                         side = "right", method = "P",
+                         alpha = 0.05, plot = TRUE)
+
+tableprint2[3, ] = c("$p$-Uniform", 
+                    paste(apa(puniPTGout$est, 2), " [", apa(puniPTGout$ci.lb, 2), ", ", apa(puniPTGout$ci.ub, 2), "]", sep = ""), #fixed out
+                    "-"#random out
+             
+) 
+
+#pet - peese
+#make a dataset with the right column names need d and std error
+ptgPP = ptgdata[ , c("effect.size","se_est") ]
+colnames(ptgPP) = c("Fisher.s.Z", "Std.Err")
+funnelPETPEESE(ptgPP)
+
+petPTGout = PET(ptgPP)
+petPTGout
+peesePTGout = PEESE(ptgPP)
+peesePTGout
+
+tableprint2[4, ] = c("PET", 
+                    paste(apa(petPTGout$b[1], 2), " [", apa(petPTGout$ci.lb[1], 2), ", ", apa(petPTGout$ci.ub[1], 2), "]", sep = ""), #fixed out
+                    "-" #random out
+                    
+)
+
+tableprint2[5, ] = c("PEESE", 
+                    paste(apa(peesePTGout$b[1], 2), " [", apa(peesePTGout$ci.lb[1], 2), ", ", apa(peesePTGout$ci.ub[1], 2), "]", sep = ""), #fixed out
+                    "-" #random out
+                    
+)
+
+#selection models
+##fixed effects 
+SMfixPTGout = weightfunct(effect = ptgdata$effect.size, v = ptgdata$variance, fe=TRUE)
+SMfixPTGout
+
+##random effects 
+SMrandPTGout = weightfunct(effect = ptgdata$effect.size, v = ptgdata$variance, fe=FALSE)
+SMrandPTGout
+
+##could not figure out how to pull these values automatically have to type them in :| use the intercept line from the adjusted model results 
+tableprint2[6, ] = c("Selection Models", 
+                    paste(apa(0.08534, 2), " [", apa(-0.005102, 2), ", ", apa(0.1758, 2), "]", sep = ""), #fixed out
+                    paste(apa(0.08534, 2), " [", apa(-0.02825, 2), ", ", apa(0.1989, 2), "]", sep = "") #random out
+                  
+)
+
+
+ptgTFout = trimfill(ptggroups)
+ptgTFout
+
+#trim and fill
+{png(file="PTGtrim_fill.png", width = 1500, height = 1500, res = 200)
+  layout(matrix(c(1,2,3,4), 2, 2, byrow = TRUE), respect = TRUE)
+funnel(ptggroups, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTG Original", cex.main = 1.2)
+funnel(ptgTFout, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTG Filled", cex.main = 1.2)}
+
+
+tableprint2[7, ] = c("Trim and Fill", 
+                    paste(apa(ptgTFout$TE.fixed, 2), " [", apa(ptgTFout$lower.fixed, 2), ", ", apa(ptgTFout$upper.fixed, 2), "]", sep = ""), #fixed out
+                    paste(apa(ptgTFout$TE.random, 2), " [", apa(ptgTFout$lower.random, 2), ", ", apa(ptgTFout$upper.random, 2), "]", sep = "") #random out
+)
+
+##correlation over time
+ptgCORout = cor.test(ptgdata$Time, ptgdata$effect.size)
+ptgCORout
+
+```
+
+Due to no heterogeneity across PTG studies, we can use both *p*-curve and *p*-uniform analyses with more confidence. A pictorial representation of *p*-curve can be found at https://osf.io/4mjqt/. This analysis did not indicate evidentiary value, *p* = .75, as only two of the results would be considered significant at $\alpha$ < .05. *p*-uniform estimates are presented in Table \@ref(tab:PTGtable). Specifically, these analyses indicated that there was no publication bias present, *Z* = `r apa(puniPTGout$L.pb, 2)`, *p* = `r apa(puniPTGout$pval.pb, 3, F)`. The *p*-uniform estimates of the effect size for PTG were negative, in contrast to the fixed and random effects overall model. The confidence interval for this analysis indicates a wide range of possible effects. In examining PET-PEESE analyses, we did not find a significant intercept, indicating that PET is most likely a better effect size estimator. PET analyses indicated that the effect size is negligible to small, with our confidence interval crossing zero. These results corroborated our original effect size calculations. Selection models indicated a negligible to small effect sizes, again wherein the confidence interval includes zero effect. Trim and fill models are shown in Table \@ref(tab:PTGtable), and figures are included online. Zero studies were imputed for our model, and thus, the effect size estimate is the same as the overall model. Across techniques, we found that expressive writing has little to no effect on PTG. The correlation of effect size across time span used in PTG studies at subsequent time points was `r apa_print(ptgCORout)$full_result`, and no change over time was found. 
+
+```{r PTGtrim, echo=FALSE, include = FALSE, fig.cap="Trim and Fill results for PTG studies. The top row indicates trim and fill values with (left) and without (right) outliers. The second row indicates the trim and fill results with the imputed missing studies as open dots.", fig.height=6, fig.width=8}
+
+knitr::include_graphics("PTGtrim_fill.png")
+```
+
+```{r PTGtable, echo = FALSE, results = 'asis'}
+apa_table(tableprint2,
+          align = c("l", rep("c", 4)),
+          caption = "Effect Size Estimates for PTG Results",
+          note = "[] indicates 95 percent confidence interval for each effect size estimate.",
+          col.names = c("Model", "Fixed Effects", "Random Effects"),
+          small = T
+          )
+```
+
+## QOL
+
+###Overall Effect Size
+
+```{r qol-overall, include = FALSE}
+#subset the data
+qoldata = subset(meta_data, Variable == "QOL") 
+
+#run overall effect size
+qolgroups = metagen(effect.size, se_est, data = qoldata)
+summary(qolgroups)
+
+#outliers
+randommodelqol = rma(yi=effect.size, vi=variance, data = qoldata, method="DL")
+infrandomqol = influence(randommodelqol)
+infrandomqol ##24, 25
+qolgroupsnoout = metagen(effect.size, se_est, data = qoldata[!infrandomqol$is.infl, ])
+summary(qolgroupsnoout)
+
+##define output table
+tableprint3 = matrix(NA, nrow = 7, ncol = 5)
+colnames(tableprint3) = c("V", "FEout", "REout", "FEno", "REno")
+
+##insert into table 
+tableprint3[1, ] = c("Overall Effects", 
+                    paste(apa(qolgroups$TE.fixed, 2), " [", apa(qolgroups$lower.fixed, 2), ", ", apa(qolgroups$upper.fixed, 2), "]", sep = ""), #fixed effects and ci with outliers
+                    paste(apa(qolgroups$TE.random, 2), " [", apa(qolgroups$lower.random, 2), ", ", apa(qolgroups$upper.random, 2), "]", sep = ""), #random effects and ci with outliers
+                    paste(apa(qolgroupsnoout$TE.fixed, 2), " [", apa(qolgroupsnoout$lower.fixed, 2), ", ", apa(qolgroupsnoout$upper.fixed, 2), "]", sep = ""), #fixed effects and ci without outliers
+                    paste(apa(qolgroupsnoout$TE.random, 2), " [", apa(qolgroupsnoout$lower.random, 2), ", ", apa(qolgroupsnoout$upper.random, 2), "]", sep = "") #random effects and ci without outliers
+)
+
+tableprint3[2, ] = c("$Z$ Values", 
+                    paste(apa(qolgroups$zval.fixed, 2), ", $p$ = ", 
+                          apa(qolgroups$pval.fixed, 3, F), sep = ""), #fixed out
+                    paste(apa(qolgroups$zval.random, 2), ", $p$ = ", 
+                          apa(qolgroups$pval.random, 3, F), sep = ""), #random out
+                    paste(apa(qolgroupsnoout$zval.fixed, 2), ", $p$ = ", 
+                          apa(qolgroupsnoout$pval.fixed, 3, F), sep = ""), #fixed out
+                    paste(apa(qolgroupsnoout$zval.random, 2), ", $p$ = ", 
+                          apa(qolgroupsnoout$pval.random, 3, F), sep = "") #random out
+)
+```
+
+Finally, for QOL, both fixed and random effects models with centralized confidence intervals are presented in Table \@ref(tab:QOLtable). Two outliers were detected with this procedure, average *d* = `r apa(mean(qoldata$effect.size[infrandomqol$is.infl]),2)`. While the average effect of these outliers indicates a small number, it is important to note that these two outliers were the largest positive and negative effects found from the @Possemato2010 study. Fixed and random effects estimates without these points are also included in Table \@ref(tab:QOLtable), while Figure \@ref(fig:qolpic) shows effect sizes for QOL studies. Overall, QOL studies indicated a negligible to small effect that showed a nonsignficant decrease in quality of life as a result of expressive writing. 
+
+```{r qolpic, echo=FALSE, fig.cap="Effect sizes and their non-centralized confidence interval for QOL outcome variables. Dashed lines indicated average non-weighted lower and upper confidence interval limits. Diamond size indicates normalized study weight from a random effects model.", fig.height=6, fig.width=8}
+#weight for graph
+qoldata$weight = qolgroups$w.random / mean(qolgroups$w.random)
+fplot(qoldata, "QOL Effect Size") + scale_x_discrete(limits = sort(qoldata$plotname, decreasing = T))
+
+```
+
+### Homogeneity 
+
+For QOL studies including outliers, we found significant heterogeneity from our random effects model, *Q*(`r qolgroups$df.Q`) = `r apa(qolgroups$Q, 2)`, *p* < .001 and $I^2$ = `r apa(qolgroups$I2*100, 1)`, 95% CI[`r apa(qolgroups$lower.I2*100, 1)` - `r apa(qolgroups$upper.I2*100, 1)`]. After excluding outliers, our random effects model still indicated heterogeneity,*Q*(`r qolgroupsnoout$df.Q`) = `r apa(qolgroupsnoout$Q, 2)`, *p* < .001 and $I^2$ = `r apa(qolgroupsnoout$I2*100, 1)`, 95% CI[`r apa(qolgroupsnoout$lower.I2*100, 1)` - `r apa(qolgroupsnoout$upper.I2*100, 1)`].
+
+### Power
+
+```{r qolpower, include = FALSE}
+QOLsig = sum(qoldata$pvalue < .05) / nrow(qoldata) * 100
+
+#with outliers
+power6 = pwr.t.test(n = qoldata$n, d = qolgroups$TE.random, sig.level = 0.05, type = c("paired"))
+qoldata$power6 = power6$power
+mean(qoldata$power6)
+
+#without outiers
+power7 = pwr.t.test(n = qoldata$n, d = qolgroupsnoout$TE.random, sig.level = 0.05, type = c("paired"))
+qoldata$power7 = power7$power
+mean(qoldata$power7)
+```
+
+In conducting *post hoc* power using sample and effect size statistics from individual studies, we found that `r apa(QOLsig,1)`% of studies would have been considered significant at $\alpha$ < .05. Average power based on actual study characteristics was `r apa(mean(qoldata$power), 2, F)` (*SD* = `r apa(sd(qoldata$power), 2, F)`). Power for the random effects meta-analytic effect size with outliers was `r apa(mean(qoldata$power6), 2, F)` (*SD* = `r apa(sd(qoldata$power6), 2, F)`) and without outliers was `r apa(mean(qoldata$power7), 2, F)` (*SD* = `r apa(sd(qoldata$power7), 2, F)`). Unfortunately, power was around 5% for both random effects models with and without outliers. In these studies, `r apa(sum(qoldata$power > .80) / nrow(qoldata)*100, 1)`% achieved adequate power of 80% on their found effect size, while `r apa(sum(qoldata$power6 > .80) / nrow(qoldata)*100, 1)`% achieved 80% power for our random effects model with outliers. Finally, without outliers, `r apa(sum(qoldata$power7 > .80) / nrow(qoldata)*100, 1)`% achieved 80% power. 
+
+### Other Meta-Analytic Estimates
+
+```{r qolother, include = FALSE}
+#p-curve
+paste("Z = ", qoldata$z, sep = "") 
+
+#p uniform
+puniQOLout = puniform(yi=qoldata$effect.size, vi=qoldata$variance,
+                         side = "right", method = "P",
+                         alpha = 0.05, plot = TRUE)
+puniQOLout
+
+puniQOLno = puniform(yi=qoldata$effect.size[!infrandomqol$is.infl], vi=qoldata$variance[!infrandomqol$is.infl],
+                         side = "right", method = "P",
+                         alpha = 0.05, plot = TRUE)
+puniQOLno
+
+tableprint3[3, ] = c("$p$-Uniform", 
+                    paste(apa(puniQOLout$est, 2), " [", apa(puniQOLout$ci.lb, 2), ", ", apa(puniQOLout$ci.ub, 2), "]", sep = ""), #fixed out
+                    "-", #random out
+                    paste(apa(puniQOLno$est, 2), " [", apa(puniQOLno$ci.lb, 2), ", ", apa(puniQOLno$ci.ub, 2), "]", sep = ""), #fixed no
+                    "-" #random no
+)
+
+#pet - peese
+#make a dataset with the right column names need d and std error
+qolPP = qoldata[ , c("effect.size","se_est") ]
+colnames(qolPP) = c("Fisher.s.Z", "Std.Err")
+funnelPETPEESE(qolPP)
+
+petQOLout = PET(qolPP)
+petQOLout
+peeseQOLout = PEESE(qolPP)
+peeseQOLout
+
+petQOLno = PET(qolPP[!infrandomqol$is.infl, ])
+petQOLno
+peeseQOLno = PEESE(qolPP[!infrandomqol$is.infl, ])
+peeseQOLno
+
+tableprint3[4, ] = c("PET", 
+                    paste(apa(petQOLout$b[1], 2), " [", apa(petQOLout$ci.lb[1], 2), ", ", apa(petQOLout$ci.ub[1], 2), "]", sep = ""), #fixed out
+                    "-", #random out
+                    paste(apa(petQOLno$b[1], 2), " [", apa(petQOLno$ci.lb[1], 2), ", ", apa(petQOLno$ci.ub[1], 2), "]", sep = ""), #fixed no
+                    "-" #random no
+)
+
+tableprint3[5, ] = c("PEESE", 
+                    paste(apa(peeseQOLout$b[1], 2), " [", apa(peeseQOLout$ci.lb[1], 2), ", ", apa(peeseQOLout$ci.ub[1], 2), "]", sep = ""), #fixed out
+                    "-", #random out
+                    paste(apa(peeseQOLno$b[1], 2), " [", apa(peeseQOLno$ci.lb[1], 2), ", ", apa(peeseQOLno$ci.ub[1], 2), "]", sep = ""), #fixed no
+                    "-" #random no
+)
+
+#selection models
+##fixed effects 
+SMfixQOLout = weightfunct(effect = qoldata$effect.size, v = qoldata$variance, fe=TRUE)
+SMfixQOLout
+
+SMfixQOLno = weightfunct(effect = qoldata$effect.size[!infrandomqol$is.infl], v = qoldata$variance[!infrandomqol$is.infl], fe=TRUE)
+SMfixQOLno
+
+##random effects 
+SMrandQOLout = weightfunct(effect = qoldata$effect.size, v = qoldata$variance, fe=FALSE)
+SMrandQOLout
+
+SMrandQOLno = weightfunct(effect = qoldata$effect.size[!infrandomqol$is.infl], v = qoldata$variance[!infrandomqol$is.infl], fe=FALSE)
+SMrandQOLno
+
+##could not figure out how to pull these values automatically have to type them in :| use the intercept line from the adjusted model results 
+tableprint3[6, ] = c("Selection Models", 
+                    paste(apa(-0.05543, 2), " [", apa(-0.12044, 2), ", ", apa(0.00957, 2), "]", sep = ""), #fixed out
+                    paste(apa(0.5119, 2), " [", apa(-0.09104, 2), ", ", apa(1.115, 2), "]", sep = ""), #random out
+                    paste(apa(-0.04034, 2), " [", apa(-0.10628, 2), ", ", apa(0.02559, 2), "]", sep = ""), #fixed no
+                    paste(apa(0.04514, 2), " [", apa(-0.1523, 2), ", ", apa(0.2426, 2), "]", sep = "") #random no
+)
+
+qolTFout = trimfill(qolgroups)
+qolTFout
+
+qolTFno = trimfill(qolgroupsnoout)
+qolTFno
+
+#trim and fill
+{png(file="QOLtrim_fill.png", width = 1500, height = 1500, res = 200)
+  layout(matrix(c(1,2,3,4), 2, 2, byrow = TRUE), respect = TRUE)
+funnel(qolgroups, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "QOL Original with Outliers", cex.main = 1.2)
+funnel(qolgroupsnoout, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "QOL Original without Outliers", cex.main = 1.2)
+funnel(qolTFout, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "QOL Filled with Outliers", cex.main = 1.2)
+funnel(qolTFno, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "QOL Filled without Outliers", cex.main = 1.2)}
+
+tableprint3[7, ] = c("Trim and Fill", 
+                    paste(apa(qolTFout$TE.fixed, 2), " [", apa(qolTFout$lower.fixed, 2), ", ", apa(qolTFout$upper.fixed, 2), "]", sep = ""), #fixed out
+                    paste(apa(qolTFout$TE.random, 2), " [", apa(qolTFout$lower.random, 2), ", ", apa(qolTFout$upper.random, 2), "]", sep = ""), #random out
+                    paste(apa(qolTFno$TE.fixed, 2), " [", apa(qolTFno$lower.fixed, 2), ", ", apa(qolTFno$upper.fixed, 2), "]", sep = ""), #fixed no
+                    paste(apa(qolTFno$TE.random, 2), " [", apa(qolTFno$lower.random, 2), ", ", apa(qolTFno$upper.random, 2), "]", sep = "") #random no
+)
+
+##correlation over time
+qolCORout = cor.test(qoldata$Time, qoldata$effect.size)
+qolCORno = cor.test(qoldata$Time[!infrandomqol$is.infl], qoldata$effect.size[!infrandomqol$is.infl])
+qolCORout
+qolCORno
+```
+
+We exert caution in interpreting *p*-curve and *p*-uniform analyses on QOL outcomes with and without outliers due to heterogeneity. As seen in Table \@ref(tab:PTStable), *p*-uniform estimates were stronger and positive than other techniques because of the high degree of heterogeneity recently described. *p*-curve pictures can be found at the following OSF Link: https://osf.io/4mjqt. Eight studies were significant at $\alpha$ < .05, and the studies indicated evidentiary value, *p* = .004. *p*-uniform analyses did not indicate publication bias, *Z* = `r apa(puniQOLout$L.pb, 2)`, *p* = `r apa(puniQOLout$pval.pb, 3, F)`. In PET-PEESE analyses, we found that the intercept was not significant, and therefore, PET was a better estimator of the meta-analytic effect. Table \@ref(tab:PTStable) indicates that both of these analyses estimate the effect size around zero, with a confidence interval that includes zero. Selection models correspondingly show small effects crossing zero, except for random effects models with outliers, that appear to be heavily influenced by the outliers. Trim and fill models are shown in Table \@ref(tab:QOLtable), and figures are included online. No studies were imputed for these analyses, and therefore, the effect size estimates match the original meta-analysis. Overall, these results appear to point to no effects, ranging across zero with several negative estimates. Interestingly, the correlation of effect sizes across time points in this study with outliers was `r apa_print(qolCORout)$full_result` and `r apa_print(qolCORno)$full_result` without outliers. The effect of expressive writing appears to be positive at short time intervals and decreases into negative effects at longer time intervals. 
+
+```{r QOLtrim, echo=FALSE, include=FALSE, fig.cap="Trim and Fill results for QOL studies. The top row indicates trim and fill values with (left) and without (right) outliers. The second row indicates the trim and fill results with the imputed missing studies as open dots.", fig.height=6, fig.width=8}
+
+knitr::include_graphics("QOLtrim_fill.png")
+```
+
+```{r QOLtable, echo = FALSE, results = 'asis'}
+apa_table(tableprint3,
+          align = c("l", rep("c", 4)),
+          caption = "Effect Size Estimates for QOL Results",
+          note = "[] indicates 95 percent confidence interval for each effect size estimate.",
+          col.names = c("Model", "Fixed Effects", "Random Effects", "Fixed No Outliers", "Random No Outliers"),
+          small = T
+          )
+```
+
+# Discussion 
+
+In examining pre- to post-test comparisons across each variable separately, we found that PTS studies indicated a small effect size across all meta-analytic estimates. Both QOL and PTG studies indicated a negligible to small effect size using random effects models. Although the PTG effect in our overall meta-analysis estimate was significant, other methods indicate this small effect is likely not different from zero. QOL was not different from zero, which suggests no effect of expressive writing on quality of life. Interestingly, these results are in contrast to @Sloan2011a, which suggested that only certain groups may respond to these interventions. Potentially, the high heterogeneity may be due to the mixed levels of PTSD in these students, as @Blasio2015a indicates that only certain levels of PTSD are responsive to an expressive writing condition. 
+
+Expressive writing does not appear to play an important role in influencing positive growth or improved quality of life post intervention. Ineffective emotional expression may be a contributing factor. Additionally, future research might examine specific methodology for these types of studies. If participants/clients are not deeply engaged with the material, an expressive writing intervention may not be effective, as @Pennebaker2001 implies that connectedness is an important factor for the intervention. However, it may be difficult to implement a check for engagement in these types of research designs. Doing so may also set a context that will inhibit emotional processing and general responses. Research on expressive writing has found a wide range of outcomes for different variables [@Frattaroli2006], and these various results may explain the large heterogeneity found in this study. Encouragingly, however, we did not find much evidence of publication bias, and therefore, these estimates may represent a true population effect size. 
+
+We also examined the relationship of time between measurements of the dependent variables and the corresponding effect size to determine if effects change over time. For both PTS and PTG, there was no relationship between effect size and time; yet, PTS indicated a small negative correlation. For QOL studies, a medium to large negative correlation was found. A negative relationship between time and effect size implies that interventions were more effective in the initial time points, and effects decreased over longer time spans. 
+
+The psychological scientific community has shifted focus to reproducibility and research design in the last several years [@Nelson2018], and much of this discussion has focused on adequately powering studies for publication [@Bakker2016; @Maxwell2015]. @Maxwell2015 and @OpenScienceCollaboration2015 have shown that the "replication crisis" may be attributed to low power in published studies. The power found in the current meta-analysis was very poor, with very few studies reaching the suggested 80% criterion to adequately power their study. This result was the same when considering individual study characteristics or the estimate true population effect size. @Bakker2016's research indicates that researcher's intuitions about power are particularly poor, and many studies could benefit from more informed power analyses. @Anderson2017a recently published a primer on power, with an online application to help with sample size planning for many types of research designs. Additionally, we would encourage researchers to report power analyses of studies in order to better understand methodology for replication and reproducibility. 
+
+Meta-analyses, while useful tools to pool for population effect sizes, contain various limitations to their usefulness [@VanElk2015]. As mentioned previously, these analyses can be affected by high heterogeneity, which was found in this study [@VanAert2016]. Selection models have been criticized when using a smaller number of studies [@VanAssen2015], and trim and fill analyses may not always estimate accurate confidence intervals and funnel plots may be biased with heterogeneity [@Terrin2003]. When focusing in improving the psychological sciences, @VanElk2015 suggest that the reliability and size of effects may be best elucidated by conducting large preregistrated studies. This suggestion will also improve the outlook for power in published studies, and projects such as Many Labs can aide in subsidizing large samples [@Klein2014a]. Even with limitations, meta-analyses allow researchers to examine the state of a research area, and we find potential with expressive writing on reducing PTS symptoms, and an overall need for better sample size and power planning for studies. 
+
+\newpage
+
+# References
+
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+

@@ -1,0 +1,467 @@
+---
+title             : "The title"
+shorttitle        : "Title"
+
+author: 
+  - name          : "First Author"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "Postal address"
+    email         : "my@email.com"
+  - name          : "Ernst-August Doelle"
+    affiliation   : "1,2"
+
+affiliation:
+  - id            : "1"
+    institution   : "Wilhelm-Wundt-University"
+  - id            : "2"
+    institution   : "Konstanz Business School"
+
+author_note: |
+  Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
+
+  Enter author note here.
+
+abstract: |
+  Enter abstract here. Each new line herein must be indented, like this line.
+  
+keywords          : "keywords"
+wordcount         : "X"
+
+bibliography      : ["r-references.bib"]
+
+figsintext        : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : yes
+
+lang              : "english"
+class             : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r load_packages, include = FALSE}
+library("papaja")
+```
+
+```{r analysis_preferences}
+# Seed for random number generation
+set.seed(42)
+```
+
+
+
+##all the old stuff is here for you to pull from. 
+## Overall Effect Size
+
+```{r main-model-homogeneity, echo=FALSE}
+##model all values and groups
+meta = metagen(effect.size, se_est, data = meta_data)
+summary(meta)
+
+qoldata = subset(meta_data, Variable == "QOL") 
+qolgroups = metagen(effect.size, se_est, data = qoldata)
+summary(qolgroups)
+
+ptgdata = subset(meta_data, Variable == "PTG")
+ptggroups = metagen(effect.size, se_est, data = ptgdata)
+summary(ptggroups)
+
+
+
+##test for influence overall
+fixedmodel = rma(yi=effect.size, vi=variance, data = meta_data, method="FE")
+randommodel = rma(yi=effect.size, vi=variance, data = meta_data, method="DL")
+inffixed =influence(fixedmodel)
+infrandom =influence(randommodel)
+options(max.print = 1000000)
+inffixed
+infrandom ##77, 79, 129, 130, 161 to exclude
+
+##add influence within own group
+
+##new dataset without outliers for overall data
+noout = meta_data[-c(77, 79, 129, 130, 161),]
+
+##model without 77, 79, 129, 130, 161
+allgroupsnoout = metagen(effect.size, se_est, data = noout)
+summary(allgroupsnoout)
+
+##change this to outlier analysis by group
+##qoldata with noout
+randommodelqol = rma(yi=effect.size, vi=variance, data = qoldata, method="DL")
+infrandomqol =influence(randommodelqol)
+infrandomqol ##28, 29
+qoldatanoout = qoldata[-c(28, 29),]
+qolgroupsnoout = metagen(effect.size, se_est, data = qoldatanoout)
+summary(qolgroupsnoout)
+
+##ptgdata with noout
+randommodelptg = rma(yi=effect.size, vi=variance, data = ptgdata, method="DL")
+infrandomptg =influence(randommodelptg)
+infrandomptg ##no outliers
+ptggroupsnoout = metagen(effect.size, se_est, data = ptgdata)
+summary(ptggroupsnoout)
+
+```
+
+Four experiments were outliers using random effects models. Results from meta-analysis models are presented both with and without the outlier in Table 2. As suggested by Van Aert et al. (2016), we also looked for evidence of researchers trying to manipulate data to achieve significant findings, also referred to as *p*-hacking. Criteria for a hacked *p* value is based on both significance levels and power. Studies between .025 and .05 with power lower than 60% are said to be examples of *p*-hacking. ? studies met this criteria, which is also shown in Table 1. 
+
+Table 1 includes a consolidated representation of the following study characteristics: sample size, *d* values with standard errors, and 95% normal distribution CI estimates. Only ? effect sizes were found to be significantly different from zero, as indicated by the *z* and *p*-value columns. These values were calculated directly from estimated effect size, rather than from statistics provided in the study. Figure 1 provides a forest plot of each study's effect size and non-central CIs. The size of the box represents the wright of each study, while the horizontal lines display the CI associated with that particular study. Experiments are grouped by outcome variable. For Posttraumatic Stress, experiments are grouped by domain (intrusion, avoidance, and hyperarousal). Overall, we found a small to medium effect size, *d* = 0.29, average 95%CI[-.14,.72]. For QOL, data indicated a small, negligible effect size, *d* = -.02, average 95%CI[-.41,.37]. For PTG, data showed a negligible effect size, *d* = .10, average 95%CI[-.31,.52]. Finally, studies measuring PTS showed a small to medium effect size, *d* = .41, 95%CI[-.04,.86]. 
+
+Additionally, effect sizes were calculated after exclusion of four outliers. Overall, we found a small to medium effect size after the exclusion of outliers, *d* = .27, 95%CI[-.16,.70]. For QOL, we found a negligible effect size, *d* = -0.06, 95%CI[-.45,.33. For PTG, we found a negigible effect size, *d* = .10, 95%CI[-.31,.52. Finally, for PTS, we found a small to medium effect size, *d* = .39, 95%CI[-.05,.84].
+
+## Homogeneity
+ Overall, all studies combined without excluding outliers indicated heterogeneity, *Q*(201) = 982.65, *p* < .0001, *I2* = 79.5%, 95%CI[76.8%, 82.0%]. Experiments measuring the effect of expressive writing on QOL also indicated heterogeneity, *Q*(40) = 205.24, *p* < .0001, *I2* = 80.5%, 95%CI[74.2%, 85.3%]. Likewise, experiments examining the effect of writing on posttraumatic stress symptoms indicated heterogeneity, *Q*(139) = 630.61, *p* < .0001, *I2* = 78.0%, 95%CI[74.2%, 81.2%]. Finally, experiments examining posttraumatic growth did not indicate heterogeneity and rather indicated homogeneity, *Q*(20) = 14.18, *I2* = 0.0%, 95%CI[0.0%, 25.3%]. Additionally, homogeneity results are reported after outlier exclusion. 
+
+Four studies were excluded as outliers for final analyses. Specifically, two outliers were excluded for studies measuring posttraumatic stress and quality of life, respectively. Overall, a posteriori outlier exclusion, data indicated heterogeneity, *Q*(197) = 855.80, *p* < .0001, *I2* = 77.0%, 95%CI[73.7%, 79.9%] Specifically, experiments examining posttraumatic stress indicated heterogeneity, *Q*(137) = 565.58, *p* < .0001, *I2* = 75.8%, 95%CI[71.5%, 79.4%]. Likewise, experiments measuring QOL indicated heterogeneity, *Q*(38) = 110.40, *p* < .0001, *I2* = 65.6%, 95%CI[51.8%, 75.4%] As posttraumatic growth data did not reveal any outliers, homogeneity analyses can be assumed to be the same (*Q*(20) = 14.18, *I2* = 0.0%, 95%CI[0.0%, 25.3%]). Thus, exclusion of outliers did not change heterogeneity analyes of an overall model and specific group models. 
+
+## Power
+ The average power for study calculations across all included variables using individual effect size statistics was *M* = .41 (*SD* = .35). Additionally, 22.28% of studies possessed adequate power of .8. Average power for QOL studies was *M* = .31 (*SD* = .31), while average power for PTG was *M* = .15, (*SD* = .16). Finally, average power for PTS was *M* = .47 (*SD* = .36). Next, we calculated power using the estimated overall effect size of *d* = .13 as suggested by Francis (2012, 2014). When using these effect size estimates, overall power was *M* = .11 (*SD* = .04). Power for QOL was *M* = .10 (*SD* = .02), while power for PTG was *M* = .11 (*SD* = .03). Finally, power for PTS was *M* = .11 (*SD* = .04). Additionally, we calculated effect sizes after excluding outliers to understand how outlier exclusion influenced effect sizes. 
+
+We calculated power after exclusion of outliers using sample size and effect size statistics as well as an estimated overall effect size (*d* = .13). After excluding four outliers, average power for study calculations using individual effect size statistics was *M* = .40 (*SD* = .35). 21.21% of studies collected possessed power of .8 or above. Exclusion of outliers slightly decreased studies possessing power of .8 from 22.28% to 21.21%. Average power for QOL studies without outliers was *M* = .30 (*SD* = .29), while average power for PTG studies was *M* = .15 (*SD* = .29). Finally, average power for PTS studies was *M* = .46 (*SD* = .36). Next, we calculated power using the estimated overall effect size of *d* = .13 after outlier exclusion. Here, overall power was *M* = .11 (*SD* = .04). Power for QOL was *M* = .10 (*SD* = .03), while power for PTG was *M* = .11 (*SD* = .03). Finally, power for PTS was *M* = .11 (*SD* = 0.04). In sum, exclusion of outliers did not significantly influence power. 
+
+
+```{r power-sig, echo=FALSE}
+
+##get normal CIs
+##p for each experiment if they had done this test
+##number sig/nonsign
+#CI's based on normal approximation
+##Maybe be able to do p curve from this section 
+options(scipen=999)
+CIs = data.frame(ci(TE = meta_data$effect.size, seTE = sqrt(meta_data$variance)))
+nonsigall = sum(CIs$p > .05)
+(nrow(meta_data) - nonsigall)/nrow(meta_data) * 100 ##percent significant findings
+
+##meta_data for CIs with outliers, noout is no outliers, ptgdata is same for both bc no outliers present, qoldatanoout is no out, qoldata is all without exclusion of outliers, ptsdata for all without exclusion of outliers, ptsnoout has no outliers 
+##using the dataset from the homogeneity section to calculate this
+##CI with no outliers 
+CIsnoout = data.frame(ci(TE = noout$effect.size, seTE = sqrt(noout$variance)))
+nonsigallnoout = sum(CIsnoout$p > .05)
+(nrow(noout) - nonsigallnoout)/nrow(noout) * 100 ##percent significant findings
+
+##CIs for QOL effect sizes using the qoldata
+CIsQOL = data.frame(ci(TE = qoldata$effect.size, seTE = sqrt(qoldata$variance)))
+nonsigqol = sum(CIsQOL$p > .05)
+nonsigqol
+(nrow(qoldata) - nonsigqol)/nrow(qoldata) * 100 ##percent significant findings
+
+##CIS for QOL effect sizes no outliers qoldatanoout
+CIsQOLnoout = data.frame(ci(TE = qoldatanoout$effect.size, seTE = sqrt(qoldatanoout$variance)))
+nonsigqolnoout = sum(CIsQOLnoout$p > .05)
+nonsigqolnoout
+(nrow(qoldatanoout) - nonsigqolnoout)/nrow(qoldatanoout) * 100 ##percent significant findings
+
+##CIs for PTG effect sizes - same for ptg noout because there were no outliers/use ptgdata
+CIsPTG = data.frame(ci(TE = ptgdata$effect.size, seTE = sqrt(ptgdata$variance)))
+nonsigptg = sum(CIsPTG$p > .05)
+nonsigptg
+(nrow(ptgdata) - nonsigptg)/nrow(ptgdata) * 100 ##percent significant findings
+
+##CIs for PTS effect sizes ptsdata
+CIsPTS = data.frame(ci(TE = ptsdata$effect.size, seTE = sqrt(ptsdata$variance)))
+nonsigPTS = sum(CIsPTS$p > .05)
+nonsigPTS
+(nrow(ptsdata) - nonsigPTS)/nrow(ptsdata) * 100 ##percent significant findings
+
+##CIs for PTS effect sizes noout ptsdatanoout
+CIsPTSnoout = data.frame(ci(TE = ptsdatanoout$effect.size, seTE = sqrt(ptsdatanoout$variance)))
+nonsigPTSnoout = sum(CIsPTSnoout$p > .05)
+nonsigPTSnoout
+(nrow(ptsdatanoout) - nonsigPTSnoout)/nrow(ptsdatanoout) * 100 ##percent significant findings
+
+####power
+#individual power based on individual ES
+powerstuff = pwr.t.test(n = meta_data$n, d = meta_data$effect.size, sig.level = 0.05, type = c("paired"))
+meta_data$power = powerstuff$power
+mean(meta_data$power)
+sd(meta_data$power)
+length(which(meta_data$power>=.8))/nrow(meta_data) *100 # studies with .8 power or above
+
+##individual power based on individual ES with no outliers using noout
+powerstuffnoout = pwr.t.test(n = noout$n, d = noout$effect.size, sig.level = 0.05, type = c("paired"))
+noout$power = powerstuffnoout$power
+mean(noout$power)
+sd(noout$power)
+length(which(noout$power>=.8))/nrow(noout) *100 # studies with .8 power or above
+
+##use the dataset from above so change this section
+##meta_data for CIs with outliers, noout is no outliers, ptgdata is same for both bc no outliers present, qoldatanoout is no out, qoldata is all without exclusion of outliers, ptsdata for all without exclusion of outliers, ptsnoout has no outliers 
+##power for QOL 
+powerstuffQOL = pwr.t.test(n = qoldata$n, d = qoldata$effect.size,
+                           sig.level = 0.05, type = c("paired"))
+qoldata$power = powerstuffQOL$power
+mean(powerstuffQOL$power)
+sd(powerstuffQOL$power)
+length(which(qoldata$power>=.8))/nrow(qoldata) *100 # studies with .8 power or above
+
+##power for QOL noout
+powerstuffQOLnoout = pwr.t.test(n = qoldatanoout$n, d = qoldatanoout$effect.size, sig.level = 0.05, type = c("paired"))
+qoldatanoout$power = powerstuffQOLnoout$power
+mean(powerstuffQOLnoout$power)
+sd(powerstuffQOLnoout$power)
+length(which(qoldatanoout$power>=.8))/nrow(qoldatanoout) *100 # studies with .8 power or above
+
+##power for PTG (same for both bc no outliers present)
+powerstuffPTG = pwr.t.test(n = ptgdata$n, d = ptgdata$effect.size,
+                           sig.level = 0.05, type = c("paired"))
+ptgdata$power = powerstuffPTG$power
+mean(powerstuffPTG$power)
+sd(powerstuffPTG$power)
+length(which(ptgdata$power>=.8))/nrow(ptgdata) *100 # studies with .8 power or above (0 studies with this)
+
+##power for PTS
+powerstuffPTS = pwr.t.test(n = ptsdata$n, d = ptsdata$effect.size,
+                           sig.level = 0.05, type = c("paired"))
+ptsdata$power = powerstuffPTS$power
+mean(powerstuffPTS$power)
+sd(powerstuffPTS$power)
+length(which(ptsdata$power>=.8))/nrow(ptsdata) *100 # studies with .8 power or above
+
+##power for PTS noout
+powerstuffPTSnoout = pwr.t.test(n = ptsnoout$n, d = ptsnoout$effect.size, sig.level = 0.05, type = c("paired"))
+ptsnoout$power = powerstuffPTSnoout$power
+mean(powerstuffPTSnoout$power)
+sd(powerstuffPTSnoout$power)
+length(which(ptsnoout$power>=.8))/nrow(ptsnoout) *100 # studies with .8 power or above
+
+##power based on random effects from above 
+#based on effect of .28
+powerstuff2 = pwr.t.test(n = meta_data$n, d = .28, sig.level = 0.05, type = c("paired"))
+meta_data$power2 = powerstuff2$power
+mean(meta_data$power2)
+sd(meta_data$power2)
+length(which(meta_data$power2>=.8))/nrow(meta_data) *100 # studies with .8 power or above
+
+##noout effect of .28 
+powerstuff2noout = pwr.t.test(n = noout$n, d = .28, sig.level = 0.05, type = c("paired"))
+noout$power2noout = powerstuff2noout$power
+mean(noout$power2noout)
+sd(noout$power2noout)
+length(which(noout$power2noout>=.8))/nrow(noout) *100 # studies with .8 power or above
+
+##match this to above QOL results qoldata qoldatanoout
+##QOL for effect of -0.02
+powerstuffQOL2 = pwr.t.test(n = qoldata$n, d = -0.02, sig.level = 0.05, type = c("paired"))
+qoldata$power2 = powerstuffQOL2$power
+mean(powerstuffQOL2$power)
+sd(powerstuffQOL2$power)
+length(which(qoldata$power2>=.8))/nrow(qoldata) *100 # studies with .8 power or above
+
+##QOL noout effect of -0.02 
+powerstuffQOL2noout = pwr.t.test(n = qoldatanoout$n, d =-0.02, sig.level = 0.05, type = c("paired"))
+qoldatanoout$power2 = powerstuffQOL2noout$power
+mean(powerstuffQOL2noout$power)
+sd(powerstuffQOL2noout$power)
+length(which(qoldatanoout$power2>=.8))/nrow(qoldatanoout) *100 # studies with .8 power or above
+
+##PTG for effect of .10 (only one because no outliers with this specifically)
+powerstuffPTG2 = pwr.t.test(n = ptgdata$n, d = .10, sig.level = 0.05, type = c("paired"))
+ptgdata$power2 = powerstuffPTG2$power
+mean(powerstuffPTG2$power)
+sd(powerstuffPTG2$power)
+length(which(ptgdata$power2>=.8))/nrow(ptgdata) *100 # studies with .8 power or above
+
+##PTS for effect of .40
+powerstuffPTS2 = pwr.t.test(n = ptsdata$n, d = 0.40, sig.level = 0.05, type = c("paired"))
+ptsdata$power2 = powerstuffPTS2$power
+mean(powerstuffPTS2$power)
+sd(powerstuffPTS2$power)
+length(which(ptsdata$power>=.8))/nrow(ptsdata) *100 # studies with .8 power or above
+
+##PTS noout effect of .37
+powerstuffPTS2noout = pwr.t.test(n = ptsnoout$n, d = .37, sig.level = 0.05, type = c("paired"))
+ptsnoout$power2 = powerstuffPTS2noout$power
+mean(powerstuffPTS2noout$power)
+sd(powerstuffPTS2noout$power)
+length(which(ptsnoout$power>=.8))/nrow(ptsnoout) *100 # studies with .8 power or above
+
+```
+
+## p-Curve and p-Uniform
+Ran this, just need to write it up
+
+
+```{r p-curve, eval=FALSE, include=FALSE}
+####p-curve done from p-curve.com 
+#http://www.p-curve.com/app4/
+#test statistics to put into application for between studies
+##convert from d to z with p-values 
+meta_data$z.score = CIs$z
+#list of z score p value fun times 
+paste("Z = ", meta_data$z.score, sep = "")
+```
+
+TALK HERE ABOUT VAN AERT PAPER AND WHY WE CAN'T DO THIS BECAUSE OMG WHY SO LARGE. MAYBE JUST DO FOR ONE GROUP? 
+
+```{r p-uniform, eval=FALSE, include=FALSE}
+#take john's old code here and figure if/how we can hack for d
+
+
+#p-uniform ##will have to report raw correlation coefficients and sample size
+#no option to put eta.
+#ri = correlation coefficients
+#ni = sample size
+#side = "Right"
+#method = "P"
+#alpha = 0.05
+
+##probably have to convert d to r, which you can do in MOTE
+
+
+puniALL = puniform(yi=meta_data$effect.size, vi=meta_data$variance,
+                         side = "right", method = "P",
+                         alpha = 0.05, plot = TRUE)
+puniALL
+puniALL$est
+puniALL$ci.lb
+puniALL$ci.ub
+
+```
+
+## PET - PEESE
+Need some clarification on this one
+BASICALLY READ SOMEWHERE THAT RESEARCHERS SHOULD NOT DO PET-PEESE, SO LET'S SKIP THIS ONE
+
+```{r pet-peese, eval=FALSE, include=FALSE}
+#PET-PEESE 
+#all
+PET.all<-lm(Fisher.s.z~SE.of.Z, weights = 1/Var.of.Z, data = )
+summary(PET.all)
+confint(PET.all)
+
+PEESE.all<-lm(Fisher.s.z~Var.of.Z, weights = 1/Var.of.Z, data = nooutall)
+summary(PEESE.all)
+confint(PEESE.all)
+z2e(0.27562) #ES
+z2e(0.2130469) #lo
+z2e(0.3381838) #hi
+
+```
+
+## Selection Models
+Set up code. Need to run/write
+
+```{r selection-models, eval=FALSE, include=FALSE}
+#all no out
+library(weightr)
+##first one is the effect, so put in d value
+##v = variance, not se_est 
+
+
+
+##run selection model for each of the no outlier and other group combinations
+
+##selection model noout
+##fixed 
+selectionmodelallFEnoout = weightfunct(effect = noout$effect.size, v = noout$variance, fe=TRUE)
+selectionmodelallFEnoout
+##random 
+selectionmodelallREnoout = weightfunct(effect = noout$effect.size, v = noout$variance, fe=FALSE)
+selectionmodelallREnoout
+
+##selection model qol qoldata
+##fixed 
+selectionmodelallFEqol = weightfunct(effect = qoldata$effect.size, v = qoldata$variance, fe=TRUE)
+selectionmodelallFEqol
+##random 
+selectionmodelallREqol = weightfunct(effect = qoldata$effect.size, v = qoldata$variance, fe=FALSE)
+selectionmodelallREqol
+
+##selection model qol noout qoldatanoout
+##fixed 
+selectionmodelallFEqolnoout = weightfunct(effect = qoldatanoout$effect.size, v = qoldatanoout$variance, fe=TRUE) ##says consider respecifying the cutoff points for this one
+selectionmodelallFEqolnoout
+##random 
+selectionmodelallREqolnoout = weightfunct(effect = qoldatanoout$effect.size, v = qoldatanoout$variance, fe=FALSE)
+selectionmodelallREqolnoout
+
+##selection model ptg (not doing a nouut section because there were no outliers)
+##fixed 
+selectionmodelallFEptg = weightfunct(effect = ptgdata$effect.size, v = ptgdata$variance, fe=TRUE)
+selectionmodelallFEptg
+##random 
+selectionmodelallREptg = weightfunct(effect = ptgdata$effect.size, v = ptgdata$variance, fe=FALSE)
+selectionmodelallREptg
+
+##selection model pts 
+##fixed 
+selectionmodelallFEpts = weightfunct(effect = ptsdata$effect.size, v = ptsdata$variance, fe=TRUE)
+selectionmodelallFEpts
+##random 
+selectionmodelallREpts = weightfunct(effect = ptsdata$effect.size, v = ptsdata$variance, fe=FALSE)
+selectionmodelallREpts
+
+##selection model pts noout
+##fixed 
+selectionmodelallFEptsnoout = weightfunct(effect = ptsnoout$effect.size, v = ptsnoout$variance, fe=TRUE)
+selectionmodelallFEptsnoout
+##random 
+selectionmodelallREptsnoout = weightfunct(effect = ptsnoout$effect.size, v = ptsnoout$variance, fe=FALSE)
+selectionmodelallREptsnoout
+
+```
+
+## Trim and Fill
+
+```{r funnel-plot-trim, eval=FALSE, include=FALSE}
+
+##correlations between time and effect
+##run this for each group separately as well!
+library(Hmisc) 
+stuff = c('Time','effect.size')
+timeeffect = meta_data[ , stuff]
+rcorr(as.matrix(timeeffect)) ##significant
+
+##all data noout
+allstuffnoout = c('Time','effect.size')
+timeeffect2 = noout[ , allstuffnoout]
+rcorr(as.matrix(timeeffect2)) ##significant
+
+##qoldata
+qolstuff= c('Time','effect.size')
+timeeffect3 = qoldata[ , qolstuff]
+rcorr(as.matrix(timeeffect3)) ##significant
+
+##qoldatanoout
+qolstuffnoout = c('Time','effect.size')
+timeeffect4 = qoldata[ , qolstuffnoout]
+rcorr(as.matrix(timeeffect4)) ##significant
+
+#ptgdata - only one because there were no outliers examining this dataset individually
+ptgstuff= c('Time','effect.size')
+timeeffect5 = ptgdata[ , ptgstuff]
+rcorr(as.matrix(timeeffect5)) ##not significant, very weak positive correlation
+
+##ptsdata
+ptsstuff= c('Time','effect.size')
+timeeffect6 = ptsdata[ , ptsstuff]
+rcorr(as.matrix(timeeffect6)) ##not significant, which is interesting (-.15)
+
+##ptsnoout
+ptsstuffnoout= c('Time','effect.size')
+timeeffect7 = ptsnoout[ , ptsstuffnoout]
+rcorr(as.matrix(timeeffect7)) ##not significant (-.15)
+
+
+
+```
+
+
+
+# Results
+
+# Discussion
+
+
+\newpage
+
+# References
+```{r create_r-references}
+r_refs(file = "r-references.bib")
+```
+
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}

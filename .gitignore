@@ -1,5 +1,6 @@
 # Created by https://www.gitignore.io/api/r,macos,windows
 
+#pdfs articles on erins computer dont want to sync
 Articles/
 
 ### macOS ###

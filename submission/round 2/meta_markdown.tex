@@ -1,4 +1,4 @@
-\documentclass[english,man]{apa6}
+\documentclass[english,man, mask]{apa6}
 
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -40,7 +40,7 @@
   {\end{ThreePartTable}\end{center}\end{landscape}}
 
   \usepackage{ifthen} % Only add declarations when endfloat package is loaded
-  \ifthenelse{\equal{\string man}{\string man}}{%
+  \ifthenelse{\equal{\string man, mask}{\string man}}{%
    \DeclareDelayedFloatFlavor{ThreePartTable}{table} % Make endfloat play with longtable
    % \DeclareDelayedFloatFlavor{ltable}{table} % Make endfloat play with lscape
    \DeclareDelayedFloatFlavor{lltable}{table} % Make endfloat play with lscape & longtable

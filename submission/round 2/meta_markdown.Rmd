@@ -40,7 +40,7 @@ footnotelist      : no
 lineno            : yes
   
 lang              : "english"
-class             : "man"
+class             : "man, mask"
 output            : papaja::apa6_pdf
 ---
 ```{r libraries, include = FALSE}

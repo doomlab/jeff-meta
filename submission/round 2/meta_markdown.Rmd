@@ -38,15 +38,10 @@ figurelist        : no
 tablelist         : no
 footnotelist      : no
 lineno            : yes
-
-nocite: | 
-  @Arden-Close2013, @Barry2001,@Broderick2005, @Bugg2009, @Craft2013, @Deters2003, @Blasio2015a, @Gebler2007, @Gellaitry2010, @Giannotta2009, @Gidron1996a, @Greenberg1996, @Halpert2010, @Horsch2016, @Hoyt2014, @Hoyt2011, @Ironson2013, @Kallay2008, @Knaevelsrud2007, @Koopman2005, @Kovac2000, @Lancaster2015, @Lange2001, @Low2010, @Lu2012a, @Meshberg-Cohen2014, @Nixon2009, @Paez1999, @Park2002, @Possemato2010, @Range2000, @Schoutrop2002, @Schwartz2004, @Slavin-Spenny2011, @Sloan2004, @Sloan2005, @Sloan2011a, @Smyth2002, @Smyth2002a, @Stockton2014, @Ullrich2002a, @Vedhara2007, @Wagner2006, @Walker1999a, @Zakowski2004
   
 lang              : "english"
 class             : "man"
-output            : 
-  papaja::apa6_pdf:
-    citation_package: biblatex
+output            : papaja::apa6_pdf
 ---
 ```{r libraries, include = FALSE}
 library("papaja")

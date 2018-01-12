@@ -1,0 +1,5 @@
+[0] Config.pm:343> INFO - This is Biber 2.5
+[1] Config.pm:346> INFO - Logfile is 'meta_markdown.blg'
+[79] biber-darwin:290> INFO - === Fri Jan 12, 2018, 12:18:50
+[110] Utils.pm:165> ERROR - meta_markdown.bcf is malformed, last biblatex run probably failed. Deleted meta_markdown.bbl
+[110] Biber.pm:112> INFO - ERRORS: 1

@@ -214,6 +214,7 @@ Trim and Fill analyses, in contrast to PET-PEESE, regress standard error (criter
 # Results
 
 ```{r calc-effect, include=FALSE}
+
 ####calculate effect sizes####
 #install.packages("devtools")
 #devtools::install_github("doomlab/MOTE")

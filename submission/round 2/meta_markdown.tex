@@ -127,8 +127,8 @@ and Traumatic Stress}
 
   \author{Jeffrey M. Pavlacic\textsuperscript{1}, Erin M. Buchanan\textsuperscript{2}, Nicholas P. Maxwell\textsuperscript{2}, Tabetha G. Hopke\textsuperscript{2}, \& Stefan E. Schulenberg\textsuperscript{1}}
 
-  \def\affdep{{"", "", "", "", ""}}%
-  \def\affcity{{"", "", "", "", ""}}%
+  % \def\affdep{{"", "", "", "", ""}}%
+  % \def\affcity{{"", "", "", "", ""}}%
 
   \affiliation{
     \vspace{0.5cm}
@@ -136,7 +136,6 @@ and Traumatic Stress}
           \textsuperscript{2} Missouri State University  }
 
   \authornote{
-    \newcounter{author}
     Jeffrey M. Pavlacic is a doctoral candidate at the University of
     Mississippi and a member of the University of Mississippi
     Clinical-Disaster Research Center (UM-CDRC). Erin M. Buchanan is an
@@ -144,9 +143,11 @@ and Traumatic Stress}
     P. Maxwell and Tabetha G. Hopke are master's degree candidates at
     Missouri State University. Stefan E. Schulenberg is a Professor of
     Psychology at the University of Mississippi and director of the UM-CDRC.
-
-                      Correspondence concerning this article should be addressed to Jeffrey M. Pavlacic, 205 Peabody Hall, University, MS 38655. E-mail: \href{mailto:jpavlaci@go.olemiss.edu}{\nolinkurl{jpavlaci@go.olemiss.edu}}
-                                                        }
+    
+    Correspondence concerning this article should be addressed to Jeffrey M.
+    Pavlacic, 205 Peabody Hall, University, MS 38655. E-mail:
+    \href{mailto:jpavlaci@go.olemiss.edu}{\nolinkurl{jpavlaci@go.olemiss.edu}}
+  }
 
 
   \abstract{Emotional expression has been shown to be beneficial for promoting both
@@ -181,16 +182,16 @@ discussed.}
 
 
 \usepackage{amsthm}
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
-\newtheorem{corollary}{Corollary}
-\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
 \theoremstyle{definition}
-\newtheorem{example}{Example}
+\newtheorem{example}{Example}[section]
 \theoremstyle{definition}
-\newtheorem{exercise}{Exercise}
+\newtheorem{exercise}{Exercise}[section]
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 \newtheorem*{solution}{Solution}
@@ -320,12 +321,12 @@ discusses how emotional disclosure can have a positive impact on how
 people interact in their environment. This increased environmental
 interaction has been shown to have positive benefits on health
 (Frattaroli, 2006). Finally, expressive writing parallels exposure
-therapy for a variety of phobias and posttraumatic stress disorder,
+therapy for a variety of phobias and post-traumatic stress disorder,
 which suggests that repeatedly exposing oneself to the seemingly anxious
 thought or trauma can reduce the anxiety, fear, or stress associated
 with that event (Meshberg-Cohen, Svikis, \& McMahon, 2014). Given that
 exposure therapy has been shown to be effective for reducing symptoms of
-posttraumatic stress (PTS; Sloan, Marx, \& Epstein, 2005), one would
+post-traumatic stress (PTS; Sloan, Marx, \& Epstein, 2005), one would
 expect individuals in these studies to experience a reduction in PTS
 symptoms after taking part in an expressive writing intervention.
 Additionally, Wilson and DuFrene (2009) discussed how the nonjudgmental
@@ -342,25 +343,24 @@ engaging in such action.
 
 \subsection{Meta-Analytic Techniques}\label{meta-analytic-techniques}
 
-Recent advancements in statistical analyses have allowed researchers the
-opportunity to objectively examine the effectiveness of different
-psychological interventions on outcome variables (Borenstein, Hedges, \&
-Rothstein, 2007; Glass, 1976; Hedges, 1982). Although many studies
-produced positive outcomes associated with expressive writing, some of
-these studies tend to neglect important questions, the most important of
-which is whether or not the effect sizes are meaningful (Smyth, 1998).
-Meta-analyses are a technique that allow researchers to pool studies to
-examine an overall, weighted, population effect (Borenstein et al.,
-2007). Several meta-analyses of expressive writing and emotional
-expression have been explored: Smyth (1998), Frisina, Borod, and Lepore
-(2004), Frattaroli (2006), and Mogk et al. (2006). These meta-analyses
-have laid a foundation for exploring the effects of writing on
-psychological outcomes. For our purposes, we used Cohen's (1988)
-standards for nomenclature for small (0.20), medium (0.50), and large
-(0.80) \emph{d} values, although it is important to note that Cohen
-himself suggested that these values should be based on the area of
-study. Generally, however, these effect size criteria are used within
-the social sciences.
+Meta-analyses allow researchers the opportunity to collectively examine
+the effectiveness of different psychological interventions on outcome
+variables (Borenstein, Hedges, \& Rothstein, 2007; Glass, 1976; Hedges,
+1982). Although many studies produced positive outcomes associated with
+expressive writing, some of these studies tend to neglect important
+questions, the most important of which is whether or not the effect
+sizes are meaningful (Smyth, 1998). Meta-analyses are a technique that
+allow researchers to pool studies to examine an overall, weighted,
+population effect (Borenstein et al., 2007). Several meta-analyses of
+expressive writing and emotional expression have been explored: Smyth
+(1998), Frisina, Borod, and Lepore (2004), Frattaroli (2006), and Mogk
+et al. (2006). These meta-analyses have laid a foundation for exploring
+the effects of writing on psychological outcomes. For our purposes, we
+used Cohen's (1988) standards for nomenclature for small (0.20), medium
+(0.50), and large (0.80) \emph{d} values, although it is important to
+note that Cohen himself suggested that these values should be based on
+the area of study. Generally, however, these effect size criteria are
+used within the social sciences.
 
 The meta-analysis conducted by Smyth (1998) found an overall medium
 effect size, \emph{d} = 0.47, for the experimental group compared to the
@@ -404,23 +404,23 @@ very large range of studies, \emph{N} = 146, but individual studies were
 again collapsed into one publication effect size, although these effects
 were also examined separately by health outcome.
 
-An additional methodological concern of the previous meta-analyses is
-the focus on experimental versus control group effect sizes, rather than
-emphasizing change for an intervention group. This focus is likely
-because of the analyses provided in these publications, especially when
-using randomized controlled trial research designs. While this design is
-the gold standard for medicine, the effects of comparing control groups
-versus experimental groups may mask the usefulness of the change for the
-intervention group. For example, a comparison group may increase their
-quality of life scores by two points in a controlled study, while the
-experimental group increases their quality of life scores by four
-points; thus, creating a significant difference in change between the
-two groups. This information is valuable, but it does not tell us the
-magnitude of the change for the intervention group, wherein four points
-might only be a small effect when examined within the group who received
-the intervention. This study will focus on changes across time for
-groups who received the expressive writing task to determine what size
-of effects one might expect given a specific measurement schedule (i.e.,
+The previous meta-analyses often focused on experimental versus control
+group effect sizes or \emph{p}-values, rather than emphasizing change
+for an intervention group. This focus is likely because of the analyses
+provided in these publications, especially when using randomized
+controlled trial research designs. While this design is the gold
+standard for medicine, we sought to examine the magnitude of change for
+participants who experienced an expressive writing intervention. For
+example, a comparison group may increase their quality of life scores by
+two points in a controlled study, while the experimental group increases
+their quality of life scores by four points; thus, creating a
+significant difference in change between the two groups. This
+information is valuable, but it does not tell us the magnitude of the
+change for the intervention group, wherein four points might only be a
+small effect when examined within the group who received the
+intervention. This study will focus on changes across time for groups
+who received the expressive writing task to determine what size of
+effects one might expect given a specific measurement schedule (i.e.,
 one to three months, three months to six months, etc.). Additionally, we
 will examine the change in effects across measurement time to determine
 whether or not effects decrease over time.
@@ -437,8 +437,8 @@ However, other studies, such as the research completed by Lancaster et
 al. (2015), found no evidence supporting the utilization of expressive
 writing as an effective therapeutic approach. Thus, it is necessary to
 evaluate the effectiveness of expressive writing on specific outcome
-variables, and we chose to focus specifically on posttraumatic stress
-(PTS), posttraumatic growth (PTG), and quality of life (QOL), in line
+variables, and we chose to focus specifically on post-traumatic stress
+(PTS), post-traumatic growth (PTG), and quality of life (QOL), in line
 with the current positive psychology trends. By focusing on specific
 outcome variables, rather than specific patient or study characteristics
 (which are covered extensively in Frattaroli, 2006), we can examine how
@@ -449,23 +449,24 @@ certain diagnoses.
 
 \subsection{Posttraumatic Stress}\label{posttraumatic-stress}
 
-Posttraumatic Stress Disorder (PTSD) is a disorder involving reoccurring
-thoughts or experiences after a traumatic event or experience (American
-Psychiatric Association, 2013). The diagnosis is based on 20 symptoms
-structured into four different subsets. These subsets are as follows:
-re-experiencing, avoidance, negative alterations in cognition and mood,
-and arousal (Crespo \& Gomez, 2016). PTSD is a concerning disorder that
-affects a wide variety of groups, a few of which are sexual assault
-survivors (Klump, 2008), Iraq and Afghanistan war veterans (Gentes et
-al., 2014), and those exposed to natural disasters (Wang et al., 2000).
-Research conducted on the effectiveness of expressive writing on PTSD
-symptoms has been less successful and shows outcomes that are not as
-effective as other studies. While PTSD symptoms decreased after a
-written emotional disclosure intervention, this decrease was not
-significantly different than a control group change (Sloan, Marx, \&
-Greenberg, 2011). Additionally, the emotional disclosure group showed
-greater emotional and heart rate responding, leading the researchers to
-conclude that writing may not be effective for treating PTSD.
+Post-traumatic Stress Disorder (PTSD) is a disorder involving
+reoccurring thoughts or experiences after a traumatic event or
+experience (American Psychiatric Association, 2013). The diagnosis is
+based on 20 symptoms structured into four different subsets. These
+subsets are as follows: re-experiencing, avoidance, negative alterations
+in cognition and mood, and arousal (Crespo \& Gomez, 2016). PTSD is a
+concerning disorder that affects a wide variety of groups, a few of
+which are sexual assault survivors (Klump, 2008), Iraq and Afghanistan
+war veterans (Gentes et al., 2014), and those exposed to natural
+disasters (Wang et al., 2000). Research conducted on the effectiveness
+of expressive writing on PTSD symptoms has been less successful and
+shows outcomes that are not as effective as other studies. While PTSD
+symptoms decreased after a written emotional disclosure intervention,
+this decrease was not significantly different than a control group
+change (Sloan, Marx, \& Greenberg, 2011). Additionally, the emotional
+disclosure group showed greater emotional and heart rate responding,
+leading the researchers to conclude that writing may not be effective
+for treating PTSD.
 
 Di Blasio et al. (2015) suggested that those meeting the criteria for
 moderate PTSD benefit more from expressive writing interventions in
@@ -473,7 +474,7 @@ comparison to those with greater PTSD symptoms. They recruited women who
 had just given birth and assessed them a few days after experiencing
 childbirth along with a three-month follow-up. Results showed that women
 who had participated in the expressive writing task had lower depression
-and posttraumatic stress symptoms than the group assigned to a neutral
+and post-traumatic stress symptoms than the group assigned to a neutral
 writing condition. Additionally, regression models showed that
 expressive writing was significantly linked to a reduction of PTSD
 symptoms at all baseline levels. Contradicting the work conducted by
@@ -510,7 +511,7 @@ influence each variable separately, which is one of the key goals of
 this meta-analysis (Slavin-Spenny, Cohen, Oberleitner, \& Lumley, 2011).
 Models receiving empirical support within the last decade suggest that
 traumatic events offer opportunities for both negative and positive
-experiences (Tedeschi \& Calhoun, 1995; Weiss, 2002). Posttraumatic
+experiences (Tedeschi \& Calhoun, 1995; Weiss, 2002). Post-traumatic
 Growth is a positive experience after a traumatic event (Aslam \& Kamal,
 2013; Yilmaz \& Zara, 2016). Specifically, PTG is classified as broad
 cognitive benefits that are seen after a traumatic experience. These
@@ -565,7 +566,7 @@ expressive writing on positive outcome variables (PTG and QOL) and PTS.
 Due to inconsistent results in current studies published and outdated
 meta-analyses, it is important to clarify the effectiveness of
 expressive writing on promoting positive change after a traumatic event,
-improving overall quality of life, and reducing posttraumatic stress.
+improving overall quality of life, and reducing post-traumatic stress.
 This meta-analysis will provide researchers with a collected look at the
 use of expressive writing to promote increased PTG, increased QOL, and
 decreased PTS. This particular meta-analysis examines studies of
@@ -573,7 +574,12 @@ patients with different types of psychopathology and medical diagnoses
 on PTG, QOL, and PTS. The main focus of this study is to examine PTG,
 QOL, and PTS by estimating effect sizes of experimental groups assigned
 to participate in the expressive writing intervention using newer
-techniques that have not been implemented in previous research.
+techniques that have not been implemented in previous research. In
+addition to an estimate of overall effect sizes, we estimate power for
+effects on intervention groups, as research has shown a consistent
+under-powering of psychological studies, combined with a
+misunderstanding of the sample size needed for adequately powering one's
+work (Bakker, Hartgerink, Wicherts, \& van der Maas, 2016).
 
 \section{Method}\label{method}
 
@@ -693,15 +699,15 @@ Confidence intervals were calculated in two ways for this study. Cumming
 distribution of \emph{d} values are non-normal, and thus, CIs should be
 estimated using the non-centrality parameter and a non-normal
 distribution. These values were calculated using the functions in the
-\emph{MOTE} library which interatively estimates the appropriate
+\emph{MOTE} library which iteratively estimates the appropriate
 non-centrality parameter and converts back to \emph{d} values (i.e.,
 non-centrality parameter divided by the square root of \emph{n};
 Buchanan, Valentine, \& Scofield, 2017; Smithson, 2001, 2003). However,
 the \emph{metafor} package in \emph{R} uses central distributions to
 estimate CIs for each study and overall effect sizes. Therefore, we
 present both sets of values for the interested reader, as meta-analytic
-procedure has not quite caught up to our understanding of the
-distributions of effect sizes.
+procedures have not implemented non-central distributions of effect
+sizes.
 
 \subsection{Additional Meta-Analytic
 Techniques}\label{additional-meta-analytic-techniques}
@@ -780,8 +786,8 @@ McCullough, 2014). Effect sizes and standard error terms are graphically
 displayed on x and y-axes, respectively, in a funnel plot. If this
 graphical representation indicates asymmetry, considered a gap of
 missing data points in the lower center area of the plot, the study set
-can be assumed to have studies that are both nonsignificant and small in
-sample size (van Assen, van Aert, \& Wicherts, 2015). This funnel is
+can be assumed to have studies that are both non-significant and small
+in sample size (van Assen, van Aert, \& Wicherts, 2015). This funnel is
 then trimmed until symmetry is achieved. Missing studies from the
 symmetrical graph are imputed (filled) while maintaining the given
 symmetry (Duval \& Tweedie, 2000). The meta-analytic effect size is then
@@ -813,7 +819,8 @@ estimates without these points are also included in Table
 \ref{tab:PTStable}. Figures \ref{fig:ptspicoverall},
 \ref{fig:ptspichyper}, \ref{fig:ptspicint}, and \ref{fig:ptspicavoid}
 portray the effect sizes for PTS studies, separated by intrusions,
-avoidance, hyperarousal, and total scores for easier viewing. Although
+avoidance, hyperarousal, and total scores for easier viewing (i.e., over
+100+ effect sizes did not fit easily on one combined graph). Although
 these categories are not reflective of updated DSM-V criteria,
 researchers have not yet conducted enough studies using expressive
 writing on PTS with updated PTSD criteria to warrant a meta-analysis.
@@ -932,12 +939,11 @@ in Table \ref{tab:PTStable}, and figures are included online. Nineteen
 missing studies were imputed for both models with and without outliers.
 Across all these effect size estimates, we found that expressive writing
 was likely to decrease PTS symptoms in a small to moderate way. The
-correlation of effect size across the time span used in the study from
-time one to time two was \(r = -.16\), 95\% CI \([-.32\), \(.00]\),
-\(t(142) = -1.99\), \(p = .049\), and \(r = -.15\), 95\% CI \([-.30\),
-\(.02]\), \(t(139) = -1.75\), \(p = .082\) without outliers. This result
-indicated that the effect of expressive writing decreased across time,
-but likely not significantly.
+correlation of effect size with time between measurement times was
+\(r = -.16\), 95\% CI \([-.32\), \(.00]\), \(t(142) = -1.99\),
+\(p = .049\), and \(r = -.15\), 95\% CI \([-.30\), \(.02]\),
+\(t(139) = -1.75\), \(p = .082\) without outliers. This result indicated
+that the effect of expressive writing slightly decreased across time.
 
 \begin{table}[tbp]
 \begin{center}
@@ -949,8 +955,8 @@ but likely not significantly.
 Model & Fixed Effects & Random Effects & Fixed No Outliers & Random No Outliers\\
 \midrule
 Overall Effects & 0.34 [0.31, 0.37] & 0.39 [0.32, 0.46] & 0.32 [0.29, 0.35] & 0.36 [0.29, 0.42]\\
-$Z$ Values & 21.75, $p$ < .001 & 11.06, $p$ < .001 & 20.00, $p$ < .001 & 11.03, $p$ < .001\\
-$p$-Uniform & 0.60 [0.50, 0.71] & - & 0.57 [0.47, 0.67] & -\\
+\$Z\$ Values & 21.75, \$p\$ < .001 & 11.06, \$p\$ < .001 & 20.00, \$p\$ < .001 & 11.03, \$p\$ < .001\\
+\$p\$-Uniform & 0.60 [0.50, 0.71] & - & 0.57 [0.47, 0.67] & -\\
 PET & 0.12 [0.03, 0.21] & - & 0.11 [0.02, 0.20] & -\\
 PEESE & 0.25 [0.20, 0.30] & - & 0.23 [0.18, 0.28] & -\\
 Selection Models & 0.33 [0.28, 0.37] & 0.45 [0.33, 0.57] & 0.29 [0.24, 0.33] & 0.39 [0.27, 0.50]\\
@@ -1037,7 +1043,7 @@ in Table \ref{tab:PTGtable}, and figures are included online. Zero
 studies were imputed for our model, and thus, the effect size estimate
 is the same as the overall model. Across techniques, we found that
 expressive writing has little to no effect on PTG. The correlation of
-effect size across time span used in PTG studies at subsequent time
+effect size across measurement times in PTG studies at subsequent time
 points was \(r = .09\), 95\% CI \([-.36\), \(.50]\), \(t(19) = 0.38\),
 \(p = .707\), and no change over time was found.
 
@@ -1051,8 +1057,8 @@ points was \(r = .09\), 95\% CI \([-.36\), \(.50]\), \(t(19) = 0.38\),
 Model & Fixed Effects & Random Effects\\
 \midrule
 Overall Effects & 0.10 [0.02, 0.17] & 0.10 [0.02, 0.17]\\
-$Z$ Values & 2.45, $p$ = .014 & 2.45, $p$ = .014\\
-$p$-Uniform & -0.11 [-1.43, 0.42] & -\\
+\$Z\$ Values & 2.45, \$p\$ = .014 & 2.45, \$p\$ = .014\\
+\$p\$-Uniform & -0.11 [-1.43, 0.42] & -\\
 PET & 0.06 [-0.20, 0.32] & -\\
 PEESE & 0.08 [-0.04, 0.20] & -\\
 Selection Models & 0.09 [-0.01, 0.18] & 0.09 [-0.03, 0.20]\\
@@ -1082,7 +1088,7 @@ and negative effects found from the Possemato, Ouimette, and Geller
 are also included in Table \ref{tab:QOLtable}, while Figure
 \ref{fig:qolpic} shows effect sizes for QOL studies. Overall, QOL
 studies indicated a negligible to small effect that showed a
-nonsignficant decrease in quality of life as a result of expressive
+non-significant decrease in quality of life as a result of expressive
 writing.
 
 \begin{figure}
@@ -1140,8 +1146,8 @@ Table \ref{tab:QOLtable}, and figures are included online. No studies
 were imputed for these analyses, and therefore, the effect size
 estimates match the original meta-analysis. Overall, these results
 appear to point to no effects, ranging across zero with several negative
-estimates. Interestingly, the correlation of effect sizes across time
-points in this study with outliers was \(r = -.37\), 95\% CI \([-.62\),
+estimates. Interestingly, the correlation of effect sizes across
+measurement times with outliers was \(r = -.37\), 95\% CI \([-.62\),
 \(-.05]\), \(t(35) = -2.33\), \(p = .026\) and \(r = -.64\), 95\% CI
 \([-.80\), \(-.39]\), \(t(33) = -4.75\), \(p < .001\) without outliers.
 The effect of expressive writing appears to be positive at short time
@@ -1157,8 +1163,8 @@ intervals and decreases into negative effects at longer time intervals.
 Model & Fixed Effects & Random Effects & Fixed No Outliers & Random No Outliers\\
 \midrule
 Overall Effects & -0.01 [-0.07, 0.05] & -0.01 [-0.16, 0.13] & -0.01 [-0.07, 0.05] & -0.01 [-0.11, 0.09]\\
-$Z$ Values & -0.33, $p$ = .745 & -0.18, $p$ = .860 & -0.25, $p$ = .805 & -0.20, $p$ = .838\\
-$p$-Uniform & 0.79 [0.33, 1.61] & - & 0.62 [0.10, 0.96] & -\\
+\$Z\$ Values & -0.33, \$p\$ = .745 & -0.18, \$p\$ = .860 & -0.25, \$p\$ = .805 & -0.20, \$p\$ = .838\\
+\$p\$-Uniform & 0.79 [0.33, 1.61] & - & 0.62 [0.10, 0.96] & -\\
 PET & 0.05 [-0.26, 0.36] & - & 0.05 [-0.29, 0.38] & -\\
 PEESE & 0.00 [-0.17, 0.17] & - & 0.00 [-0.19, 0.19] & -\\
 Selection Models & -0.06 [-0.12, 0.01] & 0.51 [-0.09, 1.12] & -0.04 [-0.11, 0.03] & 0.05 [-0.15, 0.24]\\
@@ -1219,22 +1225,21 @@ points, and effects decreased over longer time spans.
 The psychological scientific community has shifted focus to
 reproducibility and research design in the last several years (Nelson,
 Simmons, \& Simonsohn, 2018), and much of this discussion has focused on
-adequately powering studies for publication (Bakker, Hartgerink,
-Wicherts, \& van der Maas, 2016; S. E. Maxwell, Lau, \& Howard, 2015).
-S. E. Maxwell et al. (2015) and Open Science Collaboration (2015) have
-shown that the \enquote{replication crisis} may be attributed to low
-power in published studies. The power found in the current meta-analysis
-was very poor, with very few studies reaching the suggested 80\%
-criterion to adequately power their study. This result was the same when
-considering individual study characteristics or the estimate true
-population effect size. Research by Bakker et al. (2016) indicates that
-researchers' intuitions about power are particularly poor, and many
-studies could benefit from more informed power analyses. Anderson,
-Kelley, and Maxwell (2017) recently published a primer on power, with an
-online application to help with sample size planning for many types of
-research designs. Additionally, we encourage researchers to report power
-analyses of studies in order to better understand methodology for
-replication and reproducibility.
+adequately powering studies for publication (Bakker et al., 2016; S. E.
+Maxwell, Lau, \& Howard, 2015). S. E. Maxwell et al. (2015) and Open
+Science Collaboration (2015) have shown that the \enquote{replication
+crisis} may be attributed to low power in published studies. The power
+found in the current meta-analysis was very poor, with very few studies
+reaching the suggested 80\% criterion to adequately power their study.
+This result was the same when considering individual study
+characteristics or the estimate true population effect size. Research by
+Bakker et al. (2016) indicates that researchers' intuitions about power
+are particularly poor, and many studies could benefit from more informed
+power analyses. Anderson, Kelley, and Maxwell (2017) recently published
+a primer on power, with an online application to help with sample size
+planning for many types of research designs. Additionally, we encourage
+researchers to report power analyses of studies in order to better
+understand methodology for replication and reproducibility.
 
 Meta-analyses, while useful tools to pool for population effect sizes,
 contain various limitations to their usefulness (van Elk et al., 2015).
@@ -1246,7 +1251,7 @@ always estimate accurate confidence intervals and funnel plots may be
 biased with heterogeneity (Terrin, Schmid, Lau, \& Olkin, 2003). When
 focusing on improving the psychological sciences, van Elk et al. (2015)
 suggest that the reliability and size of effects may be best elucidated
-by conducting large preregistrated studies. This suggestion will also
+by conducting large preregistered studies. This suggestion will also
 improve the outlook for power in published studies, and projects such as
 Many Labs can aide in subsidizing large samples (R. A. Klein et al.,
 2014). Even with limitations, meta-analyses allow researchers to examine

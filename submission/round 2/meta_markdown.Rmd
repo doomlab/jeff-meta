@@ -534,12 +534,13 @@ knitr::include_graphics("PTStrim_fill.png")
 ```
 
 ```{r PTStable, echo = FALSE, results = 'asis'}
-apa_table(tableprint,
+apa_table.latex(as.data.frame(tableprint),
           align = c("l", rep("c", 4)),
           caption = "Effect Size Estimates for PTS Results",
           note = "[] indicates the 95 percent confidence interval for each effect size estimate.",
           col.names = c("Model", "Fixed Effects", "Random Effects", "Fixed No Outliers", "Random No Outliers"),
-          small = T
+          small = T,
+          escape = F
           )
 ```
 
@@ -694,12 +695,13 @@ knitr::include_graphics("PTGtrim_fill.png")
 ```
 
 ```{r PTGtable, echo = FALSE, results = 'asis'}
-apa_table(tableprint2,
+apa_table.latex(as.data.frame(tableprint2),
           align = c("l", rep("c", 4)),
           caption = "Effect Size Estimates for PTG Results",
           note = "[] indicates the 95 percent confidence interval for each effect size estimate.",
           col.names = c("Model", "Fixed Effects", "Random Effects"),
-          small = T
+          small = T,
+          escape = F
           )
 ```
 
@@ -902,12 +904,13 @@ knitr::include_graphics("QOLtrim_fill.png")
 ```
 
 ```{r QOLtable, echo = FALSE, results = 'asis'}
-apa_table(tableprint3,
+apa_table(as.data.frame(tableprint3),
           align = c("l", rep("c", 4)),
           caption = "Effect Size Estimates for QOL Results",
           note = "[] indicates the 95 percent confidence interval for each effect size estimate.",
           col.names = c("Model", "Fixed Effects", "Random Effects", "Fixed No Outliers", "Random No Outliers"),
-          small = T
+          small = T,
+          escape = F
           )
 ```
 

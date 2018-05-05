@@ -127,8 +127,8 @@ and Traumatic Stress}
 
   \author{Jeffrey M. Pavlacic\textsuperscript{1}, Erin M. Buchanan\textsuperscript{2}, Nicholas P. Maxwell\textsuperscript{2}, Tabetha G. Hopke\textsuperscript{2}, \& Stefan E. Schulenberg\textsuperscript{1}}
 
-  % \def\affdep{{"", "", "", "", ""}}%
-  % \def\affcity{{"", "", "", "", ""}}%
+  \def\affdep{{"", "", "", "", ""}}%
+  \def\affcity{{"", "", "", "", ""}}%
 
   \affiliation{
     \vspace{0.5cm}
@@ -136,6 +136,7 @@ and Traumatic Stress}
           \textsuperscript{2} Missouri State University  }
 
   \authornote{
+    \newcounter{author}
     Jeffrey M. Pavlacic is a doctoral candidate at the University of
     Mississippi and a member of the University of Mississippi
     Clinical-Disaster Research Center (UM-CDRC). Erin M. Buchanan is an
@@ -143,11 +144,9 @@ and Traumatic Stress}
     P. Maxwell and Tabetha G. Hopke are master's degree candidates at
     Missouri State University. Stefan E. Schulenberg is a Professor of
     Psychology at the University of Mississippi and director of the UM-CDRC.
-    
-    Correspondence concerning this article should be addressed to Jeffrey M.
-    Pavlacic, 205 Peabody Hall, University, MS 38655. E-mail:
-    \href{mailto:jpavlaci@go.olemiss.edu}{\nolinkurl{jpavlaci@go.olemiss.edu}}
-  }
+
+                      Correspondence concerning this article should be addressed to Jeffrey M. Pavlacic, 205 Peabody Hall, University, MS 38655. E-mail: \href{mailto:jpavlaci@go.olemiss.edu}{\nolinkurl{jpavlaci@go.olemiss.edu}}
+                                                        }
 
 
   \abstract{Emotional expression has been shown to be beneficial for promoting both
@@ -161,7 +160,7 @@ psychological outcomes. While many studies have been conducted that
 examine the effectiveness of expressive writing across such outcomes, a
 considerable amount of these studies tend to neglect necessary
 considerations such as power and meaningfulness of respective effect
-sizes. Four previous meta-analyses have been conducted that examine
+sizes. Six previous meta-analyses have been conducted that examine
 expressive writing's effect on psychological outcomes. However, these
 studies focus on the experimental versus control group effect size.
 Thus, our meta-analysis sought to examine the effectiveness of an
@@ -182,16 +181,16 @@ discussed.}
 
 
 \usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{proposition}{Proposition}[section]
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
 \theoremstyle{definition}
-\newtheorem{example}{Example}[section]
+\newtheorem{example}{Example}
 \theoremstyle{definition}
-\newtheorem{exercise}{Exercise}[section]
+\newtheorem{exercise}{Exercise}
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 \newtheorem*{solution}{Solution}
@@ -848,7 +847,7 @@ include a small effect size that appears to be significantly greater
 than zero across all estimate types (fixed, random, with or without
 outliers).
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspicoverall-1.pdf}
 \caption{\label{fig:ptspicoverall}Effect sizes and their non-centralized
@@ -857,7 +856,7 @@ non-weighted lower and upper confidence interval limits. Diamond size
 indicates normalized study weight from a random effects model.}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspichyper-1.pdf}
 \caption{\label{fig:ptspichyper}Effect sizes and their non-centralized
@@ -866,7 +865,7 @@ non-weighted lower and upper confidence interval limits. Diamond size
 indicates normalized study weight from a random effects model.}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspicint-1.pdf}
 \caption{\label{fig:ptspicint}Effect sizes and their non-centralized
@@ -875,7 +874,7 @@ average non-weighted lower and upper confidence interval limits. Diamond
 size indicates normalized study weight from a random effects model.}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspicavoid-1.pdf}
 \caption{\label{fig:ptspicavoid}Effect sizes and their non-centralized
@@ -1001,7 +1000,7 @@ to small effect size across both random and fixed effects models, and
 the non-centralized confidence intervals indicated an effect that
 crossed zero.
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptgpic-1.pdf}
 \caption{\label{fig:ptgpic}Effect sizes and their non-centralized confidence
@@ -1104,7 +1103,7 @@ studies indicated a negligible to small effect that showed a
 non-significant decrease in quality of life as a result of expressive
 writing.
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
 \includegraphics{meta_markdown_files/figure-latex/qolpic-1.pdf}
 \caption{\label{fig:qolpic}Effect sizes and their non-centralized confidence

@@ -1,4 +1,4 @@
-\documentclass[english,man]{apa6}
+\documentclass[english,man, mask]{apa6}
 
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -40,7 +40,7 @@
   {\end{ThreePartTable}\end{center}\end{landscape}}
 
   \usepackage{ifthen} % Only add declarations when endfloat package is loaded
-  \ifthenelse{\equal{\string man}{\string man}}{%
+  \ifthenelse{\equal{\string man, mask}{\string man}}{%
    \DeclareDelayedFloatFlavor{ThreePartTable}{table} % Make endfloat play with longtable
    % \DeclareDelayedFloatFlavor{ltable}{table} % Make endfloat play with lscape
    \DeclareDelayedFloatFlavor{lltable}{table} % Make endfloat play with lscape & longtable
@@ -82,7 +82,7 @@
 \fi
 \hypersetup{breaklinks=true,
             pdfauthor={},
-            pdftitle={A Meta-Analysis of Expressive Writing on Positive Psychology Variables and Traumatic Stress},
+            pdftitle={A Meta-Analysis of Expressive Writing on Quality of Life, Posttraumatic Growth, and Posttraumatic Stress},
             colorlinks=true,
             citecolor=blue,
             urlcolor=blue,
@@ -119,16 +119,16 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 % Essential manuscript parts
-  \title{A Meta-Analysis of Expressive Writing on Positive Psychology Variables
-and Traumatic Stress}
+  \title{A Meta-Analysis of Expressive Writing on Quality of Life, Posttraumatic
+Growth, and Posttraumatic Stress}
 
   \shorttitle{Expressive Writing}
 
 
   \author{Jeffrey M. Pavlacic\textsuperscript{1}, Erin M. Buchanan\textsuperscript{2}, Nicholas P. Maxwell\textsuperscript{2}, Tabetha G. Hopke\textsuperscript{2}, \& Stefan E. Schulenberg\textsuperscript{1}}
 
-  % \def\affdep{{"", "", "", "", ""}}%
-  % \def\affcity{{"", "", "", "", ""}}%
+  \def\affdep{{"", "", "", "", ""}}%
+  \def\affcity{{"", "", "", "", ""}}%
 
   \affiliation{
     \vspace{0.5cm}
@@ -136,6 +136,7 @@ and Traumatic Stress}
           \textsuperscript{2} Missouri State University  }
 
   \authornote{
+    \newcounter{author}
     Jeffrey M. Pavlacic is a doctoral candidate at the University of
     Mississippi and a member of the University of Mississippi
     Clinical-Disaster Research Center (UM-CDRC). Erin M. Buchanan is an
@@ -143,11 +144,9 @@ and Traumatic Stress}
     P. Maxwell and Tabetha G. Hopke are master's degree candidates at
     Missouri State University. Stefan E. Schulenberg is a Professor of
     Psychology at the University of Mississippi and director of the UM-CDRC.
-    
-    Correspondence concerning this article should be addressed to Jeffrey M.
-    Pavlacic, 205 Peabody Hall, University, MS 38655. E-mail:
-    \href{mailto:jpavlaci@go.olemiss.edu}{\nolinkurl{jpavlaci@go.olemiss.edu}}
-  }
+
+                      Correspondence concerning this article should be addressed to Jeffrey M. Pavlacic, 205 Peabody Hall, University, MS 38655. E-mail: \href{mailto:jpavlaci@go.olemiss.edu}{\nolinkurl{jpavlaci@go.olemiss.edu}}
+                                                        }
 
 
   \abstract{Emotional expression has been shown to be beneficial for promoting both
@@ -155,23 +154,22 @@ positive psychological and physical health outcomes. Unfortunately,
 inhibiting emotions can lead to impairments in physical and
 psychological health. James Pennebaker showed that expressive writing is
 an effective form of emotional expression, and he and others have used
-expressive writing as an experimental manipulation to gauge its
-effectiveness in treating a wide variety of health-related and
-psychological outcomes. While many studies have been conducted that
-examine the effectiveness of expressive writing across such outcomes, a
-considerable amount of these studies tend to neglect necessary
-considerations such as power and meaningfulness of respective effect
-sizes. Six previous meta-analyses have been conducted that examine
-expressive writing's effect on psychological outcomes. However, these
-studies focus on the experimental versus control group effect size.
-Thus, our meta-analysis sought to examine the effectiveness of an
-expressive writing intervention on only the experimental conditions in
-studies measuring posttraumatic growth, posttraumatic stress, and
-quality of life using random effects models. Results indicated a small
-overall effect size for posttraumatic stress and negligible to small
-effect sizes for posttraumatic growth and quality of life. Implications
-for future research design and interpretation of published research are
-discussed.}
+expressive writing as an experimental manipulation to gauge its efficacy
+in treating a wide variety of health-related and psychological outcomes.
+While many studies have been conducted that examine the efficacy of
+expressive writing across such outcomes, a considerable amount of these
+studies tend to neglect necessary considerations such as power and
+meaningfulness of respective effect sizes. Six previous meta-analyses
+have been conducted that examine expressive writing's effect on
+psychological outcomes. However, these studies focus on the experimental
+versus control group effect size. Thus, our meta-analysis sought to
+examine the efficacy of an expressive writing task on only the
+experimental conditions in studies measuring posttraumatic growth,
+posttraumatic stress, and quality of life using random effects models.
+Results indicated a small overall effect size for posttraumatic stress
+and negligible to small effect sizes for posttraumatic growth and
+quality of life. Implications for future research design and
+interpretation of published research are discussed.}
   \keywords{meta-analysis, positive psychology, expressive writing \\
 
     
@@ -182,16 +180,16 @@ discussed.}
 
 
 \usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{proposition}{Proposition}[section]
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
 \theoremstyle{definition}
-\newtheorem{example}{Example}[section]
+\newtheorem{example}{Example}
 \theoremstyle{definition}
-\newtheorem{exercise}{Exercise}[section]
+\newtheorem{exercise}{Exercise}
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 \newtheorem*{solution}{Solution}
@@ -203,150 +201,141 @@ discussed.}
 
 
 
-Emotional expression, especially focusing on negative emotions or
-trauma, has been shown to increase both mental and physical health
-(Esterling, Antoni, Kumar, \& Schneiderman, 1990; Fawzy et al., 1993;
-Lieberman \& Goldstein, 2006; Rachman, 1980; Scheff, 1979). In contrast,
-inhibiting repressive thoughts or emotions can be detrimental to both
-physical and psychological health (H. S. Goldstein, Edelberg, Meier, \&
-Davis, 1988; Gross \& Levenson, 1997; Larson \& Chastain, 1990).
-Additionally, repressing or avoiding certain emotions may prevent an
-individual from living in accordance with his or her values (Wilson \&
-DuFrene, 2009). Value-congruent behavior allows individuals to foster a
-sense of meaning (Frankl, 1959; Schulenberg, Hutzell, Nassif, \& Rogina,
-2008). Individuals experiencing traumatic events are more likely to
-repress thoughts and feelings about a given traumatic experience
-compared to individuals who have not experienced such events (Bodor,
-2002). Generally, preventing the disclosure of harmful thoughts and
-feelings can be detrimental to individuals, while disclosing these
-events can reduce stress and lead to various positive health outcomes,
-such as with diabetes (Bodor, 2002), breast cancer related illnesses
-(Stanton et al., 2002), and other physical health conditions.
+\subsection{Emotional Expression}\label{emotional-expression}
 
-However, the disclosure or acceptance of harmful thoughts or emotions
-may lead to negative outcomes. As such, caution should be used when
-interpreting results from interventions based on emotional expression
-(Wilson \& DuFrene, 2009). For example, Brounéus (2010) found that truth
-telling, a form of emotional expression, caused harm to individuals.
-However, in general, tendencies to repress emotional experiences may
-lead to social concerns, overall psychological dysfunction, and inhibit
-people from living in accordance with their values (Frankl, 1959;
-Pennebaker, 1989; Pennebaker \& Beall, 1986; Schulenberg et al., 2008;
-Wilson \& DuFrene, 2009). This resulting psychological dysfunction may
-lead to detrimental effects on health, including unhealthy everyday life
-habits, which could lead to biological problems, especially immune
-system and neurotransmitter deficiencies (Pennebaker \& Beall, 1986). By
-preventing an individual from living in accordance with his or her
-values, emotional inhibition may prohibit individuals from gaining
-access to values that are intrinsically reinforcing. Additionally,
-living in accordance with personal values allows the individual to
-foster a sense of meaning despite debilitating life circumstances
-(Frankl, 1959; Schulenberg et al., 2008). Therefore, it is important to
-identify and foster ways in which individuals can effectively express
-emotions, thereby improving both physical and psychological health.
+Emotional expression relating to negative emotions or trauma has been
+shown to enhance both mental and physical health outcomes (Esterling,
+Antoni, Kumar, \& Schneiderman, 1990; Fawzy et al., 1993; Lieberman \&
+Goldstein, 2006; Rachman, 1980; Scheff, 1979). For example, the
+disclosure of traumatic or stressful events has been shown to reduce
+stress and lead to positive health outcomes in those with diabetes
+(Bodor, 2002) and breast cancer (Stanton et al., 2002), among others.
+Inhibiting repressive thoughts or emotions, rather, may be detrimental
+to both physical and psychological health (H. S. Goldstein, Edelberg,
+Meier, \& Davis, 1988; Gross \& Levenson, 1997; Larson \& Chastain,
+1990). While some studies suggest that emotional expression in the form
+of \enquote{truth telling} may cause psychological harm to individuals
+({\textbf{???}}), the literature presents a plethora of evidence
+confirming the negative effects of a lack of emotional expression, such
+as social concerns, overall psychological dysfunction, and lack of
+value-congruent behaviors (Frankl, 1959; Pennebaker, 1989; Pennebaker \&
+Beall, 1986; Schulenberg, Hutzell, Nassif, \& Rogina, 2008; Wilson \&
+DuFrene, 2009). These resulting negative outcomes may lead to
+detrimental effects on health (Pennebaker \& Beall, 1986). Individuals
+having experienced a traumatic or stressful life event are significantly
+more likely to repress thoughts and feelings about their experience
+compared to individuals who have not experienced such events, thereby
+subjecting them to potential negative outcomes caused by a lack of
+emotional expression (Bodor, 2002).
+
+\subsection{Expressive Writing as Effective Emotional
+Expression}\label{expressive-writing-as-effective-emotional-expression}
 
 Pennebaker and Beall (1986) first showed that emotional expression can
 be both experimentally manipulated and have positive benefits to
 participants. In their seminal study, they randomly assigned
-participants to several writing groups including writing about an
-experienced trauma or a neutral event. The group that disclosed both
-regarding their trauma and the emotions surrounding said trauma later
-showed a reduction in health visits. Pennebaker has replicated the use
-of expressive writing (i.e., a paradigm in which one writes about
-emotions) across a number of studies ranging from improved health
-(Pennebaker, Colder, \& Sharp, 1990; Pennebaker, Kiecolt-Glaser, \&
-Glaser, 1988) to improvements in school (Pennebaker \& Francis, 1996)
-and work (Francis \& Pennebaker, 1992). Others have expanded this work
-to show positive effects on mood (Schoutrop, Lange, Hanewald,
-Davidovich, \& Salomon, 2002) and asthma (Smyth, Stone, Hurewitz, \&
-Kaell, 1999); however, several controlled studies have shown to not
-replicate (Harris, Thoresen, Humphreys, \& Faul, 2005) or null effects
-(Gidron, Peri, Connolly, \& Shalev, 1996; Walker, Nail, \& Croyle,
-1999).
+participants to several writing groups, including writing about a
+\enquote{stressful or traumatic} life event or a neutral event. As such,
+the content of the writing likely varies widely based on the contextual
+factors (e.g.~topic, setting, sample, health concern). The group that
+disclosed both regarding their trauma and the emotions surrounding said
+trauma later showed a reduction in health visits. Pennebaker has
+replicated the use of expressive writing across a number of studies
+ranging from improved health (Pennebaker, Colder, \& Sharp, 1990;
+Pennebaker, Kiecolt-Glaser, \& Glaser, 1988) to improvements in school
+(Pennebaker \& Francis, 1996) and work (Francis \& Pennebaker, 1992).
+Others have expanded this work to show positive effects on mood
+(Schoutrop, Lange, Hanewald, Davidovich, \& Salomon, 2002) and asthma
+(Smyth, Stone, Hurewitz, \& Kaell, 1999); however, several controlled
+studies have shown to not replicate (Harris, Thoresen, Humphreys, \&
+Faul, 2005) or null effects (Gidron, Peri, Connolly, \& Shalev, 1996;
+Walker, Nail, \& Croyle, 1999).
 
-The idea that a brief, controlled writing intervention can have numerous
+The idea that a brief, controlled writing task can have numerous
 positive health and psychological benefits can certainly be
 controversial, given the existing literature. For example, Henry,
 Schlegel, Talley, Molix, and Bettencourt (2010) found that expressive
 writing only benefited a rural population for those individuals
 surviving breast cancer, while Lancaster, Klein, and Heifner (2015)
 found no significant evidence that expressive writing can be considered
-an effective approach. Additionally, Brounéus (2010) found that
-\enquote{truth telling} caused harm to individuals in a forensic
-setting. Regardless, the concept remains interesting due to the nature
-and inexpensive implementation of expressive writing. Many individuals
-who have experienced traumatic events do not wish to disclose their
-feelings regarding the events with others. Additionally, those who do
-not meet diagnostic criteria are sometimes neglected despite probable
-suffering (Wilson \& DuFrene, 2009). However, by utilizing expressive
-writing as a personal method of treatment, individuals are able to
-effectively express their emotions while avoiding talking to another
-individual or clinician about the traumatic event (Smyth, 1998).
-Pennebaker (1993) found that experimental conditions assigned to
-participate in an expressive writing task generally report more positive
-changes than those in control conditions. Some controversy has been
-observed over whether or not writing about a formerly disclosed event is
-more effective than writing about an undisclosed event. M. A. Greenberg
-and Stone (1992) conducted an experiment where they separated
-participants into three groups: writing about a formerly disclosed
-trauma, writing about an undisclosed trauma, and a control group. They
-found no difference between groups in effectiveness. However, they did
-find that those who disclosed more severe traumas reportedly experienced
-fewer physical symptoms at follow up, which suggests that the type of
-trauma revealed can play a significant impact on symptom reduction and
-physical health. From a meta-analytic perspective, Mogk, Otte,
-Reinhold-Hurley, and Kröner-Herwig (2006) found a non-meaningful effect
-size when examining the effect of expressive writing on somatic health
-symptoms, psychological health, and miscellaneous outcomes, such as
-grades and self-efficacy. These results were in contrast to the
-meta-analysis conducted by Smyth (1998), which found a medium overall
-effect size (\emph{d} = 0.47). A more recent analysis examined the
-efficacy of expressive writing interventions on depressive symptoms
-using randomized clinical trials (Reinhold, Bürkner, \& Holling, 2018).
+an effective approach. Additionally and as mentioned, Brounéus (2010)
+found that \enquote{truth telling} caused harm to individuals in a
+forensic setting. Regardless, the concept remains interesting due to the
+nature and inexpensive implementation of expressive writing. Many
+individuals who have experienced traumatic events do not wish to
+disclose their feelings regarding the events with others. Additionally,
+those who do not meet diagnostic criteria are sometimes neglected
+despite probable suffering (Wilson \& DuFrene, 2009). However, by
+utilizing expressive writing as a personal method of treatment,
+individuals are able to effectively express their emotions while
+avoiding talking to another individual or clinician about the traumatic
+event (Smyth, 1998). Pennebaker (1993) found that experimental
+conditions assigned to participate in an expressive writing task
+generally report more positive changes than those in control conditions.
+Some controversy has been observed over whether or not writing about a
+formerly disclosed event is more effective than writing about an
+undisclosed event. M. A. Greenberg and Stone (1992) conducted an
+experiment where they separated participants into three groups: writing
+about a formerly disclosed trauma, writing about an undisclosed trauma,
+and a control group. They found no difference between groups in
+efficacy. However, they did find that those who disclosed more severe
+traumas reportedly experienced fewer physical symptoms at follow up,
+which suggests that the type of trauma revealed can play a significant
+impact on symptom reduction and physical health. A review of current
+meta-analyses is presented in a subsequent section.
 
-In order to understand why expressive writing is considered to be an
-effective, intervention-based approach, one must examine the cognitive
-and social processes by which it allows an individual to process
-information. Pennebaker et al. (1990) discovered that individuals who
-had benefited from expressive writing attributed their success to ways
-in which the intervention allowed them to understand what had happened
-to them. Furthermore, in an additional study, Pennebaker (1993)
-conducted a textual analysis on expressive writing content and found
-that those who were more successful during the intervention used words
-that can be categorized as causation words. Pennebaker attributed these
-results as individuals effectively processing the event in their own
-minds. Aside from cognitive-processing and inhibition theories, there
-are a number of other theories that researchers have used to explain
-emotional disclosure. The first theory that warrants explanation is the
-social integration model (Pennebaker \& Graybeal, 2001). This model
-discusses how emotional disclosure can have a positive impact on how
-people interact in their environment. This increased environmental
-interaction has been shown to have positive benefits on health
-(Frattaroli, 2006). Finally, expressive writing parallels exposure
-therapy for a variety of phobias and post-traumatic stress disorder,
-which suggests that repeatedly exposing oneself to the seemingly anxious
-thought or trauma can reduce the anxiety, fear, or stress associated
-with that event (Meshberg-Cohen, Svikis, \& McMahon, 2014). Given that
-exposure therapy has been shown to be effective for reducing symptoms of
-post-traumatic stress (PTS; Sloan, Marx, \& Epstein, 2005), one would
+\subsection{Possible Mechanisms Underlying Expressive Writing
+Efficacy}\label{possible-mechanisms-underlying-expressive-writing-efficacy}
+
+In order to understand why expressive writing is considered to be
+efficacious, one must examine the cognitive, social, and behavioral
+processes by which it allows information processing. Pennebaker et al.
+(1990) discovered that individuals who benefited from expressive writing
+attributed their success from the writing task to a renewed sense of
+understanding. Further, Pennebaker (1993) conducted a textual analysis
+on expressive writing content and found that those who were more
+successful during the task used causation words. Pennebaker considered
+expressive writing as a way for individuals to effectively process the
+event in their minds, which may explain the aforementioned renewed sense
+of understand and excess of causation-oriented words. Aside from
+theories related to cognitive-processing and inhibition, there are a
+number of other theories related to emotional disclosure that warrant
+explanation. The first is the social integration model (Pennebaker \&
+Graybeal, 2001). This model suggests emotional disclosure can have a
+positive impact on how people interact in their environment. This
+increased environmental interaction has been shown to have positive
+benefits on health (Frattaroli, 2006). Second, expressive writing
+parallels exposure therapy for phobias and posttraumatic stress
+disorder, which suggests that repeatedly exposing oneself to the fear or
+trauma can reduce the negative emotions associated with that fear or
+trauma (Meshberg-Cohen, Svikis, \& McMahon, 2014). Given that exposure
+therapy has been shown to be effective for reducing symptoms of
+posttraumatic stress (PTS; Sloan, Marx, \& Epstein, 2005), one would
 expect individuals in these studies to experience a reduction in PTS
-symptoms after taking part in an expressive writing intervention.
-Additionally, Wilson and DuFrene (2009) discussed how the nonjudgmental
-acceptance of emotions leads to positive health benefits by promoting
-value-congruent behavior, one of the main facets of Acceptance and
-Commitment Therapy. Engaging in value-congruent behavior in the presence
-of inevitable human suffering is also the foundation of Logotherapy.
-Further, these value-based approaches can be integrated with
-orientations dedicated to symptom reduction (Frankl, 1959; Schulenberg
-et al., 2008). Enhancing life circumstances through valued action is
-important, as it has built the foundation for modern psychotherapy.
-Sometimes, however, emotional inhibition prevents an individual from
-engaging in such action.
+symptoms after taking part in an expressive writing task. Third, Wilson
+and DuFrene (2009) discussed how the nonjudgmental acceptance of
+emotions leads to positive health benefits by promoting value-congruent
+behavior, one of the main facets of Functional Contextualism theory and
+Logotherapy (Frankl, 1959; Schulenberg et al., 2008). Indeed, emotional
+expression in the form of expressive writing could be considered a form
+of nonjudgmental acceptance, although it may not necessarily lead to
+behavior change. Engaging in value-congruent behavior in the presence of
+inevitable emotional experiences is also the most crucial tenet in
+Logotherapy. Finally, a recently proposed theory that may help explain
+positive outcomes is referred to as a distance percpetive
+(({\textbf{???}})). This theory posits that, when individuals adopt a
+psychologically distanced perspective, they are better able to better
+understand their life situation. In sum, it seems likely that there are
+multiple underlying mechanisms that account for the beneficial outcomes
+associated with expressive writing described below. Indeed, the wide
+range of theroetical perspectives provide further evidence which
+suggests that expressive writing is applicable in a variety of contexts.
+Previously conducted meta-analyses, however, present varying results.
 
 \subsection{Meta-Analytic Techniques}\label{meta-analytic-techniques}
 
 Meta-analyses allow researchers the opportunity to collectively examine
-the effectiveness of different psychological interventions on outcome
+the efficacy of different psychological interventions/tasks on outcome
 variables (Borenstein, Hedges, \& Rothstein, 2007; Glass, 1976; Hedges,
 1982). Although many studies produced positive outcomes associated with
 expressive writing, some of these studies tend to neglect important
@@ -354,140 +343,132 @@ questions, the most important of which is whether or not the effect
 sizes are meaningful (Smyth, 1998). Meta-analyses are a technique that
 allows researchers to pool studies to examine an overall, weighted,
 population effect (Borenstein et al., 2007). Several meta-analyses of
-expressive writing and emotional expression have been explored: Smyth
-(1998), Frisina, Borod, and Lepore (2004), Frattaroli (2006), Reinhold
-et al. (2018), Van Emmerik, Reijntjes, and Kamphuis (2013) and Mogk et
-al. (2006). These meta-analyses have laid a foundation for exploring the
-effects of writing on psychological outcomes. For our purposes, we used
-Cohen's (1988) standards for nomenclature for small (0.20), medium
-(0.50), and large (0.80) \emph{d} values, although it is important to
-note that Cohen himself suggested that these values should be based on
-the area of study. Generally, however, these effect size criteria are
-used within the social sciences.
+expressive writing and emotional expression have been explored that
+warrant considerable explanation: Smyth (1998), Frisina, Borod, and
+Lepore (2004), Frattaroli (2006), Reinhold, Bürkner, and Holling (2018),
+Van Emmerik, Reijntjes, and Kamphuis (2013) and Mogk, Otte,
+Reinhold-Hurley, and Kröner-Herwig (2006). These meta-analyses have laid
+a foundation for exploring the effects of writing on psychological
+outcomes. The meta-analyses described sequentially below focused on
+experimental versus control group effect sizes or \emph{p}-values,
+rather than emphasizing change for an writing group. This focus is
+likely because of the analyses provided in these publications,
+especially when using randomized controlled trial research designs.
+While this design is the gold standard for medicine, the current
+meta-analysis sought to examine the magnitude of change for participants
+who experienced an expressive writing task. For example, a comparison
+group may increase their quality of life scores by two points in a
+controlled study, while the experimental group increases their quality
+of life scores by four points; thus, creating a significant difference
+in change between the two groups. This information is valuable, but it
+does not tell the reader the magnitude of the change for the writing
+group, wherein four points might only be a small effect when examined
+within the group who received the writing task. This study will focus on
+changes across time for groups who received the expressive writing task
+to determine what size of effects one might expect given a specific
+measurement schedule (i.e., one to three months, three months to six
+months, etc.). Additionally, the current meta-analysis will examine the
+change in effects across measurement time to determine whether or not
+effects decrease over time.
 
-The meta-analysis conducted by Smyth (1998) found an overall medium
-effect size, \emph{d} = 0.47, for the experimental group compared to the
-control group. This particular analysis examined the effectiveness of
-expressive writing on psychological well-being, general health, and
-physical functioning. Frisina et al. (2004) expanded these analyses and
-found that expressive writing had a small to no effect on health
-outcomes, weighted \emph{d} = 0.07 to \emph{d} = 0.21. The meta-analyses
-conducted by Mogk et al. (2006) corroborated findings from Frisina et
-al. (2004). Specifically, Mogk et al. (2006) examined the effectiveness
-of expressive writing on somatic health symptoms, psychological
-outcomes, grades, and self-efficacy. The meta-analyses conducted by
-Smyth (1998) and Frisina et al. (2004) were relatively small in nature,
-using only 12-14 studies. The meta-analysis conducted by Mogk et al.
-(2006) included 30 studies. Newer methods of meta-analysis, including
-\emph{p}-curve (Simonsohn, Nelson, \& Simmons, 2014; Simonsohn, Simmons,
-\& Nelson, 2015), \emph{p}-uniform (Aert, Wicherts, \& Van Assen, 2016),
-PET-PEESE (Stanley \& Doucouliagos, 2014), selection models (Vevea \&
-Hedges, 1995), and trim and fill methods (Carter \& McCullough, 2014)
-allow for better estimation of meta-analytic effect sizes. These
-analyses would be best performed by examining each potential effect
-separately, rather than averaging effects of each publication into one
-study effect size.
-
-Additionally, Frattaroli (2006) conducted a meta-analysis to examine the
-effects of emotional disclosure on a variety of variables such as
-psychological health, physiological functioning, reported health, health
-behaviors, subjective impact of intervention, and general
-functioning/life outcomes. This meta-analysis is different from the meta
-conducted by Smyth (1998) in that it utilizes random effects modeling in
-order to calculate effect sizes. The current meta-analysis includes both
-random and fixed effects models for comparison. Fixed effects models
+Smyth (1998) conducted the seminal meta-analysis regarding the efficacy
+of expressive writing. They included studies utilizing an expressive
+writing group and control group (neutral topic). This particular
+analysis examined the efficacy of expressive writing on psychological
+well-being, general health, and physical functioning. In sum, 13
+studies/effect sizes were included, and the authors found an overall
+medium effect size, \emph{d} = 0.47, for the experimental group compared
+to the control group. A later meta-analysis conducted by Frisina et al.
+(2004) expanded these analyses. They only included studies utilizing
+clinical samples and employing the paradigm adapted by Pennebaker and
+Beall (1986). This meta-analysis included 9 studies in total and found
+an effect size of \emph{d} = .19 for health-related outcomes and
+\emph{d} = .07 for psychological outcomes. The next meta-analysis
+regarding expressive writing was conducted by Mogk et al. (2006) and
+aimed to update the state of the literature on expressive writing.
+Similar to previously-conducted analysis, they included studies
+employing Pennebaker's paradigm on experimental and control groups.
+Additionally, they only included studies with a 4-week follow up that
+included at least 10 participants. In sum, 30 studies met their
+criteria. They found nonsignificant effects on somatic and psychological
+health outcomes and concluded that expressive wrting does not benefit
+health. These findings corroboate those from Frisina et al. (2004).
+Frattaroli (2006) conducted perhaps the most notable meta-analysis to
+data examining the efficacy of emotional disclosure on the folliwing
+constructs using only randomized and control conditions: psychological
+health, physiological functioning, reported health, health behaviors,
+and general functioning/life outcomes. Additionally, it employed random
+effects models. Prior meta-analysis employed fixed effects models, which
 assume that all studies assess the same \enquote{true} population effect
-size, which may be an untenable assumption across different assessments
-and populations (Borenstein et al., 2007). Random effects models
-estimate the mean of a proposed distribution of population effect sizes,
-which may vary by subject type or research design. Overall, Frattaroli
-(2006) found a weighted \emph{r} effect size of .08 for all outcomes
-combined, which would be considered small. This meta-analysis included a
-very large range of studies, \emph{N} = 146, but individual studies were
-again collapsed into one publication effect size, although these effects
-were also examined separately by health outcome. Another meta-analysis
-examining the effects of writing therapies found expressive writing to
-be effective for reducing posttraumatic stress symptoms (Van Emmerik et
-al., 2013). Although, this meta-analysis included only 6 eligible
-studies and compared treatment groups to control groups. Finally, a
-recently published meta analysis conducted by Reinhold et al. (2018)
-examined the effects of expressive writing on depression using
-randomized controlled trials. While this study did not support utilizing
-expressive writing as an intervention, utilizing a wider range of
-studies may enhance applicability to such interventions.
-
-The previous meta-analyses often focused on experimental versus control
-group effect sizes or \emph{p}-values, rather than emphasizing change
-for an intervention group. This focus is likely because of the analyses
-provided in these publications, especially when using randomized
-controlled trial research designs. While this design is the gold
-standard for medicine, we sought to examine the magnitude of change for
-participants who experienced an expressive writing intervention. For
-example, a comparison group may increase their quality of life scores by
-two points in a controlled study, while the experimental group increases
-their quality of life scores by four points; thus, creating a
-significant difference in change between the two groups. This
-information is valuable, but it does not tell us the magnitude of the
-change for the intervention group, wherein four points might only be a
-small effect when examined within the group who received the
-intervention. This study will focus on changes across time for groups
-who received the expressive writing task to determine what size of
-effects one might expect given a specific measurement schedule (i.e.,
-one to three months, three months to six months, etc.). Additionally, we
-will examine the change in effects across measurement time to determine
-whether or not effects decrease over time.
-
-Expressive writing tasks fit well within the framework of different
-psychological interventions and can be adapted for treatment, which is
-why the literature includes a multitude of different studies looking at
-a wide variety of outcomes. However, it is important to focus on
-individual variables in order to determine the effectiveness of
-expressive writing for specific diagnoses and psychopathology. As
-previously mentioned, some studies have found long-term benefits of
-expressive writing on psychological well-being (Park \& Blumberg, 2002).
-However, other studies, such as the research completed by Lancaster et
-al. (2015), found no evidence supporting the utilization of expressive
-writing as an effective therapeutic approach. Thus, it is necessary to
-evaluate the effectiveness of expressive writing on specific outcome
-variables, and we chose to focus specifically on post-traumatic stress
-(PTS), post-traumatic growth (PTG), and quality of life (QOL), in line
-with the current positive psychology trends. By focusing on specific
-outcome variables, rather than specific patient or study characteristics
-(which are covered extensively in Frattaroli, 2006), we can examine how
-effective writing can be for changing stress and positive psychology
-phenomena as described below. With this knowledge, we can decide whether
-or not to incorporate this type of intervention into protocols for
-certain diagnoses.
+size, which may be an untenable assumption across different assessment
+and populations (Borenstein et al., 2007). Random effects models,
+rather, estimate the mean of a proposed distribution of population
+effect sizes, which may vary by subject type or research design. They
+included a wide range of studies, \emph{N} = 146. Individual studies
+were again collapsed into one publication effect size, although these
+effects were also examined separately by health outcome. Overall,
+Frattaroli (2006) found a weighted \emph{r} effect size of .08 for all
+outcomes combined, which would be considered small. Additionally, they
+examined potential moderators and found larger effect sizes for the
+following samples: those with physical health problems, those with a
+history of having experienced traumatic or stressful events, samples not
+including college students, samples where expressive writing tasks were
+conducted at home and in private settings, paid participants, more male
+participants, and fewer participants. While not feasible to include a
+complete listing of all identified moderators, Frattaroli (2006) found
+many that warranted careful consideration when conducting the current
+meta-analysis. A recent analysis conducted by Van Emmerik et al. (2013)
+employing Pennebaker's paradigm found included 6 eligible studies that
+compared treatment to control groups. In regards to inclusion criteria,
+they included studies where participants had a diagnosis of Acute Stress
+Disorder (ASD) or Posttraumatic Stress Disorder (PTSD). They found that
+those who participated in the expressive writing group experienced
+short-term reductions in PTS and depressive symptoms. combined Hedges'
+\emph{g} = .81. The most recently published meta-analysis was conducted
+by Reinhold et al. (2018) and examined the effects of expressive writing
+on depression by randomizing participants to conditions (expressive
+writing vs.~control). They included 39 randomized controlled trials and
+excluded individuals with diagnoses of PTSD. This study did not support
+utilizing expressive writing for depression outcome measures. Further,
+they found that expressive writing did not yield any type of long-term
+effect on depression outcomes.
 
 \subsection{Posttraumatic Stress}\label{posttraumatic-stress}
 
-Post-traumatic Stress Disorder (PTSD) is a disorder involving
+Posttraumatic Stress Disorder (PTSD) is a disorder involving
 re-experiencing thoughts or experiences after a traumatic event or
 experience. This generates a context where individuals are prone to
 affect-related deficiencies and maladaptive behaviors (American
-Psychiatric Association, 2013). The diagnosis is based on 20 symptoms
-structured into four different subsets. These subsets are as follows:
-re-experiencing, avoidance, negative alterations in cognition and mood,
-and arousal (Crespo \& Gomez, 2016). PTSD affects a wide variety of
-groups, a few of which are sexual assault survivors (Klump, 2008), Iraq
-and Afghanistan war veterans (Gentes et al., 2014), and those exposed to
-natural disasters (Wang et al., 2000). Research conducted on the
-effectiveness of expressive writing on PTSD symptoms has been less
-successful and shows outcomes that are not as effective as other
-studies. While PTSD symptoms decreased after a written emotional
-disclosure intervention, this decrease was not significantly different
-than a control group change (Sloan, Marx, \& Greenberg, 2011).
-Additionally, the emotional disclosure group showed greater emotional
-and heart rate responding, leading the researchers to conclude that
-writing may not be effective for treating PTSD.
+Psychiatric Association, 2013). DSM-5 criteria are based on 20 symptoms
+structured into four different subsets in those having experienced a
+traumatic event. These subsets are as follows: re-experiencing,
+avoidance, negative alterations in cognition and mood, and increased
+arousal (Crespo \& Gomez, 2016). While the renewed DSM-5 criteria are
+commonly employed, the current meta-analysis considers studies using
+DSM-IV criteria. DSM-IV criteria are similar and include the following:
+exposure to a traumatic event, re-experiencing (intrusion), avoidance,
+and increased arousal (American Psychiatric Association, 2013). Further,
+the studies employed in the current meta-analysis are divided according
+to these subsets (arousal, intrusion, and avoidance). PTSD affects a
+wide variety of groups, a few of which are sexual assault survivors
+(Klump, 2008), Iraq and Afghanistan war veterans (Gentes et al., 2014),
+and those exposed to natural disasters (Wang et al., 2000). Research
+conducted on the efficacy of expressive writing on PTSD symptoms has
+been less successful and shows outcomes that are not as effective as
+other studies. While PTSD symptoms decreased after a written emotional
+disclosure task, this decrease was not significantly different than a
+control group change (Sloan, Marx, \& Greenberg, 2011). Additionally,
+the emotional disclosure group showed greater emotional and heart rate
+responding, leading the researchers to conclude that writing may not be
+effective for treating PTSD.
 
 Di Blasio et al. (2015) suggested that those meeting the criteria for
-moderate PTSD benefit more from expressive writing interventions in
-comparison to those with greater PTSD symptoms. They recruited women who
-had just given birth and assessed them a few days after experiencing
-childbirth along with a three-month follow-up. Results showed that women
-who had participated in the expressive writing task had lower depression
-and post-traumatic stress symptoms than the group assigned to a neutral
+moderate PTSD benefit more from expressive writing tasks in comparison
+to those with greater PTSD symptoms. They recruited women who had just
+given birth and assessed them a few days after experiencing childbirth
+along with a three-month follow-up. Results showed that women who had
+participated in the expressive writing task had lower depression and
+posttraumatic stress symptoms than the group assigned to a neutral
 writing condition. Additionally, regression models showed that
 expressive writing was significantly linked to a reduction of PTSD
 symptoms across different dimensional levels of symptom severity.
@@ -496,18 +477,17 @@ suggest that expressive writing may be an effective tool for women
 managing postpartum distress. However, it is important to note that only
 20 of the 113 women recruited for this study qualified for a diagnosis
 of PTSD. This limitation suggests that those with moderate distress
-could perhaps benefit more from an expressive writing intervention than
-those diagnosed with or meeting the qualifications for PTSD. It may also
+could perhaps benefit more from an expressive writing task than those
+diagnosed with or meeting the qualifications for PTSD. It may also
 explain the differences in results between the two studies, as Sloan et
 al. (2011) found that those with a clinical diagnosis of PTSD did not
 respond to an emotional disclosure writing task. Di Blasio et al. (2015)
 found that those who reported mild symptomology better responded to the
-intervention than those meeting the criteria for a diagnosis of PTSD. As
+task than those meeting the criteria for a diagnosis of PTSD. As
 previously mentioned, expressive writing mirrors exposure therapy in
 that it encourages individuals to express avoided emotions related to
 the aversive event. Thus, given this observation, one would expect PTS
-scores to decrease in those taking part in an expressive writing
-intervention.
+scores to decrease in those taking part in an expressive writing task.
 
 \subsection{Posttraumatic Growth}\label{posttraumatic-growth}
 
@@ -524,7 +504,7 @@ influence each variable separately, which is one of the key goals of
 this meta-analysis (Slavin-Spenny, Cohen, Oberleitner, \& Lumley, 2011).
 Models receiving empirical support within the last decade suggest that
 traumatic events offer opportunities for both negative and positive
-experiences (Tedeschi \& Calhoun, 1995; Weiss, 2002). Post-traumatic
+experiences (Tedeschi \& Calhoun, 1995; Weiss, 2002). Posttraumatic
 Growth (PTG) is a positive experience after a traumatic event (Aslam \&
 Kamal, 2013; Yilmaz \& Zara, 2016). Specifically, PTG is classified as
 broad cognitive benefits that are seen after a traumatic experience.
@@ -544,55 +524,82 @@ writing has been shown to be an effective method for reducing
 psychological distress among those suffering from trauma (Sloan, Marx,
 Epstein, \& Lexington, 2007). Thus, it only makes sense to examine
 positive growth in response to a traumatic event after exposing
-participants to an expressive writing intervention. Pennebaker and
-Graybeal (2001) speculated that expressive writing allows an individual
-to feel more connected with his or her surroundings. Although this
-speculation does not directly explain positive outcomes after an
-expressive writing intervention, perhaps individuals gain a better
-appreciation for life after gaining a better sense of connectedness with
-that individual's surroundings.
+participants to an expressive writing task. Pennebaker and Graybeal
+(2001) speculated that expressive writing allows an individual to feel
+more connected with his or her surroundings. Although this speculation
+does not directly explain positive outcomes after an expressive writing
+task, perhaps individuals gain a better appreciation for life after
+gaining a better sense of connectedness with that individual's
+surroundings.
 
 \subsection{Quality of Life}\label{quality-of-life}
 
-QOL is another positive outcome variable that is worth examining with
-expressive writing interventions. QOL is described as a concept
-comprised of multiple domains, both subjective and objective. QOL is a
-measure of the extent to which an individual's needs are met.
-Subjectively, QOL measures an individual's attitude towards their given
-situation (Costanza et al., 2007). Pennebaker and Graybeal (2001)
+Quality of Life (QOL), according to ({\textbf{???}}) is an evaluation of
+the \enquote{goodness} that an individual experiences, separated into
+domains of reactions to life events, disposition, life fulfillment, and
+satisfaction with life experiences. More generally, QOL refers to an
+individual's attitude towards the target life situation
+({\textbf{???}}), delineated into objective and subjective components.
+Objectively, QOL refers to components outside of an individual and
+measurable by others, while subjective QOL is an individual's assessment
+of his or her own experiences ({\textbf{???}}). The current
+meta-analysis will focus solely on the subjective components of QOL, as
+it is obtainable through questionnaires. Pennebaker and Graybeal (2001)
 suggested that expressive writing allows one to feel more connected with
-their surroundings. Furthermore, they explain that expressive writing
-allows people to see things in a different way and better understand
-themselves. By understanding a traumatic event, one is able to see
-things differently and perhaps look at the situation with a more
+their surroundings. Further, they explain that expressive writing allows
+people to see things in a different way and better understand
+themselves. By understanding a traumatic or stressful event, one is said
+to see things differently and perhaps look at the situation with a more
 positive mindset. The changes that occur after expressive writing may
 also allow one to find meaning in the traumatic event, thereby
 increasing the QOL of that individual (Frankl, 1959). Higher QOL may be
-considered a type of PTG, which is why we thought to examine the
-effectiveness of studies utilizing expressive writing to improve QOL and
-PTG in the same study.
+considered a type of PTG, which is why the current meta-analysis sought
+to examine the efficacy of studies utilizing expressive writing to
+improve QOL and PTG in the same study.
 
 \subsection{Current Meta-Analysis}\label{current-meta-analysis}
 
-The purpose of this meta-analysis was to examine studies utilizing
-expressive writing on positive outcome variables (PTG and QOL) and PTS.
-Due to inconsistent results in current studies published and outdated
-meta-analyses, it is important to clarify the effectiveness of
-expressive writing on promoting positive change after a traumatic event,
-improving overall quality of life, and reducing post-traumatic stress.
-This meta-analysis will provide researchers with a collective look at
-the use of expressive writing to promote increased PTG, increased QOL,
-and decreased PTS. This particular meta-analysis examines studies of
-patients with different types of psychopathology and medical diagnoses
-on PTG, QOL, and PTS. The main focus of this study is to examine PTG,
-QOL, and PTS by estimating effect sizes of experimental groups assigned
-to participate in the expressive writing intervention using newer
-techniques that have not been implemented in previous research. In
-addition to an estimate of overall effect sizes, we estimate power for
-effects on intervention groups, as research has shown a consistent
-under-powering of psychological studies, combined with a
-misunderstanding of the sample size needed for adequately powering one's
-work (Bakker, Hartgerink, Wicherts, \& Maas, 2016).
+The purpose of the current meta-analysis is to examine studies employing
+expressive writing procedures using Pennebaker's paradigm on variables
+relevant to the field of positive psychology (PTG and QOL) and PTS, with
+effect sizes separated by those having and not having a diagnosis of
+PTSD. Based on recently published literature, this is an important facet
+to consider (Reinhold et al., 2018). The meta-analyses described
+sequentially above focused on experimental versus control group effect
+sizes or \emph{p}-values, rather than emphasizing change for the
+expressive writing group. This focus is likely because of the analyses
+provided in these publications, especially when using randomized
+controlled trial research designs. While this design is the gold
+standard for medicine, the current meta-analysis sought to examine the
+magnitude of change for participants who experienced an expressive
+writing task. For example, a comparison group may increase their quality
+of life scores by two points in a controlled study, while the
+experimental group increases their quality of life scores by four
+points; thus, creating a significant difference in change between the
+two groups. This information is valuable, but it does not tell the
+reader the magnitude of the change for the writing group, wherein four
+points might only be a small effect when examined within the group who
+received the writing task. This study will focus on changes across time
+for groups who received the expressive writing task to determine what
+size of effects one might expect given a specific measurement schedule
+(i.e., one to three months, three months to six months, etc.). This
+analysis should present researchers with a renewed examination of the
+efficacy of expressive writing on the aforementioned variables using
+newer meta-analytic techniques. Newer methods of meta-analysis,
+including \emph{p}-curve (Simonsohn, Nelson, \& Simmons, 2014;
+Simonsohn, Simmons, \& Nelson, 2015), \emph{p}-uniform (Aert, Wicherts,
+\& Van Assen, 2016), PET-PEESE (Stanley \& Doucouliagos, 2014),
+selection models (Vevea \& Hedges, 1995), and trim and fill methods
+(Carter \& McCullough, 2014) allow for better estimation of
+meta-analytic effect sizes. These analyses would be best performed by
+examining each potential effect separately, rather than averaging
+effects of each publication into one study effect size (a common trend
+in the previously mentioned meta-analysis). In addition to an estimate
+of overall effect sizes using updated techniques, the current
+meta-analysis estimates power for effects on writing groups, as research
+has shown a consistent underpowering of psychological studies, combined
+with a misunderstanding of the sample size needed for adequately
+powering one's work (Bakker, Hartgerink, Wicherts, \& Maas, 2016).
 
 \section{Method}\label{method}
 
@@ -601,16 +608,16 @@ work (Bakker, Hartgerink, Wicherts, \& Maas, 2016).
 Studies were collected through online databases, such as PsycINFO and
 Google Scholar, using the following search terms and their combinations:
 \emph{Posttraumatic Growth, PTG, Quality of Life, QOL, Posttraumatic
-Stress, PTS, Expressive Writing, Emotional Disclosure}. Within these
-articles, the change in outcome variables (PTS, PTG, QOL) from pre- to
-post-test was the dependent variable of interest. Generally, groups were
-separated into an experimental and control group and then examined at
-different time points. For purposes of this meta-analysis, only
-participants assigned to the experimental condition were examined due to
-having received the expressive writing intervention. If a study included
-multiple assessment time points, then these measurements were examined
-sequentially (i.e., time 1 to time 2, time 2 to time 3) to determine
-change across time for the dependent variable.
+Stress, PTS, Expressive Writing, Emotional Disclosure, Narrative
+Writing}. Within these articles, the change in outcome variables (PTS,
+PTG, QOL) from pre- to post-test was the dependent variable of interest.
+Generally, groups were separated into an experimental and control group
+and then examined at different time points. For purposes of this
+meta-analysis, only participants assigned to the experimental condition
+were examined due to having received the expressive writing task. If a
+study included multiple assessment time points, then these measurements
+were examined sequentially (i.e., time 1 to time 2, time 2 to time 3) to
+determine change across time for the dependent variable.
 
 220 citations focusing on PTS, PTG, and QOL were identified through the
 literature search and previous meta-analyses. After screening these
@@ -626,12 +633,17 @@ for QOL.
 \subsection{Calculations for Effect Size, Variance, and Confidence
 Intervals}\label{calculations-for-effect-size-variance-and-confidence-intervals}
 
-Each study implemented a pre-test to post-test style repeated measures
-design, usually with paired \emph{t}-tests, ANOVA, or regression
-analyses. The means, standard deviations, and \emph{N} values were
-collected from each study. In general, Cohen's \emph{d} values were
-calculated using the following formula for paired \emph{t} using means
-and standard deviations:
+For our purposes, we used Cohen's (1988) standards for nomenclature for
+small (0.20), medium (0.50), and large (0.80) \emph{d} values, although
+it is important to note that Cohen himself suggested that these values
+should be based on the area of study. Generally, however, these effect
+size criteria are used within the social sciences. Each study
+implemented a pre-test to post-test style repeated measures design,
+usually with paired \emph{t}-tests, ANOVA, or regression analyses. The
+means, standard deviations, and \emph{N} values were collected from each
+study. In general, Cohen's \emph{d} values were calculated using the
+following formula for paired \emph{t} using means and standard
+deviations:
 
 \[
 {d_{av}} = \frac { M_1 - M_2 } { \frac { SD_1 + SD_2 } { 2 }}
@@ -848,7 +860,7 @@ include a small effect size that appears to be significantly greater
 than zero across all estimate types (fixed, random, with or without
 outliers).
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspicoverall-1.pdf}
 \caption{\label{fig:ptspicoverall}Effect sizes and their non-centralized
@@ -857,7 +869,7 @@ non-weighted lower and upper confidence interval limits. Diamond size
 indicates normalized study weight from a random effects model.}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspichyper-1.pdf}
 \caption{\label{fig:ptspichyper}Effect sizes and their non-centralized
@@ -866,7 +878,7 @@ non-weighted lower and upper confidence interval limits. Diamond size
 indicates normalized study weight from a random effects model.}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspicint-1.pdf}
 \caption{\label{fig:ptspicint}Effect sizes and their non-centralized
@@ -875,7 +887,7 @@ average non-weighted lower and upper confidence interval limits. Diamond
 size indicates normalized study weight from a random effects model.}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspicavoid-1.pdf}
 \caption{\label{fig:ptspicavoid}Effect sizes and their non-centralized
@@ -1001,7 +1013,7 @@ to small effect size across both random and fixed effects models, and
 the non-centralized confidence intervals indicated an effect that
 crossed zero.
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptgpic-1.pdf}
 \caption{\label{fig:ptgpic}Effect sizes and their non-centralized confidence
@@ -1104,7 +1116,7 @@ studies indicated a negligible to small effect that showed a
 non-significant decrease in quality of life as a result of expressive
 writing.
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
 \includegraphics{meta_markdown_files/figure-latex/qolpic-1.pdf}
 \caption{\label{fig:qolpic}Effect sizes and their non-centralized confidence
@@ -1204,35 +1216,35 @@ other methods indicate this small effect is likely not different from
 zero. QOL was not different from zero, which suggests no effect of
 expressive writing on quality of life. Interestingly, these results are
 in contrast to Sloan et al. (2011), which suggested that only certain
-groups may respond to these interventions. Potentially, the high
-heterogeneity may be due to the mixed levels of PTSD in these studies,
-as Di Blasio et al. (2015) indicates that only certain levels of PTSD
-are responsive to an expressive writing condition.
+groups may respond to these tasks. Potentially, the high heterogeneity
+may be due to the mixed levels of PTSD in these studies, as Di Blasio et
+al. (2015) indicates that only certain levels of PTSD are responsive to
+an expressive writing condition.
 
 Expressive writing does not appear to play an important role in
-influencing positive growth or improved quality of life post
-intervention. Ineffective emotional expression may be a contributing
-factor. In line with this observation, the authors note several
-limitations. If participants/clients are not deeply engaged with the
-material, an expressive writing intervention may not be effective, as
-Pennebaker and Graybeal (2001) imply that connectedness is an important
-factor for the intervention. However, it may be difficult to implement a
-check for engagement in these types of research designs. Doing so may
-also set a context that will inhibit emotional processing and general
-responses. Research on expressive writing has found a wide range of
-outcomes for different variables (Frattaroli, 2006), and these various
-results may explain the large heterogeneity found in this study.
-Encouragingly, we did not find much evidence of publication bias, and
-therefore, these estimates may represent a true population effect size.
-Regardless, methodology of expressive writing studies is variable, as it
-is applied in different forms across different contexts. Ideally, it
-would be possible to control for these varied instructions and
-protocols. However, this is simply not feasible, as most studies do not
-use measures that examine how engaged an individual is with the
-material. As such, this current meta-analysis sought to provide readers
-with a global effect of expressive writing on the aforementioned outcome
-variables. More studies are needed to examine potential moderating
-effects of participant engagement.
+influencing positive growth or improved quality of life post task.
+Ineffective emotional expression may be a contributing factor. In line
+with this observation, the authors note several limitations. If
+participants/clients are not deeply engaged with the material, an
+expressive writing task may not be effective, as Pennebaker and Graybeal
+(2001) imply that connectedness is an important factor for the task.
+However, it may be difficult to implement a check for engagement in
+these types of research designs. Doing so may also set a context that
+will inhibit emotional processing and general responses. Research on
+expressive writing has found a wide range of outcomes for different
+variables (Frattaroli, 2006), and these various results may explain the
+large heterogeneity found in this study. Encouragingly, we did not find
+much evidence of publication bias, and therefore, these estimates may
+represent a true population effect size. Regardless, methodology of
+expressive writing studies is variable, as it is applied in different
+forms across different contexts. Ideally, it would be possible to
+control for these varied instructions and protocols. However, this is
+simply not feasible, as most studies do not use measures that examine
+how engaged an individual is with the material. As such, this current
+meta-analysis sought to provide readers with a global effect of
+expressive writing on the aforementioned outcome variables. More studies
+are needed to examine potential moderating effects of participant
+engagement.
 
 We also examined the relationship of time between measurements of the
 dependent variables and the corresponding effect size to determine if
@@ -1240,9 +1252,9 @@ effects change over time. For both PTS and PTG, there was no
 relationship between effect size and time; yet, PTS indicated a small
 negative correlation. This correlation was not, however, significant.
 For QOL studies, a medium to large negative correlation was found. A
-negative relationship between time and effect size implies that
-interventions were more effective in the initial time points, and
-effects decreased over longer time spans.
+negative relationship between time and effect size implies that writing
+tasks were more effective in the initial time points, and effects
+decreased over longer time spans.
 
 The psychological scientific community has shifted focus to
 reproducibility and research design in the last several years (Nelson,
@@ -1380,13 +1392,6 @@ sciences} (2nd ed.). Hillsdale, NJ: Earlbaum.
 Cooper, H., Hedges, L. V., \& Valentine, J. (2009). \emph{The handbook
 of research synthesis and meta-analysis} (2nd ed.). New York, NY:
 Russell Sage Foundation.
-
-\hypertarget{ref-Costanza2007}{}
-Costanza, R., Fisher, B., Ali, S., Beer, C., Bond, L., Boumans, R.,
-\ldots{} Snapp, R. (2007). Quality of life: An approach integrating
-opportunities, human needs, and subjective well-being. \emph{Ecological
-Economics}, \emph{61}(2-3), 267--276.
-doi:\href{https://doi.org/10.1016/j.ecolecon.2006.02.023}{10.1016/j.ecolecon.2006.02.023}
 
 \hypertarget{ref-Crespo2016}{}
 Crespo, M., \& Gomez, M. M. (2016). Diagnostic concordance of DSM-IV and
@@ -1641,12 +1646,6 @@ Open Science Collaboration. (2015). Estimating the reproducibility of
 psychological science. \emph{Science}, \emph{349}(6251),
 aac4716--aac4716.
 doi:\href{https://doi.org/10.1126/science.aac4716}{10.1126/science.aac4716}
-
-\hypertarget{ref-Park2002}{}
-Park, C. L., \& Blumberg, C. J. (2002). Disclosing trauma through
-writing: Testing the meaning-making hypothesis. \emph{Cognitive Therapy
-and Research}, \emph{26}(5), 597--616.
-doi:\href{https://doi.org/10.1023/A:1020353109229}{10.1023/A:1020353109229}
 
 \hypertarget{ref-Pennebaker1989}{}
 Pennebaker, J. W. (1989). Confession, inhibition, and disease. In L.

@@ -1,0 +1,72 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{meta_markdown_files/figure-latex/ptspicoverall-1.pdf}
+\caption{\label{fig:ptspicoverall}Effect sizes and their non-centralized
+confidence interval for PTS total scores. Dashed lines indicated average
+non-weighted lower and upper confidence interval limits. Diamond size
+indicates normalized study weight from a random effects model.}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{meta_markdown_files/figure-latex/ptspichyper-1.pdf}
+\caption{\label{fig:ptspichyper}Effect sizes and their non-centralized
+confidence interval for PTS Hyperarousal. Dashed lines indicated average
+non-weighted lower and upper confidence interval limits. Diamond size
+indicates normalized study weight from a random effects model.}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{meta_markdown_files/figure-latex/ptspicint-1.pdf}
+\caption{\label{fig:ptspicint}Effect sizes and their non-centralized
+confidence interval for PTS Intrusion scores. Dashed lines indicated
+average non-weighted lower and upper confidence interval limits. Diamond
+size indicates normalized study weight from a random effects model.}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{meta_markdown_files/figure-latex/ptspicavoid-1.pdf}
+\caption{\label{fig:ptspicavoid}Effect sizes and their non-centralized
+confidence interval for PTS Avoidance Scores. Dashed lines indicated
+average non-weighted lower and upper confidence interval limits. Diamond
+size indicates normalized study weight from a random effects model.}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{meta_markdown_files/figure-latex/ptgpic-1.pdf}
+\caption{\label{fig:ptgpic}Effect sizes and their non-centralized confidence
+interval for PTG outcome variables. Dashed lines indicated average
+non-weighted lower and upper confidence interval limits. Diamond size
+indicates normalized study weight from a random effects model.}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{meta_markdown_files/figure-latex/qolpic-1.pdf}
+\caption{\label{fig:qolpic}Effect sizes and their non-centralized confidence
+interval for QOL outcome variables. Dashed lines indicated average
+non-weighted lower and upper confidence interval limits. Diamond size
+indicates normalized study weight from a random effects model.}
+\end{figure*}
+\efloatseparator
+ 

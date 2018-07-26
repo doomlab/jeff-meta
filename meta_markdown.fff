@@ -1,6 +1,6 @@
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
-[htbp]
+
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspicoverall-1.pdf}
 \caption{\label{fig:ptspicoverall}Effect sizes and their non-centralized
@@ -12,7 +12,7 @@ indicates normalized study weight from a random effects model.}
  
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
-[htbp]
+
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspichyper-1.pdf}
 \caption{\label{fig:ptspichyper}Effect sizes and their non-centralized
@@ -24,7 +24,7 @@ indicates normalized study weight from a random effects model.}
  
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
-[htbp]
+
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspicint-1.pdf}
 \caption{\label{fig:ptspicint}Effect sizes and their non-centralized
@@ -36,7 +36,7 @@ size indicates normalized study weight from a random effects model.}
  
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
-[htbp]
+
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspicavoid-1.pdf}
 \caption{\label{fig:ptspicavoid}Effect sizes and their non-centralized
@@ -48,7 +48,7 @@ size indicates normalized study weight from a random effects model.}
  
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
-[htbp]
+
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptgpic-1.pdf}
 \caption{\label{fig:ptgpic}Effect sizes and their non-centralized confidence
@@ -60,7 +60,7 @@ indicates normalized study weight from a random effects model.}
  
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
-[htbp]
+
 \centering
 \includegraphics{meta_markdown_files/figure-latex/qolpic-1.pdf}
 \caption{\label{fig:qolpic}Effect sizes and their non-centralized confidence

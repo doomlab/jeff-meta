@@ -420,10 +420,37 @@ ptsdata$power2 = power2$power
 power3 = pwr.t.test(n = ptsdata$n, d = ptsgroupsnoout$TE.random, sig.level = 0.05, type = c("paired"))
 ptsdata$power3 = power3$power
 
-PTS_no = metagen(effect.size, se_est, data = ptsdata[ ptsdata$PTSDDx == "No", ])
-PTS_mixed = metagen(effect.size, se_est, data = ptsdata[ ptsdata$PTSDDx == "Mixed", ])
-PTS_yes = metagen(effect.size, se_est, data = ptsdata[ ptsdata$PTSDDx == "Yes", ])
-PTS_yesnoout = metagen(effect.size, se_est, data = ptsdata[ ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl, ])
+####for pts split####
+#original characteristics power
+round(c(mean(ptsdata$power[ptsdata$PTSDDx == "No"]), sd(ptsdata$power[ptsdata$PTSDDx == "No"])), 2)
+round(sum(ptsdata$power[ptsdata$PTSDDx == "No"] > .80)/length(ptsdata$power[ptsdata$PTSDDx == "No"])*100, 1)
+
+round(c(mean(ptsdata$power[ptsdata$PTSDDx == "Mixed"]), sd(ptsdata$power[ptsdata$PTSDDx == "Mixed"])), 2)
+round(sum(ptsdata$power[ptsdata$PTSDDx == "Mixed"] > .80)/length(ptsdata$power[ptsdata$PTSDDx == "Mixed"])*100, 1)
+
+round(c(mean(ptsdata$power[ptsdata$PTSDDx == "Yes"]), sd(ptsdata$power[ptsdata$PTSDDx == "Yes"])), 2)
+round(sum(ptsdata$power[ptsdata$PTSDDx == "Yes"] > .80)/length(ptsdata$power[ptsdata$PTSDDx == "Yes"])*100, 1)
+
+round(c(mean(ptsdata$power[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl]), sd(ptsdata$power[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl])), 2)
+round(sum(ptsdata$power[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl] > .80)/length(ptsdata$power[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl])*100, 1)
+
+#random effects power2
+power2.1 = pwr.t.test(n = ptsdata$n, d = PTS_no$TE.random, sig.level = 0.05, type = c("paired"))
+round(c(mean(power2.1$power[ptsdata$PTSDDx == "No"]), sd(power2.1$power[ptsdata$PTSDDx == "No"])), 2)
+round(sum(power2.1$power[ptsdata$PTSDDx == "No"] > .80)/length(power2.1$power[ptsdata$PTSDDx == "No"])*100, 1)
+
+power2.1 = pwr.t.test(n = ptsdata$n, d = PTS_mixed$TE.random, sig.level = 0.05, type = c("paired"))
+round(c(mean(power2.1$power[ptsdata$PTSDDx == "Mixed"]), sd(power2.1$power[ptsdata$PTSDDx == "Mixed"])), 2)
+round(sum(power2.1$power[ptsdata$PTSDDx == "Mixed"] > .80)/length(power2.1$power[ptsdata$PTSDDx == "Mixed"])*100, 1)
+
+power2.1 = pwr.t.test(n = ptsdata$n, d = PTS_yes$TE.random, sig.level = 0.05, type = c("paired"))
+round(c(mean(power2.1$power[ptsdata$PTSDDx == "Yes"]), sd(power2.1$power[ptsdata$PTSDDx == "Yes"])), 2)
+round(sum(power2.1$power[ptsdata$PTSDDx == "Yes"] > .80)/length(power2.1$power[ptsdata$PTSDDx == "Yes"])*100, 1)
+
+power2.1 = pwr.t.test(n = ptsdata$n, d = PTS_yesnoout$TE.random, sig.level = 0.05, type = c("paired"))
+round(c(mean(power2.1$power[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl]), sd(power2.1$power[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl])), 2)
+round(sum(power2.1$power[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl] > .80)/length(power2.1$power[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl])*100, 1)
+
 ```
 
 Power was calculated in two different ways using the *pwr* package in *R* [@Champely2016]. *Post hoc* power was first calculated using sample size and effect size statistics from each individual study. Additionally, we calculated power using the study sample size and estimated overall effect size from the random effects model with and without outliers, as explained by @Francis2012 and @Francis2014. The first estimate indicates the likelihood of finding an effect from our sample statistics, while the second indicates the likelihood of finding the true population effect size. If each study had been conducted on only the change in the experimental group, `r apa(PTSsig,1)`% of studies would have been considered significant at $\alpha$ < .05. The average power of these studies based on their original study characteristics was `r apa(mean(ptsdata$power), 2, F)` (*SD* = `r apa(sd(ptsdata$power), 2, F)`). Power for the random-effects meta-analytic effect size with outliers was `r apa(mean(ptsdata$power2), 2, F)` (*SD* = `r apa(sd(ptsdata$power2), 2, F)`) and without outliers was `r apa(mean(ptsdata$power3), 2, F)` (*SD* = `r apa(sd(ptsdata$power3), 2, F)`). Therefore, power consistently was around 40-50% for studies examining PTS, regardless of outlier effects. In these studies, only `r apa(sum(ptsdata$power > .80) / nrow(ptsdata)*100, 1)`% achieved recommended 80% power for their found effect size, a smaller `r apa(sum(ptsdata$power2 > .80) / nrow(ptsdata)*100, 1)`% for the random-effect outlier effect size, and even smaller `r apa(sum(ptsdata$power3 > .80) / nrow(ptsdata)*100, 1) `% for power calculations on the random-effect size without the outliers. 
@@ -433,6 +460,7 @@ Power was calculated in two different ways using the *pwr* package in *R* [@Cham
 ```{r ptsother, include = FALSE}
 #p-curve
 paste("Z = ", ptsdata$z, sep = "")
+paste("Z = ", ptsdata$z, "; ", ptsdata$PTSDDx, sep = "")
 
 #p uniform
 puniPTSout = puniform(yi=ptsdata$effect.size, vi=ptsdata$variance,
@@ -451,6 +479,26 @@ tableprint[3, ] = c("$p$-Uniform",
                     paste(apa(puniPTSno$est, 2), " [", apa(puniPTSno$ci.lb, 2), ", ", apa(puniPTSno$ci.ub, 2), "]", sep = ""), #fixed no
                     "-" #random no
 )
+
+puniPTS_no = puniform(yi=ptsdata$effect.size[ptsdata$PTSDDx == "No"], vi=ptsdata$variance[ptsdata$PTSDDx == "No"],
+                         side = "right", method = "P",
+                         alpha = 0.05, plot = TRUE)
+round(c(puniPTS_no$est, puniPTS_no$ci.lb, puniPTS_no$ci.ub) ,3)
+
+puniPTS_mixed = puniform(yi=ptsdata$effect.size[ptsdata$PTSDDx == "Mixed"], vi=ptsdata$variance[ptsdata$PTSDDx == "Mixed"],
+                         side = "right", method = "P",
+                         alpha = 0.05, plot = TRUE)
+round(c(puniPTS_mixed$est, puniPTS_mixed$ci.lb, puniPTS_mixed$ci.ub) ,3)
+
+puniPTS_yes = puniform(yi=ptsdata$effect.size[ptsdata$PTSDDx == "Yes"], vi=ptsdata$variance[ptsdata$PTSDDx == "Yes"],
+                         side = "right", method = "P",
+                         alpha = 0.05, plot = TRUE)
+round(c(puniPTS_yes$est, puniPTS_yes$ci.lb, puniPTS_yes$ci.ub) ,3)
+
+puniPTS_yesno = puniform(yi=ptsdata$effect.size[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl], vi=ptsdata$variance[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl],
+                         side = "right", method = "P",
+                         alpha = 0.05, plot = TRUE)
+round(c(puniPTS_yesno$est, puniPTS_yesno$ci.lb, puniPTS_yesno$ci.ub) ,3)
 
 #pet - peese
 #make a dataset with the right column names need d and std error
@@ -622,7 +670,7 @@ First, we calculated *post hoc* power using both sample and effect size statisti
 
 ```{r ptgother, include = FALSE}
 #p-curve
-paste("Z = ", ptgdata$z, sep = "") ##DRB FOR THIS PART 
+paste("Z = ", ptgdata$z, sep = "")
 
 #p uniform
 puniPTGout= puniform(yi=ptgdata$effect.size, vi=ptgdata$variance,

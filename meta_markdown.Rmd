@@ -512,6 +512,21 @@ peesePTSout = PEESE(ptsPP)
 petPTSno = PET(ptsPP[!infrandompts$is.infl, ])
 peesePTSno = PEESE(ptsPP[!infrandompts$is.infl, ])
 
+#separating by types of PTSD
+#no
+petPTSout_no = PET(ptsPP[ptsdata$PTSDDx == "No", ])
+peesePTSout_no = PEESE(ptsPP[ptsdata$PTSDDx == "No", ])
+
+#mixed
+petPTSout_mix = PET(ptsPP[ptsdata$PTSDDx == "Mixed", ])
+peesePTSout_mix = PEESE(ptsPP[ptsdata$PTSDDx == "Mixed", ])
+
+#yes
+petPTSout_yes = PET(ptsPP[ptsdata$PTSDDx == "Yes", ])
+peesePTSout_yes = PEESE(ptsPP[ptsdata$PTSDDx == "Yes", ])
+petPTSout_yesnoout = PET(ptsPP[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl, ])
+peesePTSout_yesnoout = PEESE(ptsPP[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl, ])
+
 tableprint[4, ] = c("PET", 
                     paste(apa(petPTSout$b[1], 2), " [", apa(petPTSout$ci.lb[1], 2), ", ", apa(petPTSout$ci.ub[1], 2), "]", sep = ""), #fixed out
                     "-", #random out
@@ -534,12 +549,30 @@ SMfixPTSout
 SMfixPTSno = weightfunct(effect = ptsdata$effect.size[!infrandompts$is.infl], v = ptsdata$variance[!infrandompts$is.infl], fe=TRUE)
 SMfixPTSno
 
+#separating by PTSD 
+#no
+SMfixPTS_no = weightfunct(effect = ptsdata$effect.size[ptsdata$PTSDDx == "No"], v = ptsdata$variance[ptsdata$PTSDDx == "No"], fe=TRUE)
+#mixed
+SMfixPTS_mix = weightfunct(effect = ptsdata$effect.size[ptsdata$PTSDDx == "Mixed"], v = ptsdata$variance[ptsdata$PTSDDx == "Mixed"], fe=TRUE)
+#yes
+SMfixPTS_yes = weightfunct(effect = ptsdata$effect.size[ptsdata$PTSDDx == "Yes"], v = ptsdata$variance[ptsdata$PTSDDx == "Yes"], fe=TRUE)
+SMfixPTS_yesnoout = weightfunct(effect = ptsdata$effect.size[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl], v = ptsdata$variance[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl], fe=TRUE)
+
 ##random effects 
 SMrandPTSout = weightfunct(effect = ptsdata$effect.size, v = ptsdata$variance, fe=FALSE)
 SMrandPTSout
 
 SMrandPTSno = weightfunct(effect = ptsdata$effect.size[!infrandompts$is.infl], v = ptsdata$variance[!infrandompts$is.infl], fe=FALSE)
 SMrandPTSno
+
+#separating by PTSD 
+#no
+SMrandPTS_no = weightfunct(effect = ptsdata$effect.size[ptsdata$PTSDDx == "No"], v = ptsdata$variance[ptsdata$PTSDDx == "No"], fe=F)
+#mixed
+SMrandPTS_mix = weightfunct(effect = ptsdata$effect.size[ptsdata$PTSDDx == "Mixed"], v = ptsdata$variance[ptsdata$PTSDDx == "Mixed"], fe=F)
+#yes
+SMrandPTS_yes = weightfunct(effect = ptsdata$effect.size[ptsdata$PTSDDx == "Yes"], v = ptsdata$variance[ptsdata$PTSDDx == "Yes"], fe=F)
+SMrandPTS_yesnoout = weightfunct(effect = ptsdata$effect.size[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl], v = ptsdata$variance[ptsdata$PTSDDx == "Yes" & !infrandompts$is.infl], fe=F)
 
 ##could not figure out how to pull these values automatically have to type them in :| use the intercept line from the adjusted model results 
 tableprint[6, ] = c("Selection Models", 
@@ -554,6 +587,37 @@ ptsTFout
 
 ptsTFno = trimfill(ptsgroupsnoout)
 ptsTFno
+
+#separating by diagnosis
+#no
+ptsTF_no = trimfill(PTS_no)
+ptsTF_no
+{png(file="PTStrim_fill_no.png", width = 1500, height = 1500, res = 200)
+  layout(matrix(c(1,2,3,4), 2, 2, byrow = TRUE), respect = TRUE)
+funnel(ptsgroups, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTS Original with Outliers", cex.main = 1.2)
+funnel(ptsgroupsnoout, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTS Original without Outliers", cex.main = 1.2)
+funnel(ptsTFout, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTS Filled with Outliers", cex.main = 1.2)
+funnel(ptsTFno, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTS Filled without Outliers", cex.main = 1.2)}
+#mixed
+ptsTFout = trimfill(ptsgroups)
+ptsTFout
+#yes
+ptsTFout = trimfill(ptsgroups)
+ptsTFout
+ptsTFout = trimfill(ptsgroups)
+ptsTFout
 
 #trim and fill
 {png(file="PTStrim_fill.png", width = 1500, height = 1500, res = 200)

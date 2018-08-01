@@ -592,34 +592,57 @@ ptsTFno
 #no
 ptsTF_no = trimfill(PTS_no)
 ptsTF_no
-{png(file="PTStrim_fill_no.png", width = 1500, height = 1500, res = 200)
-  layout(matrix(c(1,2,3,4), 2, 2, byrow = TRUE), respect = TRUE)
-funnel(ptsgroups, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+{png(file="PTStrim_fill_no.png", width = 1500, height = 750, res = 200)
+  layout(matrix(c(1,2), 1, 2, byrow = TRUE), respect = TRUE)
+funnel(PTS_no, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
        xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
        col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
-       family = "serif", cex.lab = 1, main = "PTS Original with Outliers", cex.main = 1.2)
-funnel(ptsgroupsnoout, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       family = "serif", cex.lab = 1, main = "PTS Original No PTSD", cex.main = 1.2)
+funnel(ptsTF_no, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
        xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
        col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
-       family = "serif", cex.lab = 1, main = "PTS Original without Outliers", cex.main = 1.2)
-funnel(ptsTFout, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
-       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
-       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
-       family = "serif", cex.lab = 1, main = "PTS Filled with Outliers", cex.main = 1.2)
-funnel(ptsTFno, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
-       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
-       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
-       family = "serif", cex.lab = 1, main = "PTS Filled without Outliers", cex.main = 1.2)}
+       family = "serif", cex.lab = 1, main = "PTS Filled No PTSD", cex.main = 1.2)}
 #mixed
-ptsTFout = trimfill(ptsgroups)
-ptsTFout
+ptsTF_mixed = trimfill(PTS_mixed)
+ptsTF_mixed
+{png(file="PTStrim_fill_mixed.png", width = 1500, height = 750, res = 200)
+  layout(matrix(c(1,2), 1, 2, byrow = TRUE), respect = TRUE)
+funnel(PTS_mixed, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTS Original Mixed PTSD", cex.main = 1.2)
+funnel(ptsTF_mixed, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTS Filled Mixed PTSD", cex.main = 1.2)}
 #yes
-ptsTFout = trimfill(ptsgroups)
-ptsTFout
-ptsTFout = trimfill(ptsgroups)
-ptsTFout
+ptsTF_yes = trimfill(PTS_yes)
+ptsTF_yes
+{png(file="PTStrim_fill_yes.png", width = 1500, height = 750, res = 200)
+  layout(matrix(c(1,2), 1, 2, byrow = TRUE), respect = TRUE)
+funnel(PTS_yes, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTS Original Yes PTSD", cex.main = 1.2)
+funnel(ptsTF_yes, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTS Filled Yes PTSD", cex.main = 1.2)}
 
-#trim and fill
+ptsTF_yesnoout = trimfill(PTS_yesnoout)
+ptsTF_yesnoout
+{png(file="PTStrim_fill_yesnoout.png", width = 1500, height = 750, res = 200)
+  layout(matrix(c(1,2), 1, 2, byrow = TRUE), respect = TRUE)
+funnel(PTS_yesnoout, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTS Original Yes PTSD", cex.main = 1.2)
+funnel(ptsTF_yesnoout, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 
+       xlab = "Effect Size", ylab = "Standard Error (SE)", cex = .75,
+       col = 1, bg = 1, contour=c(0.00001, 0.95), col.contour=c("snow3", "white"), 
+       family = "serif", cex.lab = 1, main = "PTS Filled Yes PTSD", cex.main = 1.2)}
+
+#trim and fill for the original study data
 {png(file="PTStrim_fill.png", width = 1500, height = 1500, res = 200)
   layout(matrix(c(1,2,3,4), 2, 2, byrow = TRUE), respect = TRUE)
 funnel(ptsgroups, lty.fixed = 1, lty.random = 5, xlim = c(-1.5, 2.5), 

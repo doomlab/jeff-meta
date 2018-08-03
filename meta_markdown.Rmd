@@ -1,5 +1,5 @@
 ---
-title             : "A Meta-Analysis of Expressive Writing on Quality of Life, Posttraumatic Growth, and Posttraumatic Stress"
+title             : "A Meta-Analysis of Expressive Writing on Positive Psychology Variables and Traumatic Stress"
 shorttitle        : "Expressive Writing"
 
 author: 

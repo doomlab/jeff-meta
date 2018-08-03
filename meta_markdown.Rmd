@@ -857,7 +857,7 @@ apa_table.latex(as.data.frame(tableprint2),
 
 ## QOL
 
-###Overall Effect Size
+### Overall Effect Size
 
 ```{r qol-overall, include = FALSE}
 #subset the data

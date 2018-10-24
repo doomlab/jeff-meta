@@ -1,5 +1,5 @@
-\documentclass[man, mask]{apa6}
-
+\documentclass[,man, mask]{apa6}
+\usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
@@ -9,143 +9,119 @@
 \else % if luatex or xelatex
   \ifxetex
     \usepackage{mathspec}
-    \usepackage{xltxtra,xunicode}
   \else
     \usepackage{fontspec}
   \fi
-  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-  \newcommand{\euro}{€}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
-\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={A Meta-Analysis of Expressive Writing on Positive Psychology Variables and Traumatic Stress},
+            pdfauthor={Jeffrey M. Pavlacic, Erin M. Buchanan, Nicholas P. Maxwell, Tabetha G. Hopke, \& Stefan E. Schulenberg},
+            pdfkeywords={meta-analysis, posttraumatic stress, expressive writing},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
 
-% Table formatting
-\usepackage{longtable, booktabs}
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+
+  \title{A Meta-Analysis of Expressive Writing on Positive Psychology Variables
+and Traumatic Stress}
+    \author{Jeffrey M. Pavlacic\textsuperscript{1}, Erin M.
+Buchanan\textsuperscript{2}, Nicholas P. Maxwell\textsuperscript{2},
+Tabetha G. Hopke\textsuperscript{2}, \& Stefan E.
+Schulenberg\textsuperscript{1}}
+    \date{}
+  
+\shorttitle{Expressive Writing}
+\affiliation{
+\vspace{0.5cm}
+\textsuperscript{1} University of Mississippi\\\textsuperscript{2} Missouri State University}
+\keywords{meta-analysis, posttraumatic stress, expressive writing}
+\usepackage{csquotes}
+\usepackage{upgreek}
+\captionsetup{font=singlespacing,justification=justified}
+
+\usepackage{longtable}
 \usepackage{lscape}
-% \usepackage[counterclockwise]{rotating}   % Landscape page setup for large tables
-\usepackage{multirow}		% Table styling
-\usepackage{tabularx}		% Control Column width
-\usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
-\usepackage{threeparttablex}            % Lets threeparttable work with longtable
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage[flushleft]{threeparttable}
+\usepackage{threeparttablex}
 
-% Create new environments so endfloat can handle them
-% \newenvironment{ltable}
-%   {\begin{landscape}\begin{center}\begin{threeparttable}}
-%   {\end{threeparttable}\end{center}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
 
-\newenvironment{lltable}
-  {\begin{landscape}\begin{center}\begin{ThreePartTable}}
-  {\end{ThreePartTable}\end{center}\end{landscape}}
-
-  \usepackage{ifthen} % Only add declarations when endfloat package is loaded
-  \ifthenelse{\equal{\string man, mask}{\string man}}{%
-   \DeclareDelayedFloatFlavor{ThreePartTable}{table} % Make endfloat play with longtable
-   % \DeclareDelayedFloatFlavor{ltable}{table} % Make endfloat play with lscape
-   \DeclareDelayedFloatFlavor{lltable}{table} % Make endfloat play with lscape & longtable
-  }{}%
-
-
-
-% The following enables adjusting longtable caption width to table width
-% Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
 \makeatletter
 \newcommand\LastLTentrywidth{1em}
 \newlength\longtablewidth
 \setlength{\longtablewidth}{1in}
-\newcommand\getlongtablewidth{%
- \begingroup
-  \ifcsname LT@\roman{LT@tables}\endcsname
-  \global\longtablewidth=0pt
-  \renewcommand\LT@entry[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}%
-  \@nameuse{LT@\roman{LT@tables}}%
-  \fi
-\endgroup}
+\newcommand{\getlongtablewidth}{\begingroup \ifcsname LT@\roman{LT@tables}\endcsname \global\longtablewidth=0pt \renewcommand{\LT@entry}[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}\@nameuse{LT@\roman{LT@tables}} \fi \endgroup}
 
 
-  \usepackage{graphicx}
-  \makeatletter
-  \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-  \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-  \makeatother
-  % Scale images if necessary, so that they will not overflow the page
-  % margins by default, and it is still possible to overwrite the defaults
-  % using explicit options in \includegraphics[width, height, ...]{}
-  \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\ifxetex
-  \usepackage[setpagesize=false, % page size defined by xetex
-              unicode=false, % unicode breaks when used with xetex
-              xetex]{hyperref}
-\else
-  \usepackage[unicode=true]{hyperref}
-\fi
-\hypersetup{breaklinks=true,
-            pdfauthor={},
-            pdftitle={A Meta-Analysis of Expressive Writing on Positive Psychology Variables and Traumatic Stress},
-            colorlinks=true,
-            citecolor=blue,
-            urlcolor=blue,
-            linkcolor=black,
-            pdfborder={0 0 0}}
-\urlstyle{same}  % don't use monospace font for urls
+\DeclareDelayedFloatFlavor{ThreePartTable}{table}
+\DeclareDelayedFloatFlavor{lltable}{table}
+\DeclareDelayedFloatFlavor*{longtable}{table}
+\makeatletter
+\renewcommand{\efloat@iwrite}[1]{\immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
+\makeatother
+\usepackage{lineno}
 
-\setlength{\parindent}{0pt}
-%\setlength{\parskip}{0pt plus 0pt minus 0pt}
+\linenumbers
 
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\authornote{Jeffrey M. Pavlacic is a doctoral candidate at the
+University of Mississippi and a member of the University of Mississippi
+Clinical-Disaster Research Center (UM-CDRC). Erin M. Buchanan is an
+Associate Professor of Psychology at Missouri State University. Nicholas
+P. Maxwell completed his master's degree from Missouri State University
+and is a Ph.D.~candidate at the University of Southern Mississippi.
+Tabetha G. Hopke is a master's degree candidates at Missouri State
+University. Stefan E. Schulenberg is a Professor of Psychology at the
+University of Mississippi and director of the UM-CDRC.
 
+Correspondence concerning this article should be addressed to Jeffrey M.
+Pavlacic, 205 Peabody Hall, University, MS 38655. E-mail:
+\href{mailto:jpavlaci@go.olemiss.edu}{\nolinkurl{jpavlaci@go.olemiss.edu}}}
 
-% Manuscript styling
-\captionsetup{font=singlespacing,justification=justified}
-\usepackage{csquotes}
-\usepackage{upgreek}
-
- % Line numbering
-  \usepackage{lineno}
-  \linenumbers
-
-
-\usepackage{tikz} % Variable definition to generate author note
-
-% fix for \tightlist problem in pandoc 1.14
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-
-% Essential manuscript parts
-  \title{A Meta-Analysis of Expressive Writing on Positive Psychology Variables
-and Traumatic Stress}
-
-  \shorttitle{Expressive Writing}
-
-
-  \author{Jeffrey M. Pavlacic\textsuperscript{1}, Erin M. Buchanan\textsuperscript{2}, Nicholas P. Maxwell\textsuperscript{2}, Tabetha G. Hopke\textsuperscript{2}, \& Stefan E. Schulenberg\textsuperscript{1}}
-
-  \def\affdep{{"", "", "", "", ""}}%
-  \def\affcity{{"", "", "", "", ""}}%
-
-  \affiliation{
-    \vspace{0.5cm}
-          \textsuperscript{1} University of Mississippi\\
-          \textsuperscript{2} Missouri State University  }
-
-  \authornote{
-    \newcounter{author}
-    Jeffrey M. Pavlacic is a doctoral candidate at the University of
-    Mississippi and a member of the University of Mississippi
-    Clinical-Disaster Research Center (UM-CDRC). Erin M. Buchanan is an
-    Associate Professor of Psychology at Missouri State University. Nicholas
-    P. Maxwell completed his master's degree from Missouri State University
-    and is a Ph.D.~candidate at the University of Southern Mississippi.
-    Tabetha G. Hopke is a master's degree candidates at Missouri State
-    University. Stefan E. Schulenberg is a Professor of Psychology at the
-    University of Mississippi and director of the UM-CDRC.
-
-                      Correspondence concerning this article should be addressed to Jeffrey M. Pavlacic, 205 Peabody Hall, University, MS 38655. E-mail: \href{mailto:jpavlaci@go.olemiss.edu}{\nolinkurl{jpavlaci@go.olemiss.edu}}
-                                                        }
-
-
-  \abstract{Emotional expression has been shown to be beneficial for promoting both
+\abstract{
+Emotional expression has been shown to be beneficial for promoting both
 positive psychological and physical health outcomes. Unfortunately,
 inhibiting emotions can lead to impairments in physical and
 psychological health. James Pennebaker showed that expressive writing is
@@ -167,43 +143,34 @@ posttraumatic stress and negligible to small effect sizes for
 posttraumatic growth and quality of life. However, those studies
 requiring a diagnosis of PTSD exhibited a medium to large effect size.
 Implications for future research design and interpretation of published
-research are discussed.}
-  \keywords{meta-analysis, posttraumatic stress, expressive writing \\
-
-    
-  }
+research are discussed.
 
 
-
-
+}
 
 \usepackage{amsthm}
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
-\newtheorem{corollary}{Corollary}
-\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
 \theoremstyle{definition}
-\newtheorem{example}{Example}
+\newtheorem{example}{Example}[section]
 \theoremstyle{definition}
-\newtheorem{exercise}{Exercise}
+\newtheorem{exercise}{Exercise}[section]
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 \newtheorem*{solution}{Solution}
 \begin{document}
-
 \maketitle
 
-\setcounter{secnumdepth}{0}
-
-
-
-\subsection{Emotional Expression}\label{emotional-expression}
+\hypertarget{emotional-expression}{%
+\subsection{Emotional Expression}\label{emotional-expression}}
 
 Emotional expression enhances both psychological and health-related
 outcomes (Esterling, Antoni, Kumar, \& Schneiderman, 1990; Fawzy et al.,
-1993; M. A. Lieberman \& Goldstein, 2006; Rachman, 1980; Scheff, 1979).
+1993; Lieberman \& Goldstein, 2006; Rachman, 1980; Scheff, 1979).
 Pennebaker and Beall (1986) first pioneered expressive writing, a form
 of emotional expression that involved writing about the thoughts and
 feelings associated with either a \enquote{stressful or traumatic} or
@@ -219,16 +186,16 @@ expressive writing literature recognizes over 400 studies across
 different populations and outcome variables (Niles, Haltom, Mulvenna,
 Lieberman, \& Stanton, 2014). For example, WED is efficacious for
 health-related outcomes, such as reduced doctor visits for those
-diagnosed with Type I diabetes (Bodor, 2002) or breast cancer
-({\textbf{???}}) and medication use in those suffering from chronic
-illness (i.e., asthma and rheumatoid arthritis; Smyth, Stone, Hurewitz,
-\& Kaell, 1999). In regards to psychological outcomes, WED is
-efficacious for reducing depression symptoms (Gortner, Rude, \&
-Pennebaker, 2006), posttraumatic stress (Di Blasio et al., 2015), and
-anxiety (Dean, Potts, \& Barker, 2016). Whereas emotional expression via
-expressive writing is efficacious in producing favorable outcomes, a
-lack of emotional expression is problematic across the aforementioned
-outcomes and contexts.
+diagnosed with Type I diabetes (Bodor, 2002) or breast cancer (Stanton
+et al., 2002) and medication use in those suffering from chronic illness
+(i.e., asthma and rheumatoid arthritis; Smyth, Stone, Hurewitz, \&
+Kaell, 1999). In regards to psychological outcomes, WED is efficacious
+for reducing depression symptoms (Gortner, Rude, \& Pennebaker, 2006),
+posttraumatic stress (Di Blasio et al., 2015), and anxiety (Dean, Potts,
+\& Barker, 2016). Whereas emotional expression via expressive writing is
+efficacious in producing favorable outcomes, a lack of emotional
+expression is problematic across the aforementioned outcomes and
+contexts.
 
 Individuals having experienced a traumatic or stressful life event are
 more likely to repress thoughts and feelings about their experience
@@ -247,8 +214,8 @@ Beall, 1986). Admittedly, the hypothetical nature of emotional
 inhibition makes it difficult to establish a causal relation between
 inexpression and the aforementioned symptoms. However, inhibiting
 thoughts or emotions is generally associated with physical and
-psychological health (H. S. Goldstein, Edelberg, Meier, \& Davis, 1988;
-Gross \& Levenson, 1997; Larson \& Chastain, 1990).
+psychological health (Goldstein, Edelberg, Meier, \& Davis, 1988; Gross
+\& Levenson, 1997; Larson \& Chastain, 1990).
 
 Although studies employing expressive writing have produced positive
 psychological and health-related outcomes, some of these studies neglect
@@ -257,7 +224,8 @@ the effects are meaningful (Smyth, 1998). For a more in-depth review of
 the efficacy of WED across contexts, the authors turn to
 previously-conducted meta-analyses.
 
-\subsection{Meta-Analytic Techniques}\label{meta-analytic-techniques}
+\hypertarget{meta-analytic-techniques}{%
+\subsection{Meta-Analytic Techniques}\label{meta-analytic-techniques}}
 
 Meta-analyses allow researchers the opportunity to collectively examine
 the efficacy of different psychological interventions/tasks on outcome
@@ -301,22 +269,22 @@ assumption may be untenable across different populations (Borenstein et
 al., 2007). They included a wide range of studies \emph{N} = 146.
 Individual studies were again collapsed into one publication effect
 size, although these effects were also examined separately by health
-outcome. Overall, Frattaroli (2006) found a weighted \emph{r} effect
-size of .08 for all outcomes combined, which would be considered small.
-Additionally, they examined potential moderators and found larger effect
-sizes for the following samples: those with physical health problems,
-those with a history of having experienced traumatic or stressful
-events, samples not including college students, samples where expressive
-writing tasks were conducted at home and in private settings, paid
-participants, more male participants, and fewer participants (see
-Frattaroli, 2006 for a complete list of moderators). A recent analysis
-conducted by Van Emmerik et al. (2013) employing Pennebaker's paradigm
-included six eligible studies that compared treatment to control groups.
-In regards to inclusion criteria, they included studies where
-participants had a diagnosis of Acute Stress Disorder (ASD) or PTSD.
-They found that those who participated in the expressive writing group
-experienced short-term reductions in PTS and comorbid depressive
-symptoms, combined Hedges' \emph{g} = 0.81.
+outcome. Overall, Frattaroli (2006) found \emph{d} = 0.16 for all
+outcomes combined, which would be considered small. Additionally, they
+examined potential moderators and found larger effect sizes for the
+following samples: those with physical health problems, those with a
+history of having experienced traumatic or stressful events, samples not
+including college students, samples where expressive writing tasks were
+conducted at home and in private settings, paid participants, more male
+participants, and fewer participants (see Frattaroli, 2006 for a
+complete list of moderators). A recent analysis conducted by Van Emmerik
+et al. (2013) employing Pennebaker's paradigm included six eligible
+studies that compared treatment to control groups. In regards to
+inclusion criteria, they included studies where participants had a
+diagnosis of Acute Stress Disorder (ASD) or PTSD. They found that those
+who participated in the expressive writing group experienced short-term
+reductions in PTS and comorbid depressive symptoms, combined \emph{d} =
+0.81.
 
 The most recently published meta-analysis was conducted by Reinhold et
 al. (2018) and examined the efficacy of expressive writing on depression
@@ -324,16 +292,17 @@ by randomizing participants to conditions (expressive writing
 vs.~control). They included thirty-nine randomized controlled trials and
 excluded individuals with diagnoses of PTSD. This study did not support
 utilizing expressive writing for depression outcome measures for the
-specified sample, \(g_{post}\) = -0.09. Further, they found that
-expressive writing did not yield any type of long-term effect on
-depression outcomes. In sum, previous meta-analyses exhibit small to
-medium effect sizes for a brief, innocous intervention. In synthesizing
-these meta-analytic findings, it appears necessary to examine efficacy
-of WED in different contexts and populations, given that different
-moderators exist. Individuals experiencing psychological trauma have
-been shown to benefit from such interventions.
+specified sample, \emph{d} = -0.09. Further, they found that expressive
+writing did not yield any type of long-term effect on depression
+outcomes. In sum, previous meta-analyses exhibit small to medium effect
+sizes for a brief, innocous intervention. In synthesizing these
+meta-analytic findings, it appears necessary to examine efficacy of WED
+in different contexts and populations, given that different moderators
+exist. Individuals experiencing psychological trauma have been shown to
+benefit from such interventions.
 
-\subsection{Posttraumatic Stress}\label{posttraumatic-stress}
+\hypertarget{posttraumatic-stress}{%
+\subsection{Posttraumatic Stress}\label{posttraumatic-stress}}
 
 Posttraumatic Stress Disorder is a disorder involving re-experiencing
 thoughts or events after a trauma. This generates a context where
@@ -399,7 +368,8 @@ While studies employing this protocol will be included in the current
 review, the newness of this protocol does not allow exclusive
 examination using meta-analytic techniques.
 
-\subsection{Posttraumatic Growth}\label{posttraumatic-growth}
+\hypertarget{posttraumatic-growth}{%
+\subsection{Posttraumatic Growth}\label{posttraumatic-growth}}
 
 While the literature mostly discusses potentially harmful outcomes to
 traumatic events such as emotional distress, traumatic events also
@@ -439,7 +409,8 @@ individual's surroundings. One might expect effect sizes to be larger
 for those studies requiring a diagnosis of PTSD, as such growth may not
 be possible in those with subclinical symptomology.
 
-\subsection{Quality of Life}\label{quality-of-life}
+\hypertarget{quality-of-life}{%
+\subsection{Quality of Life}\label{quality-of-life}}
 
 Quality of Life (QOL), according to Theofilou (2013) is an evaluation of
 the \enquote{goodness} that an individual experiences, separated into
@@ -464,7 +435,8 @@ considered a type of PTG, which is why the current meta-analysis sought
 to examine the efficacy of studies utilizing expressive writing to
 improve QOL and PTG in the same study.
 
-\subsection{Current Meta-Analysis}\label{current-meta-analysis}
+\hypertarget{current-meta-analysis}{%
+\subsection{Current Meta-Analysis}\label{current-meta-analysis}}
 
 The purpose of the current meta-analysis is to examine studies employing
 expressive writing procedures using Pennebaker's paradigm (WED) and the
@@ -518,9 +490,11 @@ has shown a consistent under powering of psychological studies, combined
 with a misunderstanding of the sample size needed for adequately
 powering one's work (Bakker, Hartgerink, Wicherts, \& Maas, 2016).
 
-\section{Method}\label{method}
+\hypertarget{method}{%
+\section{Method}\label{method}}
 
-\subsection{Data Collection}\label{data-collection}
+\hypertarget{data-collection}{%
+\subsection{Data Collection}\label{data-collection}}
 
 Studies were collected through online databases, such as PsycINFO and
 Google Scholar, using the following search terms and their combinations:
@@ -546,7 +520,11 @@ the text. The complete set of data, excluded article list with
 reasoning, and other relevant information can be found at:
 \url{https://osf.io/4mjqt}. Generally, studies were included if they
 utilized WED or WET, included relevant numbers to compute an effect
-size, and included the relevant outcome variables. After having two
+size, and included the relevant outcome variables. Although different
+outcome measures were used to measure the relevant outcome variables
+(measure listed for each study also included in OSF), the nature of
+Cohen's \emph{d} allows for different Likert-type scales, as it takes
+into consideration the pooled standard deviation. After having two
 reviewers independently code articles, 223 effect sizes were calculated.
 On average, each study represented \emph{M} = 4.21, \emph{SD} = 3.31
 effects, ranging from 1 to 16 effects. 163 effects were calculated for
@@ -557,8 +535,9 @@ examining the number of effects in each of these categories for each
 variable, only the PTS results will be split by PTSD diagnosis with 16
 no mention, 16 in the mixed category, and 86 yeses.
 
+\hypertarget{calculations-for-effect-size-variance-and-confidence-intervals}{%
 \subsection{Calculations for Effect Size, Variance, and Confidence
-Intervals}\label{calculations-for-effect-size-variance-and-confidence-intervals}
+Intervals}\label{calculations-for-effect-size-variance-and-confidence-intervals}}
 
 For our purposes, we used Cohen's (1988) standards for nomenclature for
 small (0.20), medium (0.50), and large (0.80) \emph{d} values, although
@@ -570,7 +549,7 @@ usually with paired \emph{t}-tests, ANOVA, or regression analyses. The
 means, standard deviations, and \emph{N} values were collected from each
 study. In general, Cohen's \emph{d} values were calculated using the
 following formula for paired \emph{t} using means and standard
-deviations:
+deviations for each time point:
 
 \[
 {d_{av}} = \frac { M_1 - M_2 } { \frac { SD_1 + SD_2 } { 2 }}
@@ -600,7 +579,7 @@ following guidelines from Cooper, Hedges, and Valentine (2009) and
 Borenstein et al. (2007), as well as Aert et al. (2016). Sampling
 variance of the effect sizes were estimated using the \emph{escalc()}
 function from the \emph{metafor} package in \emph{R} (Viechtbauer,
-2010). The variance formula was originally published in S. B. Morris and
+2010). The variance formula was originally published in Morris and
 DeShon (2002) and is shown below:
 
 \[
@@ -661,10 +640,12 @@ present both sets of values for the interested reader, as meta-analytic
 procedures have not implemented non-central distributions of effect
 sizes.
 
+\hypertarget{additional-meta-analytic-techniques}{%
 \subsection{Additional Meta-Analytic
-Techniques}\label{additional-meta-analytic-techniques}
+Techniques}\label{additional-meta-analytic-techniques}}
 
-\subsubsection{p-Curve and p-Uniform}\label{p-curve-and-p-uniform}
+\hypertarget{p-curve-and-p-uniform}{%
+\subsubsection{p-Curve and p-Uniform}\label{p-curve-and-p-uniform}}
 
 We used \emph{p}-curve.com to conduct a \emph{p}-curve analysis
 (Simonsohn et al., 2014). The purpose of this type of analysis is to
@@ -676,9 +657,9 @@ significant results by manipulating dependent variables or covariates.
 Additionally, authors may add participants if the initial findings are
 not significant (Bruns \& Ioannidis, 2016). Researchers may also decide
 to exclude participants for final analyses if that exclusion leads to a
-significant difference (L. K. John, Loewenstein, \& Prelec, 2012). Thus,
-it is necessary to distinguish between true and false effects in order
-to effectively interpret effect sizes corresponding to those
+significant difference (John, Loewenstein, \& Prelec, 2012). Thus, it is
+necessary to distinguish between true and false effects in order to
+effectively interpret effect sizes corresponding to those
 \emph{p}-values. \emph{p}-curve accomplishes this task by examining the
 distributions of the published \emph{p}-values. If an effect exists, or
 rather the results should be interpreted as presented, the distribution
@@ -700,7 +681,8 @@ significant studies, although many factors can bias a study's
 publication (McShane, Böckenholt, \& Hansen, 2016). \emph{p}-uniform was
 calculated from code provided by Van Aert (2017) on GitHub.
 
-\subsubsection{PET-PEESE}\label{pet-peese}
+\hypertarget{pet-peese}{%
+\subsubsection{PET-PEESE}\label{pet-peese}}
 
 Originally, meta-analyses relied on the calculation of Egger's
 regression test which examined the relationship of the standard error
@@ -717,7 +699,8 @@ with non-zero effect size estimates, \(b_0 \neq\) 0 (Stanley \&
 Doucouliagos, 2014). PET-PEESE was calculated using Hilgard's (2016)
 code provided on GitHub.
 
-\subsubsection{Selection Models}\label{selection-models}
+\hypertarget{selection-models}{%
+\subsubsection{Selection Models}\label{selection-models}}
 
 Selection model analyses provide the researcher with a test of
 publication bias and effect size estimates using maximum likelihood
@@ -728,7 +711,8 @@ a mixed general linear model to estimate these values. Selection models
 were calculated with the \emph{weightr} package in \emph{R} (Coburn \&
 Vevea, 2017).
 
-\subsubsection{Trim and Fill}\label{trim-and-fill}
+\hypertarget{trim-and-fill}{%
+\subsubsection{Trim and Fill}\label{trim-and-fill}}
 
 Trim and Fill analyses, in contrast to PET-PEESE, regress standard error
 (criterion) and effect size estimates (predictor). Specifically, the
@@ -747,18 +731,21 @@ estimated from the trimmed and filled funnel plot. Trim and fill
 analyses, as well as funnel plots included below, were calculated with
 the \emph{metafor} package.
 
-\section{Results}\label{results}
+\hypertarget{results}{%
+\section{Results}\label{results}}
 
-\subsection{PTS}\label{pts}
+\hypertarget{pts}{%
+\subsection{PTS}\label{pts}}
 
-\subsubsection{Overall Effect Size}\label{overall-effect-size}
+\hypertarget{overall-effect-size}{%
+\subsubsection{Overall Effect Size}\label{overall-effect-size}}
 
 As described above, both fixed effects and random effects models with
 centralized confidence intervals are presented in Table
 \ref{tab:PTStable}. Studies were examined for potential outliers using
 the \emph{metafor} package in \emph{R}. This package calculates
 traditional regression influence values, such as Cook's and hat values
-(J. Cohen, 1988). These values indicate change in overall meta-analytic
+(Cohen, 1988). These values indicate change in overall meta-analytic
 model with and without the effect; thus, determining their impact on the
 pooled effect size (Viechtbauer, 2010). Because published studies likely
 represent the range of the sampling distribution of effect sizes, we
@@ -799,7 +786,7 @@ mixed category showed a small to medium effect size : \emph{d} = 0.35
 by diagnosis are included online at \url{https://osf.io/4mjqt/}, and
 their pattern of results is similar to the overall pattern here.
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspicoverall-1.pdf}
 \caption{\label{fig:ptspicoverall}Effect sizes and their non-centralized
@@ -808,7 +795,7 @@ non-weighted lower and upper confidence interval limits. Diamond size
 indicates normalized study weight from a random effects model.}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspichyper-1.pdf}
 \caption{\label{fig:ptspichyper}Effect sizes and their non-centralized
@@ -817,7 +804,7 @@ non-weighted lower and upper confidence interval limits. Diamond size
 indicates normalized study weight from a random effects model.}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspicint-1.pdf}
 \caption{\label{fig:ptspicint}Effect sizes and their non-centralized
@@ -826,7 +813,7 @@ average non-weighted lower and upper confidence interval limits. Diamond
 size indicates normalized study weight from a random effects model.}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptspicavoid-1.pdf}
 \caption{\label{fig:ptspicavoid}Effect sizes and their non-centralized
@@ -835,7 +822,8 @@ average non-weighted lower and upper confidence interval limits. Diamond
 size indicates normalized study weight from a random effects model.}
 \end{figure}
 
-\subsubsection{Homogeneity}\label{homogeneity}
+\hypertarget{homogeneity}{%
+\subsubsection{Homogeneity}\label{homogeneity}}
 
 A prerequisite for newer meta-analytic techniques includes the
 assessment of homogeneity of the effects (Aert et al., 2016). Using the
@@ -855,7 +843,8 @@ including outliers, we found significant heterogeneity, \emph{Q}(162) =
 outliers, \emph{Q}(160) = 677.98, \emph{p} \textless{} .001 and \(I^2\)
 = 76.4, 95\% CI{[}72.6 - 79.7{]}.
 
-\subsubsection{Power}\label{power}
+\hypertarget{power}{%
+\subsubsection{Power}\label{power}}
 
 Power was calculated in two different ways using the \emph{pwr} package
 in \emph{R} (Champely, 2016). \emph{Post hoc} power was first calculated
@@ -878,8 +867,9 @@ effect size, a smaller 24.5\% for the random-effect outlier effect size,
 and even smaller 20.2\% for power calculations on the random-effect size
 without the outliers.
 
+\hypertarget{other-meta-analytic-estimates}{%
 \subsubsection{Other Meta-Analytic
-Estimates}\label{other-meta-analytic-estimates}
+Estimates}\label{other-meta-analytic-estimates}}
 
 As noted in Aert et al. (2016), \emph{p}-curve and \emph{p}-uniform
 analyses are upwardly biased when heterogeneity is high. Therefore, we
@@ -930,15 +920,17 @@ Trim and Fill & 0.28 [0.25, 0.31] & 0.28 [0.21, 0.36] & 0.28 [0.25, 0.31] & 0.28
 \end{tabular}
 }
 \begin{tablenotes}[para]
-\textit{Note.} [] indicates the 95 percent confidence interval for each effect size estimate.
+\normalsize{\textit{Note.} [] indicates the 95 percent confidence interval for each effect size estimate.}
 \end{tablenotes}
 \end{threeparttable}
 \end{center}
 \end{table}
 
-\subsection{PTG}\label{ptg}
+\hypertarget{ptg}{%
+\subsection{PTG}\label{ptg}}
 
-\subsubsection{Overall Effect Size}\label{overall-effect-size-1}
+\hypertarget{overall-effect-size-1}{%
+\subsubsection{Overall Effect Size}\label{overall-effect-size-1}}
 
 Both fixed and random effects models with centralized confidence
 intervals for PTG are presented in Table \ref{tab:PTGtable}. When
@@ -952,7 +944,7 @@ to small effect size across both random and fixed effects models, and
 the non-centralized confidence intervals indicated an effect that
 crossed zero.
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
 \includegraphics{meta_markdown_files/figure-latex/ptgpic-1.pdf}
 \caption{\label{fig:ptgpic}Effect sizes and their non-centralized confidence
@@ -961,7 +953,8 @@ non-weighted lower and upper confidence interval limits. Diamond size
 indicates normalized study weight from a random effects model.}
 \end{figure}
 
-\subsubsection{Homogeneity}\label{homogeneity-1}
+\hypertarget{homogeneity-1}{%
+\subsubsection{Homogeneity}\label{homogeneity-1}}
 
 Using the \emph{metafor} package in \emph{R}, we calculated both a
 \emph{Q} statistic and \(I^2\) index. Since PTG studied did not contain
@@ -970,7 +963,8 @@ heterogeneity both with and without outliers. We did not find
 significant heterogeneity across PTG studies, \emph{Q}(20) = 14.18,
 \emph{p} = .821 and \(I^2\) = 0.0, 95\% CI{[}0.0 - 25.3{]}.
 
-\subsubsection{Power}\label{power-1}
+\hypertarget{power-1}{%
+\subsubsection{Power}\label{power-1}}
 
 First, we calculated \emph{post hoc} power using both sample and effect
 size statistics from individual studies. Individual studies examining
@@ -982,8 +976,9 @@ power using study sample size and estimated effect size from our random
 effects model. Power for the true effect size was .08 (\emph{SD} = .02).
 Again, 0.0\% achieved recommended 80\% power.
 
+\hypertarget{other-meta-analytic-estimates-1}{%
 \subsubsection{Other Meta-Analytic
-Estimates}\label{other-meta-analytic-estimates-1}
+Estimates}\label{other-meta-analytic-estimates-1}}
 
 Due to no heterogeneity across PTG studies, we can use both
 \emph{p}-curve and \emph{p}-uniform analyses with more confidence. A
@@ -1032,15 +1027,17 @@ Trim and Fill & 0.10 [0.02, 0.17] & 0.10 [0.02, 0.17]\\
 \end{tabular}
 }
 \begin{tablenotes}[para]
-\textit{Note.} [] indicates the 95 percent confidence interval for each effect size estimate.
+\normalsize{\textit{Note.} [] indicates the 95 percent confidence interval for each effect size estimate.}
 \end{tablenotes}
 \end{threeparttable}
 \end{center}
 \end{table}
 
-\subsection{QOL}\label{qol}
+\hypertarget{qol}{%
+\subsection{QOL}\label{qol}}
 
-\subsubsection{Overall Effect Size}\label{overall-effect-size-2}
+\hypertarget{overall-effect-size-2}{%
+\subsubsection{Overall Effect Size}\label{overall-effect-size-2}}
 
 Finally, for QOL, both fixed and random effects models with centralized
 confidence intervals are presented in Table \ref{tab:QOLtable}. Two
@@ -1055,7 +1052,7 @@ studies indicated a negligible to small effect that showed a
 non-significant decrease in quality of life as a result of expressive
 writing.
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
 \includegraphics{meta_markdown_files/figure-latex/qolpic-1.pdf}
 \caption{\label{fig:qolpic}Effect sizes and their non-centralized confidence
@@ -1064,7 +1061,8 @@ non-weighted lower and upper confidence interval limits. Diamond size
 indicates normalized study weight from a random effects model.}
 \end{figure}
 
-\subsubsection{Homogeneity}\label{homogeneity-2}
+\hypertarget{homogeneity-2}{%
+\subsubsection{Homogeneity}\label{homogeneity-2}}
 
 For QOL studies including outliers, we found significant heterogeneity
 from our random effects model, \emph{Q}(36) = 200.09, \emph{p}
@@ -1073,7 +1071,8 @@ excluding outliers, our random effects model still indicated
 heterogeneity,\emph{Q}(34) = 93.18, \emph{p} \textless{} .001 and
 \(I^2\) = 63.5, 95\% CI{[}47.6 - 74.6{]}.
 
-\subsubsection{Power}\label{power-2}
+\hypertarget{power-2}{%
+\subsubsection{Power}\label{power-2}}
 
 In conducting \emph{post hoc} power using sample and effect size
 statistics from individual studies, we found that 21.6\% of studies
@@ -1087,8 +1086,9 @@ achieved adequate power of 80\% on their found effect size, while 0.0\%
 achieved 80\% power for our random effects model with outliers. Finally,
 without outliers, 0.0\% achieved 80\% power.
 
+\hypertarget{other-meta-analytic-estimates-2}{%
 \subsubsection{Other Meta-Analytic
-Estimates}\label{other-meta-analytic-estimates-2}
+Estimates}\label{other-meta-analytic-estimates-2}}
 
 We exert caution in interpreting \emph{p}-curve and \emph{p}-uniform
 analyses on QOL outcomes with and without outliers due to heterogeneity.
@@ -1138,13 +1138,14 @@ Trim and Fill & -0.01 [-0.07, 0.05] & -0.01 [-0.16, 0.13] & -0.01 [-0.07, 0.05] 
 \end{tabular}
 }
 \begin{tablenotes}[para]
-\textit{Note.} [] indicates the 95 percent confidence interval for each effect size estimate.
+\normalsize{\textit{Note.} [] indicates the 95 percent confidence interval for each effect size estimate.}
 \end{tablenotes}
 \end{threeparttable}
 \end{center}
 \end{table}
 
-\section{Discussion}\label{discussion}
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
 
 In examining pre- to post-test comparisons across each variable
 separately, we found that PTS studies indicated a small effect size
@@ -1160,9 +1161,14 @@ symptoms benefit more from expressive writing tasks (Di Blasio et al.,
 negligible to small effect size using random effects models. Although
 the PTG effect in our overall meta-analysis estimate was significant,
 other methods indicate this small effect is likely not different from
-zero. We also examined the relationship of time between measurements of
-the dependent variables and the corresponding effect size to determine
-if effects change over time. For both PTS and PTG, there was no
+zero. These results should be considered within the context of the
+intervention. Given that expressive writing is an innocuous,
+easy-to-administer intervention, even small effect sizes should be
+considered important when interpreting these results. While small, these
+effect sizes exhibit a profound impact of expressive writing on PTS. We
+also examined the relationship of time between measurements of the
+dependent variables and the corresponding effect size to determine if
+effects change over time. For both PTS and PTG, there was no
 relationship between effect size and time. For QOL studies, a medium to
 large negative correlation was found. A negative relationship between
 time and effect size implies that writing tasks were more effective in
@@ -1215,18 +1221,22 @@ present study.
 The psychological scientific community has shifted focus to
 reproducibility and research design in the last several years (Nelson,
 Simmons, \& Simonsohn, 2018), and much of this discussion has focused on
-adequately powering studies for publication (Bakker et al., 2016; S. E.
-Maxwell, Lau, \& Howard, 2015). S. E. Maxwell et al. (2015) and Open
-Science Collaboration (2015) have shown that the \enquote{replication
-crisis} may be attributed to low power in published studies. The power
-found in the current meta-analysis was very poor, with very few studies
-reaching the suggested 80\% criterion to adequately power their study.
-This result was the same when considering individual study
-characteristics or the estimate true population effect size. Research by
-Bakker et al. (2016) indicates that researchers' intuitions about power
-are particularly poor, and many studies could benefit from more informed
-power analyses. Anderson, Kelley, and Maxwell (2017) recently published
-a primer on power, with an online application to help with sample size
+adequately powering studies for publication (Bakker et al., 2016;
+Maxwell, Lau, \& Howard, 2015). Maxwell et al. (2015) and Open Science
+Collaboration (2015) have shown that the \enquote{replication crisis}
+may be attributed to low power in published studies. The power found in
+the current meta-analysis was very poor, with very few studies reaching
+the suggested 80\% criterion to adequately power their study. This
+result was the same when considering individual study characteristics or
+the estimate true population effect size. Research by Bakker et al.
+(2016) indicates that researchers' intuitions about power are
+particularly poor, and many studies could benefit from more informed
+power analyses. Although, personnel and time required to conduct an
+expressive writing study is high. While the expressive writing task
+itself is relatively easy to admninister, screening multiple
+participants and collecting data at multiple time points is time
+consuming. Anderson, Kelley, and Maxwell (2017) recently published a
+primer on power, with an online application to help with sample size
 planning for many types of research designs. Additionally, we encourage
 researchers to report power analyses of studies in order to better
 understand methodology for replication and reproducibility.
@@ -1251,163 +1261,165 @@ power planning for studies.
 
 \newpage
 
-\section{References}\label{references}
+\hypertarget{references}{%
+\section{References}\label{references}}
 
-\setlength{\parindent}{-0.5in} \setlength{\leftskip}{0.5in}
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
 
 \hypertarget{refs}{}
-\hypertarget{ref-VanAert2016}{}
+\leavevmode\hypertarget{ref-VanAert2016}{}%
 Aert, R. C. M. van, Wicherts, J. M., \& Van Assen, M. A. L. M. (2016).
 Conducting meta-analyses based on p-values: Reservations and
 recommendations for applying p-uniform and p-curve. \emph{Perspectives
 on Psychological Science}, \emph{11}(5), 713--729.
 doi:\href{https://doi.org/10.1017/CBO9781107415324.004}{10.1017/CBO9781107415324.004}
 
-\hypertarget{ref-AmericanPsychiatricAssociation2013}{}
+\leavevmode\hypertarget{ref-AmericanPsychiatricAssociation2013}{}%
 American Psychiatric Association. (2013). \emph{Diagnostic and
 statistical manual of mental disorders} (Fifth.). Washington, DC:
 American Psychiatric Association.
 doi:\href{https://doi.org/10.1176/appi.books.9780890425596.744053}{10.1176/appi.books.9780890425596.744053}
 
-\hypertarget{ref-Anderson2017a}{}
+\leavevmode\hypertarget{ref-Anderson2017a}{}%
 Anderson, S. F., Kelley, K., \& Maxwell, S. E. (2017). Sample-size
 planning for more accurate statistical power: A method adjusting sample
 effect sizes for publication bias and uncertainty. \emph{Psychological
 Science}, \emph{28}(11), 1547--1562.
 doi:\href{https://doi.org/10.1177/0956797617723724}{10.1177/0956797617723724}
 
-\hypertarget{ref-Aslam2013}{}
+\leavevmode\hypertarget{ref-Aslam2013}{}%
 Aslam, N., \& Kamal, A. (2013). Gender differences in distress
 responses, rumination patterns, perceived social support and
 posttraumatic growth among flood affected individuals. \emph{Journal of
 Pakistan Psychiatric Society}, \emph{10}, 86--90.
 
-\hypertarget{ref-Bakker2016}{}
+\leavevmode\hypertarget{ref-Bakker2016}{}%
 Bakker, M., Hartgerink, C. H. J., Wicherts, J. M., \& Maas, H. L. J. van
 der. (2016). Researchers' intuitions about power in psychological
 research. \emph{Psychological Science}, \emph{27}(8), 1069--1077.
 doi:\href{https://doi.org/10.1177/0956797616647519}{10.1177/0956797616647519}
 
-\hypertarget{ref-Bodor2002}{}
+\leavevmode\hypertarget{ref-Bodor2002}{}%
 Bodor, N. Z. (2002). \emph{The health effects of emotional disclosure
 for individuals with Type 1 diabetes} (PhD thesis No. 10-B). Retrieved
 from
 \href{http://ezproxy.lib.utexas.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true\%7B/\&\%7Ddb=psyhref\%7B/\&\%7DAN=2006.20202.0010013}{http://ezproxy.lib.utexas.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true\{\textbackslash{}\&\}db=psyhref\{\textbackslash{}\&\}AN=2006.20202.0010013}
 
-\hypertarget{ref-Borenstein2007}{}
+\leavevmode\hypertarget{ref-Borenstein2007}{}%
 Borenstein, M., Hedges, L. V., \& Rothstein, H. (2007). Meta-analysis
 fixed effect vs. random effects. Retrieved from
 \href{https://www.meta-analysis.com/downloads/Meta-analysis\%20fixed\%20effect\%20vs\%20random\%20effects\%20072607.pdf}{https://www.meta-analysis.com/downloads/Meta-analysis fixed effect vs random effects 072607.pdf}
 
-\hypertarget{ref-Bruns2016}{}
+\leavevmode\hypertarget{ref-Bruns2016}{}%
 Bruns, S. B., \& Ioannidis, J. P. A. (2016). p-Curve and p-Hacking in
 observational research. \emph{PLOS ONE}, \emph{11}(2), e0149144.
 doi:\href{https://doi.org/10.1371/journal.pone.0149144}{10.1371/journal.pone.0149144}
 
-\hypertarget{ref-Buchanan2017}{}
+\leavevmode\hypertarget{ref-Buchanan2017}{}%
 Buchanan, E. M., Valentine, K. D., \& Scofield, J. E. (2017). MOTE.
 Retrieved from \url{https://github.com/doomlab/MOTE}
 
-\hypertarget{ref-Carter2014}{}
+\leavevmode\hypertarget{ref-Carter2014}{}%
 Carter, E. C., \& McCullough, M. E. (2014). Publication bias and the
 limited strength model of self-control: Has the evidence for ego
 depletion been overestimated? \emph{Frontiers in Psychology},
 \emph{5}(July), 1--11.
 doi:\href{https://doi.org/10.3389/fpsyg.2014.00823}{10.3389/fpsyg.2014.00823}
 
-\hypertarget{ref-Champely2016}{}
+\leavevmode\hypertarget{ref-Champely2016}{}%
 Champely, S. (2016). pwr: Basic functions for power analysis. R package
 version 1.2-0. Retrieved from
 \url{https://cran.r-project.org/package=pwr}
 
-\hypertarget{ref-Cobb2006}{}
+\leavevmode\hypertarget{ref-Cobb2006}{}%
 Cobb, A. R., Tedeschi, R. G., Calhoun, L. G., \& Cann, A. (2006).
 Correlates of posttraumatic growth in survivors of intimate partner
 violence. \emph{Journal of Traumatic Stress}, \emph{19}(6), 895--903.
 doi:\href{https://doi.org/10.1002/jts.20171}{10.1002/jts.20171}
 
-\hypertarget{ref-Coburn2017}{}
+\leavevmode\hypertarget{ref-Coburn2017}{}%
 Coburn, K. M., \& Vevea, J. L. (2017). Weightr. Retrieved from
 \url{https://cran.r-project.org/web/packages/weightr/index.html}
 
-\hypertarget{ref-Cochran1954}{}
+\leavevmode\hypertarget{ref-Cochran1954}{}%
 Cochran, W. G. (1954). Some methods for strengthening the common
 \(\chi\) 2 tests. \emph{Biometrics}, \emph{10}(4), 417--451.
 doi:\href{https://doi.org/10.2307/3001616}{10.2307/3001616}
 
-\hypertarget{ref-Cohen1988}{}
+\leavevmode\hypertarget{ref-Cohen1988}{}%
 Cohen, J. (1988). \emph{Statistical power analysis for the behavioral
 sciences} (2nd ed.). Hillsdale, NJ: Earlbaum.
 
-\hypertarget{ref-Cooper2009}{}
+\leavevmode\hypertarget{ref-Cooper2009}{}%
 Cooper, H., Hedges, L. V., \& Valentine, J. (2009). \emph{The handbook
 of research synthesis and meta-analysis} (2nd ed.). New York, NY:
 Russell Sage Foundation.
 
-\hypertarget{ref-Costanza2007}{}
+\leavevmode\hypertarget{ref-Costanza2007}{}%
 Costanza, R., Fisher, B., Ali, S., Beer, C., Bond, L., Boumans, R.,
 \ldots{} Snapp, R. (2007). Quality of life: An approach integrating
 opportunities, human needs, and subjective well-being. \emph{Ecological
 Economics}, \emph{61}(2-3), 267--276.
 doi:\href{https://doi.org/10.1016/j.ecolecon.2006.02.023}{10.1016/j.ecolecon.2006.02.023}
 
-\hypertarget{ref-Crespo2016}{}
+\leavevmode\hypertarget{ref-Crespo2016}{}%
 Crespo, M., \& Gomez, M. M. (2016). Diagnostic concordance of DSM-IV and
 DSM-5 posttraumatic stress disorder (PTSD) in a clinical sample.
 \emph{Psicothema}, \emph{28}(2), 161--166.
 doi:\href{https://doi.org/10.7334/psicothema2015.213}{10.7334/psicothema2015.213}
 
-\hypertarget{ref-Cumming2012}{}
+\leavevmode\hypertarget{ref-Cumming2012}{}%
 Cumming, G. (2012). \emph{Understanding the new statistics: Effect
 sizes, confidence intervals, and meta-analysis}. New York, NY:
 Routledge.
 
-\hypertarget{ref-Dean2016}{}
+\leavevmode\hypertarget{ref-Dean2016}{}%
 Dean, J., Potts, H. W., \& Barker, C. (2016). Direction to an internet
 support group compared with online expressive writing for people with
 depression and anxiety: A randomized trial. \emph{Journal of Medical
 Internet Research}, \emph{3}(2), e12.
 doi:\href{https://doi.org/10.2196/mental.5133}{10.2196/mental.5133}
 
-\hypertarget{ref-DerSimonian1986}{}
+\leavevmode\hypertarget{ref-DerSimonian1986}{}%
 DerSimonian, R., \& Laird, N. (1986). Meta-analysis in clinical trials.
 \emph{Controlled Clinical Trials}, \emph{7}(3), 177--188.
 doi:\href{https://doi.org/10.1016/0197-2456(86)90046-2}{10.1016/0197-2456(86)90046-2}
 
-\hypertarget{ref-Blasio2015a}{}
+\leavevmode\hypertarget{ref-Blasio2015a}{}%
 Di Blasio, P., Camisasca, E., Caravita, S. C. S., Ionio, C., Milani, L.,
 Valtolina, G. G., \ldots{} Valtolina, G. G. (2015). The effects of
 expressive writing on postpartum depression and posttraumatic stress
 symptoms. \emph{Psychological Reports}, \emph{117}(3), 856--882.
 doi:\href{https://doi.org/10.2466/02.13.PR0.117c29z3}{10.2466/02.13.PR0.117c29z3}
 
-\hypertarget{ref-Dursun2016}{}
+\leavevmode\hypertarget{ref-Dursun2016}{}%
 Dursun, P., Steger, M. F., Bentele, C., \& Schulenberg, S. E. (2016).
 Meaning and posttraumatic growth among survivors of the September 2013
 Colorado floods. \emph{Journal of Clinical Psychology}, \emph{72}(12),
 1247--1263.
 doi:\href{https://doi.org/10.1002/jclp.22344}{10.1002/jclp.22344}
 
-\hypertarget{ref-Duval2000}{}
+\leavevmode\hypertarget{ref-Duval2000}{}%
 Duval, S., \& Tweedie, R. (2000). Trim and fill: A simple
 funnel-plot-based method of testing and adjusting for publication bias
 in meta-analysis. \emph{Biometrics}, \emph{56}(2), 455--463.
 doi:\href{https://doi.org/10.1111/j.0006-341X.2000.00455.x}{10.1111/j.0006-341X.2000.00455.x}
 
-\hypertarget{ref-Egger1997}{}
+\leavevmode\hypertarget{ref-Egger1997}{}%
 Egger, M., Davey Smith, G., Schneider, M., \& Minder, C. (1997). Bias in
 meta-analysis detected by a simple, graphical test. \emph{British
 Medical Journal}, \emph{315}(7109), 629--634.
 doi:\href{https://doi.org/10.1136/bmj.316.7129.469}{10.1136/bmj.316.7129.469}
 
-\hypertarget{ref-Esterling1990}{}
+\leavevmode\hypertarget{ref-Esterling1990}{}%
 Esterling, B. A., Antoni, M. H., Kumar, M., \& Schneiderman, N. (1990).
 Emotional repression, stress disclosure responses, and Epstein-Barr
 viral capsid antigen titers. \emph{Psychosomatic Medicine}, \emph{52},
 397--410.
 doi:\href{https://doi.org/10.1097/00006842-199007000-00002}{10.1097/00006842-199007000-00002}
 
-\hypertarget{ref-Fawzy1993}{}
+\leavevmode\hypertarget{ref-Fawzy1993}{}%
 Fawzy, N. W., Fawzy, N. W., Hyun, C. S., Elashoff, R., Guthrie, D.,
 Fahey, J. L., \& Morton, D. L. (1993). Malignant melanoma. Effects of an
 early structured psychiatric intervention, coping, and affective state
@@ -1415,298 +1427,298 @@ on recurrence and survival 6 years later. \emph{Archives of General
 Psychiatry}, \emph{50}(9), 681--689.
 doi:\href{https://doi.org/10.1001/archpsyc.1993.01820210015002}{10.1001/archpsyc.1993.01820210015002}
 
-\hypertarget{ref-Francis2012}{}
+\leavevmode\hypertarget{ref-Francis2012}{}%
 Francis, G. (2012). Publication bias and the failure of replication in
 experimental psychology. \emph{Psychonomic Bulletin \& Review},
 \emph{19}(6), 975--991.
 doi:\href{https://doi.org/10.3758/s13423-012-0322-y}{10.3758/s13423-012-0322-y}
 
-\hypertarget{ref-Francis2014}{}
+\leavevmode\hypertarget{ref-Francis2014}{}%
 Francis, G. (2014). The frequency of excess success for articles in
 Psychological Science. \emph{Psychonomic Bulletin \& Review},
 \emph{21}(5), 1180--1187.
 doi:\href{https://doi.org/10.3758/s13423-014-0601-x}{10.3758/s13423-014-0601-x}
 
-\hypertarget{ref-Frankl1959}{}
+\leavevmode\hypertarget{ref-Frankl1959}{}%
 Frankl, V. (1959). \emph{Man's search for meaning} (3rd ed.). Boston,
 MA: Beacon Press.
 
-\hypertarget{ref-Frattaroli2006}{}
+\leavevmode\hypertarget{ref-Frattaroli2006}{}%
 Frattaroli, J. (2006). Experimental disclosure and its moderators: A
 meta-analysis. \emph{Psychological Bulletin}, \emph{132}(6), 823--865.
 doi:\href{https://doi.org/10.1037/0033-2909.132.6.823}{10.1037/0033-2909.132.6.823}
 
-\hypertarget{ref-Frisina2004a}{}
+\leavevmode\hypertarget{ref-Frisina2004a}{}%
 Frisina, P. G., Borod, J. C., \& Lepore, S. J. (2004). A meta-analysis
 of the effects of written emotional disclosure on the health outcomes of
 clinical populations. \emph{The Journal of Nervous and Mental Disease},
 \emph{192}(9), 629--634.
 doi:\href{https://doi.org/10.1097/01.nmd.0000138317.30764.63}{10.1097/01.nmd.0000138317.30764.63}
 
-\hypertarget{ref-Garcia-Oliva2016}{}
+\leavevmode\hypertarget{ref-Garcia-Oliva2016}{}%
 García-Oliva, C., \& Piqueras, J. A. (2016). Experiential Avoidance and
 Technological Addictions in Adolescents. \emph{Journal of Behavioral
 Addictions}, \emph{5}(2), 293--303.
 doi:\href{https://doi.org/10.1556/2006.5.2016.041}{10.1556/2006.5.2016.041}
 
-\hypertarget{ref-Gentes2014}{}
+\leavevmode\hypertarget{ref-Gentes2014}{}%
 Gentes, E. L., Dennis, P. A., Kimbrel, N. A., Rissling, M. B., Beckham,
 J. C., \& Calhoun, P. S. (2014). DSM-5 posttraumatic stress disorder:
 Factor structure and rates of diagnosis. \emph{Journal of Psychiatric
 Research}, \emph{59}(1), 60--67.
 doi:\href{https://doi.org/10.1016/j.jpsychires.2014.08.014}{10.1016/j.jpsychires.2014.08.014}
 
-\hypertarget{ref-Glass1976}{}
+\leavevmode\hypertarget{ref-Glass1976}{}%
 Glass, G. V. (1976). Primary, secondary, and meta-analysis of research.
 \emph{Educational Researcher}, \emph{5}(10), 3--8.
 doi:\href{https://doi.org/10.3102/0013189X005010003}{10.3102/0013189X005010003}
 
-\hypertarget{ref-Goldstein1988}{}
+\leavevmode\hypertarget{ref-Goldstein1988}{}%
 Goldstein, H. S., Edelberg, R., Meier, C. F., \& Davis, L. (1988).
 Relationship of resting blood pressure and heart rate to experienced
 anger and expressed anger. \emph{Psychosomatic Medicine}, \emph{50}(4),
 321--329.
 doi:\href{https://doi.org/10.1097/00006842-198807000-00001}{10.1097/00006842-198807000-00001}
 
-\hypertarget{ref-Gortner2006}{}
+\leavevmode\hypertarget{ref-Gortner2006}{}%
 Gortner, E. M., Rude, S. S., \& Pennebaker, J. W. (2006). Benefits of
 Expressive Writing in Lowering Rumination and Depressive Symptoms.
 \emph{Behavior Therapy}, \emph{37}(3), 292--303.
 doi:\href{https://doi.org/10.1016/j.beth.2006.01.004}{10.1016/j.beth.2006.01.004}
 
-\hypertarget{ref-Gross1997}{}
+\leavevmode\hypertarget{ref-Gross1997}{}%
 Gross, J. J., \& Levenson, R. W. (1997). Hiding feelings: The acute
 effects of inhibiting negative and positive emotion. \emph{Journal of
 Abnormal Psychology}, \emph{106}(1), 95--103.
 doi:\href{https://doi.org/10.1037/0021-843X.106.1.95}{10.1037/0021-843X.106.1.95}
 
-\hypertarget{ref-Hedges1982}{}
+\leavevmode\hypertarget{ref-Hedges1982}{}%
 Hedges, L. V. (1982). Estimation of effect size from a series of
 independent experiments. \emph{Psychological Bulletin}, \emph{92}(2),
 490--499.
 doi:\href{https://doi.org/10.1037/0033-2909.92.2.490}{10.1037/0033-2909.92.2.490}
 
-\hypertarget{ref-Higgins2003}{}
+\leavevmode\hypertarget{ref-Higgins2003}{}%
 Higgins, J. P. T., Thompson, S. G., Deeks, J. J., \& Altman, D. G.
 (2003). Measuring inconsistency in meta-analyses. \emph{British Medical
 Journal}, \emph{327}(7414), 557--560.
 doi:\href{https://doi.org/10.1136/bmj.327.7414.557}{10.1136/bmj.327.7414.557}
 
-\hypertarget{ref-Hilgard2016}{}
+\leavevmode\hypertarget{ref-Hilgard2016}{}%
 Hilgard, J. (2016). PETPEESE. GitHub. Retrieved from
 \url{https://github.com/Joe-Hilgard/PETPEESE}
 
-\hypertarget{ref-Huedo-Medina2006}{}
+\leavevmode\hypertarget{ref-Huedo-Medina2006}{}%
 Huedo-Medina, T. B., Sánchez-Meca, J., Marín-Martínez, F., \& Botella,
 J. (2006). Assessing heterogeneity in meta-analysis: Q statistic or I²
 index? \emph{Psychological Methods}, \emph{11}(2), 193--206.
 doi:\href{https://doi.org/10.1037/1082-989X.11.2.193}{10.1037/1082-989X.11.2.193}
 
-\hypertarget{ref-John2012}{}
+\leavevmode\hypertarget{ref-John2012}{}%
 John, L. K., Loewenstein, G., \& Prelec, D. (2012). Measuring the
 prevalence of questionable research practices with incentives for truth
 telling. \emph{Psychological Science}, \emph{23}(5), 524--532.
 doi:\href{https://doi.org/10.1177/0956797611430953}{10.1177/0956797611430953}
 
-\hypertarget{ref-Kelley2007}{}
+\leavevmode\hypertarget{ref-Kelley2007}{}%
 Kelley, K. (2007). Confidence intervals for standardized effect sizes.
 \emph{Journal of Statistical Software}, \emph{20}(8), 1--24.
 doi:\href{https://doi.org/10.18637/jss.v020.i08}{10.18637/jss.v020.i08}
 
-\hypertarget{ref-Klein2014a}{}
+\leavevmode\hypertarget{ref-Klein2014a}{}%
 Klein, R. A., Ratliff, K. A., Vianello, M., Adams, R. B., Bahník, Š.,
 Bernstein, M. J., \ldots{} Nosek, B. A. (2014). Investigating variation
 in replicability. \emph{Social Psychology}, \emph{45}(3), 142--152.
 doi:\href{https://doi.org/10.1027/1864-9335/a000178}{10.1027/1864-9335/a000178}
 
-\hypertarget{ref-Klump2008}{}
+\leavevmode\hypertarget{ref-Klump2008}{}%
 Klump, M. C. (2008). Posttraumatic stress disorder and sexual assault in
 women. \emph{Journal of College Student Development}, \emph{8225}(May
 2014), 37--41.
 doi:\href{https://doi.org/10.1300/J035v21n02}{10.1300/J035v21n02}
 
-\hypertarget{ref-Lakens2013}{}
+\leavevmode\hypertarget{ref-Lakens2013}{}%
 Lakens, D. (2013). Calculating and reporting effect sizes to facilitate
 cumulative science: A practical primer for t-tests and ANOVAs.
 \emph{Frontiers in Psychology}, \emph{4}.
 doi:\href{https://doi.org/10.3389/fpsyg.2013.00863}{10.3389/fpsyg.2013.00863}
 
-\hypertarget{ref-Larson1990a}{}
+\leavevmode\hypertarget{ref-Larson1990a}{}%
 Larson, D. G., \& Chastain, R. L. (1990). Self-concealment:
 Conceptualization, measurement, and health implications. \emph{Journal
 of Social and Clinical Psychology}, \emph{9}(4), 439--455.
 doi:\href{https://doi.org/10.1521/jscp.1990.9.4.439}{10.1521/jscp.1990.9.4.439}
 
-\hypertarget{ref-Levitt2004}{}
+\leavevmode\hypertarget{ref-Levitt2004}{}%
 Levitt, J. T., Brown, T. A., Orsillo, S. M., \& Barlow, D. H. (2004).
 The effects of acceptance versus suppression of emotion on subjective
 and psychophysiological response to carbon dioxide challenge in patients
 with panic disorder. \emph{Behavior Therapy}, \emph{35}(4), 747--766.
 doi:\href{https://doi.org/10.1016/S0005-7894(04)80018-2}{10.1016/S0005-7894(04)80018-2}
 
-\hypertarget{ref-Lieberman2006}{}
+\leavevmode\hypertarget{ref-Lieberman2006}{}%
 Lieberman, M. A., \& Goldstein, B. A. (2006). Not all negative emotions
 are equal: The role of emotional expression in online support groups for
 women with breast cancer. \emph{Psycho-Oncology}, \emph{15}(2),
 160--168. doi:\href{https://doi.org/10.1002/pon.932}{10.1002/pon.932}
 
-\hypertarget{ref-Marx2005}{}
+\leavevmode\hypertarget{ref-Marx2005}{}%
 Marx, B. P., \& Sloan, D. M. (2005). Peritraumatic dissociation and
 experiential avoidance as predictors of posttraumatic stress
 symptomatology. \emph{Behaviour Research and Therapy}, \emph{43}(5),
 569--583.
 
-\hypertarget{ref-Maxwell2015}{}
+\leavevmode\hypertarget{ref-Maxwell2015}{}%
 Maxwell, S. E., Lau, M. Y., \& Howard, G. S. (2015). Is psychology
 suffering from a replication crisis? What does ``failure to replicate''
 really mean? \emph{American Psychologist}, \emph{70}(6), 487--498.
 doi:\href{https://doi.org/10.1037/a0039400}{10.1037/a0039400}
 
-\hypertarget{ref-McShane2016}{}
+\leavevmode\hypertarget{ref-McShane2016}{}%
 McShane, B. B., Böckenholt, U., \& Hansen, K. T. (2016). Adjusting for
 publication bias in meta-analysis. \emph{Perspectives on Psychological
 Science}, \emph{11}(5), 730--749.
 doi:\href{https://doi.org/10.1177/1745691616662243}{10.1177/1745691616662243}
 
-\hypertarget{ref-Mogk2006}{}
+\leavevmode\hypertarget{ref-Mogk2006}{}%
 Mogk, C., Otte, S., Reinhold-Hurley, B., \& Kröner-Herwig, B. (2006).
 Health effects of expressive writing on stressful or traumatic
 experiences - a meta-analysis. \emph{Psychosocial Medicine}, \emph{3},
 Doc06.
 
-\hypertarget{ref-Morris2002}{}
+\leavevmode\hypertarget{ref-Morris2002}{}%
 Morris, S. B., \& DeShon, R. P. (2002). Combining effect size estimates
 in meta-analysis with repeated measures and independent-groups designs.
 \emph{Psychological Methods}, \emph{7}(1), 105--125.
 doi:\href{https://doi.org/10.1037/1082-989X.7.1.105}{10.1037/1082-989X.7.1.105}
 
-\hypertarget{ref-Nelson2018}{}
+\leavevmode\hypertarget{ref-Nelson2018}{}%
 Nelson, L. D., Simmons, J., \& Simonsohn, U. (2018). Psychology's
 renaissance. \emph{Annual Review of Psychology}, \emph{69}(1), 511--534.
 doi:\href{https://doi.org/10.1146/annurev-psych-122216-011836}{10.1146/annurev-psych-122216-011836}
 
-\hypertarget{ref-Niles2014}{}
+\leavevmode\hypertarget{ref-Niles2014}{}%
 Niles, A. N., Haltom, K. E., Mulvenna, C. M., Lieberman, M. D., \&
 Stanton, A. L. (2014). Randomized controlled trial of expressive writing
 for psychological and physical health: The moderating role of emotional
 expressivity. \emph{Anxiety, Stress and Coping}, \emph{27}(1), 1--17.
 doi:\href{https://doi.org/10.1080/10615806.2013.802308}{10.1080/10615806.2013.802308}
 
-\hypertarget{ref-OpenScienceCollaboration2015}{}
+\leavevmode\hypertarget{ref-OpenScienceCollaboration2015}{}%
 Open Science Collaboration. (2015). Estimating the reproducibility of
 psychological science. \emph{Science}, \emph{349}(6251),
 aac4716--aac4716.
 doi:\href{https://doi.org/10.1126/science.aac4716}{10.1126/science.aac4716}
 
-\hypertarget{ref-Pennebaker1989}{}
+\leavevmode\hypertarget{ref-Pennebaker1989}{}%
 Pennebaker, J. W. (1989). Confession, inhibition, and disease. In L.
 Berkowitz (Ed.), \emph{Advances in experimental social psychology} (Vol.
 22, pp. 211--244). Academic Press.
 doi:\href{https://doi.org/10.1016/S0065-2601(08)60309-3}{10.1016/S0065-2601(08)60309-3}
 
-\hypertarget{ref-Pennebaker1986}{}
+\leavevmode\hypertarget{ref-Pennebaker1986}{}%
 Pennebaker, J. W., \& Beall, S. K. (1986). Confronting a traumatic
 event: Toward an understanding of inhibition and disease. \emph{Journal
 of Abnormal Psychology}, \emph{95}(3), 274--281.
 doi:\href{https://doi.org/10.1037//0021-843X.95.3.274}{10.1037//0021-843X.95.3.274}
 
-\hypertarget{ref-Pennebaker2001}{}
+\leavevmode\hypertarget{ref-Pennebaker2001}{}%
 Pennebaker, J. W., \& Graybeal, A. (2001). Patterns of natural language
 use: Disclosure, personality, and social integration. \emph{Current
 Directions in Psychological Science}, \emph{10}(3), 90--93.
 doi:\href{https://doi.org/10.1111/1467-8721.00123}{10.1111/1467-8721.00123}
 
-\hypertarget{ref-Possemato2010}{}
+\leavevmode\hypertarget{ref-Possemato2010}{}%
 Possemato, K., Ouimette, P., \& Geller, P. (2010). Internet-based
 expressive writing for kidney transplant recipients: Effects on
 posttraumatic stress and quality of life. \emph{Traumatology},
 \emph{16}(1), 49--54.
 doi:\href{https://doi.org/10.1177/1534765609347545}{10.1177/1534765609347545}
 
-\hypertarget{ref-Rachman1980}{}
+\leavevmode\hypertarget{ref-Rachman1980}{}%
 Rachman, S. (1980). Emotional processing. \emph{Behaviour Research and
 Therapy}, \emph{18}(1), 51--60.
 doi:\href{https://doi.org/10.1016/0005-7967(80)90069-8}{10.1016/0005-7967(80)90069-8}
 
-\hypertarget{ref-Reinhold2018}{}
+\leavevmode\hypertarget{ref-Reinhold2018}{}%
 Reinhold, M., Bürkner, P. C., \& Holling, H. (2018). Effects of
 expressive writing on depressive symptoms---A meta-analysis.
 \emph{Clinical Psychology: Science and Practice}, \emph{25}(1).
 doi:\href{https://doi.org/10.1111/cpsp.12224}{10.1111/cpsp.12224}
 
-\hypertarget{ref-Sanchez-Meca2008a}{}
+\leavevmode\hypertarget{ref-Sanchez-Meca2008a}{}%
 Sánchez-Meca, J., \& Marín-Martínez, F. (2008). Confidence intervals for
 the overall effect size in random-effects meta-analysis.
 \emph{Psychological Methods}, \emph{13}(1), 31--48.
 doi:\href{https://doi.org/10.1037/1082-989X.13.1.31}{10.1037/1082-989X.13.1.31}
 
-\hypertarget{ref-Scheff1979}{}
+\leavevmode\hypertarget{ref-Scheff1979}{}%
 Scheff, T. J. (1979). \emph{Catharsis in healing, ritual, and drama}.
 Los Angeles: University of California Press.
 
-\hypertarget{ref-Simonsohn2014}{}
+\leavevmode\hypertarget{ref-Simonsohn2014}{}%
 Simonsohn, U., Nelson, L. D., \& Simmons, J. P. (2014). p-curve: A key
 to the file-drawer. \emph{Journal of Experimental Psychology: General},
 \emph{143}(2), 534--547.
 doi:\href{https://doi.org/10.1037/a0033242}{10.1037/a0033242}
 
-\hypertarget{ref-Simonsohn2015}{}
+\leavevmode\hypertarget{ref-Simonsohn2015}{}%
 Simonsohn, U., Simmons, J. P., \& Nelson, L. D. (2015). Better p-curves:
 Making p-curve analysis more robust to errors, fraud, and ambitious
 p-hacking, a reply to Ulrich and Miller (2015). \emph{Journal of
 Experimental Psychology: General}, \emph{144}(6), 1146--1152.
 doi:\href{https://doi.org/10.1037/xge0000104}{10.1037/xge0000104}
 
-\hypertarget{ref-Slavin-Spenny2011}{}
+\leavevmode\hypertarget{ref-Slavin-Spenny2011}{}%
 Slavin-Spenny, O. M., Cohen, J. L., Oberleitner, L. M., \& Lumley, M. A.
 (2011). The effects of different methods of emotional disclosure:
 Differentiating posttraumatic growth from stress symptoms. \emph{Journal
 of Clinical Psychology}, \emph{67}(10), 993--1007.
 doi:\href{https://doi.org/10.1002/jclp.20750}{10.1002/jclp.20750}
 
-\hypertarget{ref-Sloan2011a}{}
-Sloan, D. M., Marx, B. P., \& Greenberg, E. M. (2011). A test of written
-emotional disclosure as an intervention for posttraumatic stress
-disorder. \emph{Behaviour Research and Therapy}, \emph{49}(4), 299--304.
-doi:\href{https://doi.org/10.1016/j.brat.2011.02.001}{10.1016/j.brat.2011.02.001}
-
-\hypertarget{ref-Sloan2012}{}
+\leavevmode\hypertarget{ref-Sloan2012}{}%
 Sloan, D. M., Marx, B. P., Bovin, M. J., Feinstein, B. A., \& Gallagher,
 M. W. (2012). Written exposure as an intervention for PTSD: A randomized
 clinical trial with motor vehicle accident survivors. \emph{Behaviour
 Research and Therapy}, \emph{50}(10), 627--635.
 doi:\href{https://doi.org/10.1016/j.brat.2012.07.001}{10.1016/j.brat.2012.07.001}
 
-\hypertarget{ref-Sloan2007}{}
+\leavevmode\hypertarget{ref-Sloan2007}{}%
 Sloan, D. M., Marx, B. P., Epstein, E. M., \& Lexington, J. M. (2007).
 Does altering the writing instructions influence outcome associated with
 written disclosure? \emph{Behavior Therapy}, \emph{38}(2), 155--168.
 doi:\href{https://doi.org/10.1016/j.beth.2006.06.005}{10.1016/j.beth.2006.06.005}
 
-\hypertarget{ref-Sloan2018}{}
+\leavevmode\hypertarget{ref-Sloan2011a}{}%
+Sloan, D. M., Marx, B. P., \& Greenberg, E. M. (2011). A test of written
+emotional disclosure as an intervention for posttraumatic stress
+disorder. \emph{Behaviour Research and Therapy}, \emph{49}(4), 299--304.
+doi:\href{https://doi.org/10.1016/j.brat.2011.02.001}{10.1016/j.brat.2011.02.001}
+
+\leavevmode\hypertarget{ref-Sloan2018}{}%
 Sloan, D. M., Marx, B. P., Lee, D. J., \& Resick, P. A. (2018). A Brief
 Exposure-Based Treatment vs Cognitive Processing Therapy for
 Posttraumatic Stress Disorder. \emph{JAMA Psychiatry}.
 doi:\href{https://doi.org/10.1001/jamapsychiatry.2017.4249}{10.1001/jamapsychiatry.2017.4249}
 
-\hypertarget{ref-Smithson2001}{}
+\leavevmode\hypertarget{ref-Smithson2001}{}%
 Smithson, M. (2001). Correct confidence intervals for various regression
 effect sizes and parameters: The importance of noncentral distributions
 in computing intervals. \emph{Educational and Psychological
 Measurement}, \emph{61}(4), 605--632.
 doi:\href{https://doi.org/10.1177/00131640121971392}{10.1177/00131640121971392}
 
-\hypertarget{ref-Smithson2003}{}
+\leavevmode\hypertarget{ref-Smithson2003}{}%
 Smithson, M. (2003). \emph{Confidence intervals}. Thousand Oaks, CA:
 Sage.
 
-\hypertarget{ref-Smyth1998}{}
+\leavevmode\hypertarget{ref-Smyth1998}{}%
 Smyth, J. M. (1998). Written emotional expression: Effect sizes ,
 outcome types, and moderating variables. \emph{Journal of Consulting and
 Clinical Psychology}, \emph{66}(1), 174--184.
 doi:\href{https://doi.org/10.1037/0022-006X.66.1.174}{10.1037/0022-006X.66.1.174}
 
-\hypertarget{ref-Smyth1999}{}
+\leavevmode\hypertarget{ref-Smyth1999}{}%
 Smyth, J. M., Stone, A. A., Hurewitz, A., \& Kaell, A. (1999). Effects
 of writing about stressful experiences on symptom reduction in patients
 with asthma or rheumatoid arthritis: A randomized trial. \emph{JAMA: The
@@ -1714,109 +1726,113 @@ Journal of the American Medical Association}, \emph{281}(14),
 1304--1309.
 doi:\href{https://doi.org/10.1001/jama.281.14.1304}{10.1001/jama.281.14.1304}
 
-\hypertarget{ref-Stanley2005}{}
+\leavevmode\hypertarget{ref-Stanley2005}{}%
 Stanley, T. D. (2005). Beyond publication bias. \emph{Journal of
 Economic Surveys}, \emph{19}(3), 309--345.
 doi:\href{https://doi.org/10.1111/j.0950-0804.2005.00250.x}{10.1111/j.0950-0804.2005.00250.x}
 
-\hypertarget{ref-Stanley2014}{}
+\leavevmode\hypertarget{ref-Stanley2014}{}%
 Stanley, T. D., \& Doucouliagos, H. (2014). Meta-regression
 approximations to reduce publication selection bias. \emph{Research
 Synthesis Methods}, \emph{5}(1), 60--78.
 doi:\href{https://doi.org/10.1002/jrsm.1095}{10.1002/jrsm.1095}
 
-\hypertarget{ref-Taku2008}{}
+\leavevmode\hypertarget{ref-Stanton2002}{}%
+Stanton, A. L., Danoff-Burg, S., Sworowski, L. A., Collins, C. A.,
+Branstetter, A. D., Rodriguez-Hanley, A., \ldots{} Austenfeld, J. L.
+(2002). Randomized, controlled trial of written emotional expression and
+benefit finding in breast cancer patients. \emph{Journal of Clinical
+Oncology}, \emph{20}(20), 4160--4168.
+doi:\href{https://doi.org/10.1200/JCO.2002.08.521}{10.1200/JCO.2002.08.521}
+
+\leavevmode\hypertarget{ref-Taku2008}{}%
 Taku, K., Calhoun, L. G., Cann, A., \& Tedeschi, R. G. (2008). The role
 of rumination in the coexistence of distress and posttraumatic growth
 among bereaved Japanese University students. \emph{Death Studies},
 \emph{32}(5), 428--444.
 doi:\href{https://doi.org/10.1080/07481180801974745}{10.1080/07481180801974745}
 
-\hypertarget{ref-Tedeschi1995}{}
+\leavevmode\hypertarget{ref-Tedeschi1995}{}%
 Tedeschi, R. G., \& Calhoun, L. G. (1995). \emph{Trauma \&
 transformation: Growing in the aftermath of suffering.} Thousand Oaks,
 CA: Sage Publications.
 
-\hypertarget{ref-Tedeschi2004}{}
+\leavevmode\hypertarget{ref-Tedeschi2004}{}%
 Tedeschi, R. G., \& Calhoun, L. G. (2004). Posttraumatic growth:
 Conceptual foundations and empirical evidence. \emph{Psychological
 Inquiry}, \emph{15}(1), 1--18.
 doi:\href{https://doi.org/10.1207/s15327965pli1501}{10.1207/s15327965pli1501}
 
-\hypertarget{ref-Terrin2003}{}
+\leavevmode\hypertarget{ref-Terrin2003}{}%
 Terrin, N., Schmid, C. H., Lau, J., \& Olkin, I. (2003). Adjusting for
 publication bias in the presence of heterogeneity. \emph{Statistics in
 Medicine}, \emph{22}(13), 2113--2126.
 doi:\href{https://doi.org/10.1002/sim.1461}{10.1002/sim.1461}
 
-\hypertarget{ref-Theofilou2013}{}
+\leavevmode\hypertarget{ref-Theofilou2013}{}%
 Theofilou, P. (2013). Quality of life: Definition and measurement.
 \emph{Europe's Journal of Psychology}, \emph{9}(1), 150--162.
 doi:\href{https://doi.org/10.5964/ejop.v9i1.337}{10.5964/ejop.v9i1.337}
 
-\hypertarget{ref-VanAert2017}{}
+\leavevmode\hypertarget{ref-VanAert2017}{}%
 Van Aert, R. C. M. (2017). P-uniform. GitHub. Retrieved from
 \url{https://github.com/RobbievanAert/puniform}
 
-\hypertarget{ref-VanAssen2015}{}
+\leavevmode\hypertarget{ref-VanAssen2015}{}%
 Van Assen, M. A. L. M., Van Aert, R. C. M., \& Wicherts, J. M. (2015).
 Meta-analysis using effect size distributions of only statistically
 significant studies. \emph{Psychological Methods}, \emph{20}(3),
 293--309.
 doi:\href{https://doi.org/http://dx.doi.org/10.1037/met0000025}{http://dx.doi.org/10.1037/met0000025}
 
-\hypertarget{ref-VanElk2015}{}
+\leavevmode\hypertarget{ref-VanElk2015}{}%
 Van Elk, M., Matzke, D., Gronau, Q. F., Guan, M., Vandekerckhove, J., \&
 Wagenmakers, E.-J. (2015). Meta-analyses are no substitute for
 registered replications: A skeptical perspective on religious priming.
 \emph{Frontiers in Psychology}, \emph{6}, 1365.
 doi:\href{https://doi.org/10.3389/fpsyg.2015.01365}{10.3389/fpsyg.2015.01365}
 
-\hypertarget{ref-VanEmmerik2013}{}
+\leavevmode\hypertarget{ref-VanEmmerik2013}{}%
 Van Emmerik, A. A. P., Reijntjes, A., \& Kamphuis, J. H. (2013). Writing
 therapy for posttraumatic stress: A meta-analysis. \emph{Psychotherapy
 and Psychosomatics}, \emph{82}(2), 82--88.
 doi:\href{https://doi.org/10.1159/000343131}{10.1159/000343131}
 
-\hypertarget{ref-Vevea1995}{}
+\leavevmode\hypertarget{ref-Vevea1995}{}%
 Vevea, J. L., \& Hedges, L. V. (1995). A general linear model for
 estimating effect size in the presence of publication bias.
 \emph{Psychometrika}, \emph{60}(3), 419--435.
 doi:\href{https://doi.org/10.1007/BF02294384}{10.1007/BF02294384}
 
-\hypertarget{ref-Vevea2005}{}
+\leavevmode\hypertarget{ref-Vevea2005}{}%
 Vevea, J. L., \& Woods, C. M. (2005). Publication bias in research
 synthesis: Sensitivity analysis using a priori weight functions.
 \emph{Psychological Methods}, \emph{10}(4), 428--443.
 doi:\href{https://doi.org/10.1037/1082-989X.10.4.428}{10.1037/1082-989X.10.4.428}
 
-\hypertarget{ref-Viechtbauer2010}{}
+\leavevmode\hypertarget{ref-Viechtbauer2010}{}%
 Viechtbauer, W. (2010). Conducting meta-analyses in R with the metafor
 package. \emph{Journal of Statistical Software}, \emph{36}(3), 1--48.
 doi:\href{https://doi.org/10.18637/jss.v036.i03}{10.18637/jss.v036.i03}
 
-\hypertarget{ref-Wang2000}{}
+\leavevmode\hypertarget{ref-Wang2000}{}%
 Wang, X., Gao, L., Shinfuku, N., Zhang, H., Zhao, C., \& Shen, Y.
 (2000). Longitudinal study of earthquake-related PTSD in a randomly
 selected community sample in North China. \emph{American Journal of
 Psychiatry}, \emph{157}(8), 1260--1266.
 doi:\href{https://doi.org/10.1176/appi.ajp.157.8.1260}{10.1176/appi.ajp.157.8.1260}
 
-\hypertarget{ref-Weiss2002}{}
+\leavevmode\hypertarget{ref-Weiss2002}{}%
 Weiss, T. (2002). Posttraumatic growth in women with breast cancer and
 their husbands -- An intersubjective validation study. \emph{Journal of
 Psychosocial Oncology}, \emph{20}(2), 65--80.
 doi:\href{https://doi.org/10.1300/J077v20n02_04}{10.1300/J077v20n02\_04}
 
-\hypertarget{ref-Yilmaz2016}{}
+\leavevmode\hypertarget{ref-Yilmaz2016}{}%
 Yilmaz, M., \& Zara, A. (2016). Traumatic loss and posttraumatic growth:
 The effect of traumatic loss related factors on posttraumatic growth.
 \emph{Anatolian Journal of Psychiatry}, \emph{17}(1), 5--11.
 doi:\href{https://doi.org/10.5455/apd.188311}{10.5455/apd.188311}
-
-
-
-
 
 
 \end{document}

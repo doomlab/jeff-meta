@@ -21,7 +21,7 @@ Trim and Fill & 0.28 [0.25, 0.31] & 0.28 [0.21, 0.36] & 0.28 [0.25, 0.31] & 0.28
 \end{tabular}
 }
 \begin{tablenotes}[para]
-\textit{Note.} [] indicates the 95 percent confidence interval for each effect size estimate.
+\normalsize{\textit{Note.} [] indicates the 95 percent confidence interval for each effect size estimate.}
 \end{tablenotes}
 \end{threeparttable}
 \end{center}
@@ -51,7 +51,7 @@ Trim and Fill & 0.10 [0.02, 0.17] & 0.10 [0.02, 0.17]\\
 \end{tabular}
 }
 \begin{tablenotes}[para]
-\textit{Note.} [] indicates the 95 percent confidence interval for each effect size estimate.
+\normalsize{\textit{Note.} [] indicates the 95 percent confidence interval for each effect size estimate.}
 \end{tablenotes}
 \end{threeparttable}
 \end{center}
@@ -81,7 +81,7 @@ Trim and Fill & -0.01 [-0.07, 0.05] & -0.01 [-0.16, 0.13] & -0.01 [-0.07, 0.05] 
 \end{tabular}
 }
 \begin{tablenotes}[para]
-\textit{Note.} [] indicates the 95 percent confidence interval for each effect size estimate.
+\normalsize{\textit{Note.} [] indicates the 95 percent confidence interval for each effect size estimate.}
 \end{tablenotes}
 \end{threeparttable}
 \end{center}

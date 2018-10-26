@@ -6,7 +6,10 @@
 \caption{\label{fig:ptspicoverall}Effect sizes and their non-centralized
 confidence interval for PTS total scores. Dashed lines indicated average
 non-weighted lower and upper confidence interval limits. Diamond size
-indicates normalized study weight from a random effects model.}
+indicates normalized study weight from a random effects model. Y-axis
+labels indicate citation and pairwise time combination, these labels can
+be matched to the exact data by viewing the provided data online. Table
+1 includes meta-analytic effect size for PTS overall.}
 \end{figure*}
 \efloatseparator
  
@@ -18,7 +21,10 @@ indicates normalized study weight from a random effects model.}
 \caption{\label{fig:ptspichyper}Effect sizes and their non-centralized
 confidence interval for PTS Hyperarousal. Dashed lines indicated average
 non-weighted lower and upper confidence interval limits. Diamond size
-indicates normalized study weight from a random effects model.}
+indicates normalized study weight from a random effects model. Y-axis
+labels indicate citation and pairwise time combination, these labels can
+be matched to the exact data by viewing the provided data online. Table
+1 includes meta-analytic effect size for PTS overall.}
 \end{figure*}
 \efloatseparator
  
@@ -30,7 +36,10 @@ indicates normalized study weight from a random effects model.}
 \caption{\label{fig:ptspicint}Effect sizes and their non-centralized
 confidence interval for PTS Intrusion scores. Dashed lines indicated
 average non-weighted lower and upper confidence interval limits. Diamond
-size indicates normalized study weight from a random effects model.}
+size indicates normalized study weight from a random effects model.
+Y-axis labels indicate citation and pairwise time combination, these
+labels can be matched to the exact data by viewing the provided data
+online. Table 1 includes meta-analytic effect size for PTS overall.}
 \end{figure*}
 \efloatseparator
  
@@ -42,7 +51,10 @@ size indicates normalized study weight from a random effects model.}
 \caption{\label{fig:ptspicavoid}Effect sizes and their non-centralized
 confidence interval for PTS Avoidance Scores. Dashed lines indicated
 average non-weighted lower and upper confidence interval limits. Diamond
-size indicates normalized study weight from a random effects model.}
+size indicates normalized study weight from a random effects model.
+Y-axis labels indicate citation and pairwise time combination, these
+labels can be matched to the exact data by viewing the provided data
+online. Table 1 includes meta-analytic effect size for PTS overall.}
 \end{figure*}
 \efloatseparator
  
@@ -54,7 +66,10 @@ size indicates normalized study weight from a random effects model.}
 \caption{\label{fig:ptgpic}Effect sizes and their non-centralized confidence
 interval for PTG outcome variables. Dashed lines indicated average
 non-weighted lower and upper confidence interval limits. Diamond size
-indicates normalized study weight from a random effects model.}
+indicates normalized study weight from a random effects model. Y-axis
+labels indicate citation and pairwise time combination, these labels can
+be matched to the exact data by viewing the provided data online. Table
+2 includes meta-analytic effect size for PTG.}
 \end{figure*}
 \efloatseparator
  
@@ -66,7 +81,10 @@ indicates normalized study weight from a random effects model.}
 \caption{\label{fig:qolpic}Effect sizes and their non-centralized confidence
 interval for QOL outcome variables. Dashed lines indicated average
 non-weighted lower and upper confidence interval limits. Diamond size
-indicates normalized study weight from a random effects model.}
+indicates normalized study weight from a random effects model. Y-axis
+labels indicate citation and pairwise time combination, these labels can
+be matched to the exact data by viewing the provided data online. Table
+3 includes meta-analytic effect size for QOL.}
 \end{figure*}
 \efloatseparator
  

@@ -155,9 +155,8 @@ PTSD_diag = table(meta_data$Variable, meta_data$PTSDDx)
 meta_data$plotname = as.character(meta_data$plotname)
 ```
 
-`r nrow(nstudies) + 211` citations focusing on PTS, PTG, and QOL were identified through the literature search and previous meta-analyses. After screening these studies, `r nrow(nstudies)` articles were retained for containing the appropriate information for this meta-analysis. This manuscript was written with *papaja* in *R* [@Aust2017] with the analyses inline with the text. The complete set of data, excluded article list with reasoning, and other relevant information can be found at: https://osf.io/4mjqt. Generally, studies were included if they utilized WED or WET, included relevant numbers to compute an effect size, and included the relevant outcome variables. 
+`r nrow(nstudies) + 211` citations focusing on PTS, PTG, and QOL were identified through the literature search and previous meta-analyses. After screening these studies, `r nrow(nstudies)` articles were retained for containing the appropriate information for this meta-analysis. This manuscript was written with *papaja* in *R* [@Aust2017] with the analyses inline with the text. The complete set of data, excluded article list with reasoning, and other relevant information can be found at: https://osf.io/4mjqt. Generally, studies were included if they utilized WED or WET, included relevant numbers to compute an effect size, and included the relevant outcome variables. The questionnaire for each relevant outcome variable is coded in the online data provided on the Open Science Framework (link above). These varied across study, however, the nature of Cohen's *d* allows for different Likert-type scales, as it takes into consideration the study standard deviation in the denominator to create standardized scores for comparison across studies. 
 
-Although different questionnaires were used to measure the relevant outcome variables (measure listed for each study also included in OSF), the nature of Cohen's *d* allows for different Likert-type scales, as it takes into consideration the pooled standard deviation. 
 After having two reviewers independently code articles, `r nrow(meta_data)` effect sizes were calculated. On average, each study represented *M* = `r printnum(mean(nstudies$Freq))`, *SD* = `r printnum(sd(nstudies$Freq))` effects, ranging from `r min(nstudies$Freq)` to `r max(nstudies$Freq)` effects. `r type_effect["PTS"]` effects were calculated for PTS, `r type_effect["PTG"]` for PTG, and `r type_effect["QOL"]` for QOL. Studies were coded for PTSD diagnosis as no (not mentioned or not included), mixed (mentioned number of participants but all included), and yes (included as criteria). After examining the number of effects in each of these categories for each variable, only the PTS results will be split by PTSD diagnosis with `r PTSD_diag[2,2]` no mention, `r PTSD_diag[2,1]` in the mixed category, and `r PTSD_diag[2,3]` yeses.
 
 ## Calculations for Effect Size, Variance, and Confidence Intervals
@@ -319,7 +318,7 @@ meta_data$power = powerstuff$power
 
 ```
 
-## PTS
+## Post Traumatic Stress
 
 ### Overall Effect Size
 
@@ -390,7 +389,7 @@ hypgraph = fplot(ptsdata[ptsdata$ptstype == "hyper" , ], "PTS Hyperarousal Effec
 hypgraph
 ```
 
-```{r ptspicint, echo=FALSE, fig.cap="Effect sizes and their non-centralized confidence interval for PTS Intrusion scores. Dashed lines indicated average non-weighted lower and upper confidence interval limits. Diamond size indicates normalized study weight from a random effects model." Y-axis labels indicate citation and pairwise time combination, these labels can be matched to the exact data by viewing the provided data online. Table 1 includes meta-analytic effect size for PTS overall, fig.height=9, fig.width=8}
+```{r ptspicint, echo=FALSE, fig.cap="Effect sizes and their non-centralized confidence interval for PTS Intrusion scores. Dashed lines indicated average non-weighted lower and upper confidence interval limits. Diamond size indicates normalized study weight from a random effects model. Y-axis labels indicate citation and pairwise time combination, these labels can be matched to the exact data by viewing the provided data online. Table 1 includes meta-analytic effect size for PTS overall.", fig.height=9, fig.width=8}
 
 intgraph = fplot(ptsdata[ptsdata$ptstype == "int" , ], "PTS Intrusions Effect Size") +
   scale_x_discrete(limits = sort(ptsdata$plotname[ptsdata$ptstype == "int"], decreasing = T))
@@ -698,7 +697,7 @@ apa_table(as.data.frame(tableprint),
 ```
 
 
-## PTG
+## Post Traumatic Growth
 
 ### Overall Effect Size
 
@@ -860,7 +859,7 @@ apa_table(as.data.frame(tableprint2),
           )
 ```
 
-## QOL
+## Quality of Life
 
 ### Overall Effect Size
 
@@ -1071,7 +1070,9 @@ apa_table(as.data.frame(tableprint3),
 
 # Discussion 
 
-In examining pre- to post-test comparisons across each variable separately, we found that PTS studies indicated a small effect size across all meta-analytic estimates. Interestingly, those studies requiring a diagnosis of PTSD for inclusion resulted in a medium effect size, while those studies not requiring a PTSD diagnosis resulted in a small to medium effect size. These results suggest that those with clinical symptoms of PTSD may benefit more from expressive writing interventions. Further, these results are in contrast to recently-conducted studies, which suggest that those with subclinical symptoms benefit more from expressive writing tasks [@Blasio2015a; @Sloan2011a]. Both QOL and PTG studies indicated a negligible to small effect size using random effects models. Although the PTG effect in our overall meta-analysis estimate was significant, other methods indicate this small effect is likely not different from zero. These results should be considered within the context of the intervention. Given that expressive writing is an innocuous, easy-to-administer intervention, even small effect sizes should be considered important when interpreting these results. While small, these effect sizes exhibit a profound impact of expressive writing on PTS. We also examined the relationship of time between measurements of the dependent variables and the corresponding effect size to determine if effects change over time. For both PTS and PTG, there was no relationship between effect size and time. For QOL studies, a medium to large negative correlation was found. A negative relationship between time and effect size implies that writing tasks were more effective in the initial time points, and effects decreased over longer time spans. 
+In examining pre- to post-test comparisons across each variable separately, we found that PTS studies indicated a small effect size across all meta-analytic estimates. Interestingly, those studies requiring a diagnosis of PTSD for inclusion resulted in a medium effect size, while those studies not requiring a PTSD diagnosis resulted in a small to medium effect size. These results suggest that those with clinical symptoms of PTSD may benefit more from expressive writing interventions. Further, these results are in contrast to recently-conducted studies, which suggest that those with subclinical symptoms benefit more from expressive writing tasks [@Blasio2015a; @Sloan2011a]. Both QOL and PTG studies indicated a negligible to small effect size using random effects models. Although the PTG effect in our overall meta-analysis estimate was significant, other methods indicate this small effect is likely not different from zero. These results should be considered within the context of the intervention. Given that expressive writing is an innocuous, easy-to-administer intervention, even small effect sizes should be considered important when interpreting these results. While small, these effect sizes exhibit a profound impact of expressive writing on PTS. 
+
+Additionally, our analyses focus on the change for the experimental group across time, rather than an experimental group to a control group. This focus allowed us to estimate the changes for individuals who received a WED/WET intervention, therefore estimating the impact on participants who used written expression. Potentially, these effects could be contributed to other factors (such as the simple passage of time), but we demonstrate here that for both PTS and PTG, there was no relationship between effect size and time. For QOL studies, a medium to large negative correlation was found. A negative relationship between time and effect size implies that writing tasks were more effective in the initial time points, and effects decreased over longer time spans. 
 
 The authors note several limitations. Generally, ineffective emotional expression may be a contributing factor. If participants/clients are not deeply engaged with the material, an expressive writing task may not be effective, as @Pennebaker2001 imply that connectedness is an important factor for the task. However, it may be difficult to implement a check for engagement in these types of research designs. Doing so may also set a context that will inhibit emotional processing and general responses. Research on expressive writing has found a wide range of outcomes for different variables [@Frattaroli2006], and these various results may explain the large heterogeneity found in this study. Encouragingly, we did not find much evidence of publication bias, and therefore, these estimates may represent a true population effect size. Regardless, methodology of expressive writing studies is variable, as it is applied in different forms across different contexts. Ideally, it would be possible to control for these varied instructions and protocols. However, this is simply not feasible, as most studies do not use measures that examine how engaged an individual is with the material. As such, this current meta-analysis sought to provide readers with a global effect of expressive writing on the aforementioned outcome variables. More studies are needed to examine potential moderating effects of participant engagement. 
 
